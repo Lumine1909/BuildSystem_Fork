@@ -8,6 +8,8 @@ plugins {
 project.description = "Core"
 
 repositories {
+    mavenCentral()
+    mavenLocal()
     maven {
         name = "AuthLib"
         url = uri("https://libraries.minecraft.net/")
@@ -20,7 +22,10 @@ repositories {
         name = "PlaceholderAPI"
         url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
     }
-
+    maven {
+        name = "PaperMC"
+        url = uri("https://repo.papermc.io/repository/maven-public/")
+    }
     maven {
         name = "Modrinth"
         url = uri("https://api.modrinth.com/maven")
@@ -38,20 +43,23 @@ dependencies {
         implementation(project(it.path))
     }
 
-    compileOnly(libs.spigot)
-    compileOnly(libs.authlib)
-    compileOnly(libs.paperlib)
-    compileOnly(libs.luckperms)
-    compileOnly(libs.placeholderapi)
-    compileOnly(libs.worldedit)
-    compileOnly(libs.annotations)
-    compileOnly(libs.axiompaper)
-
+    implementation(libs.intellsbom)
     implementation(libs.paperlib)
     implementation(libs.xseries)
     implementation(libs.fastboard)
     implementation(libs.nbt) { isTransitive = false }
     implementation(libs.bstats)
+
+    compileOnly(libs.spigot)
+    compileOnly(libs.authlib)
+    compileOnly(libs.paperlib)
+    compileOnly(libs.luckperms)
+    compileOnly(libs.placeholderapi)
+    compileOnly(libs.annotations)
+    compileOnly(libs.axiompaper)
+    compileOnly(libs.fastutil)
+    compileOnly(libs.fawe)
+    compileOnly(libs.plotsquared)
 }
 
 tasks {

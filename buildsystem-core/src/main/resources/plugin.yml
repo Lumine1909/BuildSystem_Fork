@@ -1,11 +1,13 @@
 name: BuildSystem
 version: ${version}
 api-version: "1.13"
-author: einTosti
+authors:
+  - einTosti
+  - Lumine1909
 main: de.eintosti.buildsystem.BuildSystem
 description: Powerful, easy to use system for builders
 website: https://buildsystem.eintosti.de
-softdepend: [ LuckPerms, PlaceholderAPI, WorldEdit, AxiomPaper ]
+softdepend: [ LuckPerms, PlaceholderAPI, WorldEdit, AxiomPaper, PlotSquared ]
 
 commands:
   back:
@@ -120,4 +122,7 @@ permissions:
     default: true
   buildsystem.updates:
     description: Receive update messages.
+    default: op
+  buildsystem.customblock.use:
+    description: Use custom block provided by the plugin.
     default: op

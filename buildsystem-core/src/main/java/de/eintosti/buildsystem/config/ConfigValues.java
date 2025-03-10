@@ -42,6 +42,7 @@ public class ConfigValues {
     private String defaultPublicPermission;
     private String defaultPrivatePermission;
     private String invalidNameCharacters;
+    private String worldNameFormat;
 
     private XMaterial navigatorItem;
     private XMaterial worldEditWand;
@@ -72,6 +73,7 @@ public class ConfigValues {
     private boolean[] worldBuildersEnabled;
     private boolean saveFromDeath;
     private boolean teleportToMapSpawn;
+    private boolean dynamicWorldLoad;
 
     private int sunriseTime;
     private int noonTime;
@@ -102,6 +104,7 @@ public class ConfigValues {
         this.teleportToMapSpawn = config.getBoolean("settings.save-from-death.teleport-to-map-spawn", true);
 
         // Settings
+        this.dynamicWorldLoad = config.getBoolean("settings.dynamic-world-load", true);
         this.updateChecker = config.getBoolean("settings.update-checker", true);
         this.scoreboard = config.getBoolean("settings.scoreboard", true);
         this.archiveVanish = config.getBoolean("settings.archive-vanish", true);
@@ -122,6 +125,7 @@ public class ConfigValues {
         this.defaultPrivatePermission = config.getString("world.default.permission.private", "-");
         this.lockWeather = config.getBoolean("world.lock-weather", true);
         this.invalidNameCharacters = config.getString("world.invalid-characters", "^\b$");
+        this.worldNameFormat = config.getString("world.name-format", "${name}");
         this.worldDifficulty = Difficulty.valueOf(
                 config.getString("world.default.difficulty", "PEACEFUL").toUpperCase(Locale.ROOT)
         );
@@ -372,7 +376,15 @@ public class ConfigValues {
         return teleportToMapSpawn;
     }
 
+    public boolean isDynamicWorldLoad() {
+        return dynamicWorldLoad;
+    }
+
     public String getInvalidNameCharacters() {
         return invalidNameCharacters;
+    }
+
+    public String getWorldNameFormat() {
+        return worldNameFormat;
     }
 }

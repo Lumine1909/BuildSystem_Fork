@@ -20,6 +20,7 @@ package de.eintosti.buildsystem.listener;
 import com.cryptomorin.xseries.XMaterial;
 import de.eintosti.buildsystem.BuildSystem;
 import de.eintosti.buildsystem.Messages;
+import de.eintosti.buildsystem.util.PlotUtil;
 import de.eintosti.buildsystem.version.customblocks.CustomBlock;
 import de.eintosti.buildsystem.world.BuildWorld;
 import de.eintosti.buildsystem.world.WorldManager;
@@ -56,7 +57,7 @@ public class BlockPlaceListener implements Listener {
 
     @EventHandler
     public void onCustomBlockPlace(BlockPlaceEvent event) {
-        if (event.isCancelled()) {
+        if (event.isCancelled() || !event.getPlayer().hasPermission("buildsystem.customblock.place") || !PlotUtil.hasPermissionAt(event.getPlayer(), event.getBlockPlaced().getLocation())) {
             return;
         }
 
