@@ -37,6 +37,7 @@ import de.eintosti.buildsystem.command.WorldsCommand;
 import de.eintosti.buildsystem.config.ConfigValues;
 import de.eintosti.buildsystem.expansion.luckperms.LuckPermsExpansion;
 import de.eintosti.buildsystem.expansion.placeholderapi.PlaceholderApiExpansion;
+import de.eintosti.buildsystem.inject.CraftServerInjector;
 import de.eintosti.buildsystem.internal.CraftBukkitVersion;
 import de.eintosti.buildsystem.listener.AsyncPlayerChatListener;
 import de.eintosti.buildsystem.listener.AsyncPlayerPreLoginListener;
@@ -90,6 +91,7 @@ import de.eintosti.buildsystem.tabcomplete.SpeedTabComplete;
 import de.eintosti.buildsystem.tabcomplete.TimeTabComplete;
 import de.eintosti.buildsystem.tabcomplete.WorldsTabComplete;
 import de.eintosti.buildsystem.util.InventoryUtils;
+import de.eintosti.buildsystem.util.PlotUtil;
 import de.eintosti.buildsystem.util.UpdateChecker;
 import de.eintosti.buildsystem.version.customblocks.CustomBlocks;
 import de.eintosti.buildsystem.version.gamerules.GameRules;
@@ -124,6 +126,8 @@ public class BuildSystem extends JavaPlugin {
     public static final int SPIGOT_ID = 60441;
     public static final int METRICS_ID = 7427;
     public static final String ADMIN_PERMISSION = "buildsystem.admin";
+
+    public static BuildSystem plugin;
 
     private CraftBukkitVersion craftBukkitVersion;
 
@@ -166,6 +170,7 @@ public class BuildSystem extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        plugin = this;
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
         this.configValues = new ConfigValues(this);
@@ -275,6 +280,7 @@ public class BuildSystem extends JavaPlugin {
         this.speedInventory = new SpeedInventory(this);
         this.statusInventory = new StatusInventory(this);
         this.worldsInventory = new WorldsInventory(this);
+        CraftServerInjector.inject();
     }
 
     private void registerCommands() {
@@ -380,6 +386,11 @@ public class BuildSystem extends JavaPlugin {
         if (pluginManager.getPlugin("AxiomPaper") != null) {
             new WorldManipulateByAxiomListener(this);
             getLogger().info("Axiom build-world manipulation prevention has been enabled.");
+        }
+
+        if (pluginManager.getPlugin("PlotSquared") != null) {
+            PlotUtil.init();
+            getLogger().info("Plotsquared plot prevention for custom blocks and settings has been enabled.");
         }
 
         boolean isWorldEdit = pluginManager.getPlugin("WorldEdit") != null

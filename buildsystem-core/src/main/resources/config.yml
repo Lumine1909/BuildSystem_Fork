@@ -4,6 +4,7 @@ messages:
   date-format: "dd/MM/yyyy"
 settings:
   update-checker: true
+  dynamic-world-load: true
   scoreboard: true
   archive-vanish: true
   archive-should-change-gamemode: true
@@ -22,6 +23,7 @@ settings:
     item: "CLOCK"
     give-item-on-join: true
 world:
+  name-format: "${name}"
   default:
     permission:
       public: "-"

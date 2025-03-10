@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import org.bukkit.Bukkit;
@@ -60,9 +61,11 @@ public class BuildWorld implements ConfigurationSerializable {
     private final CustomGenerator customGenerator;
     private final List<Builder> builders;
     private String name;
+    private Optional<UUID> worldUUID;
     private Builder creator;
     private long seconds;
     private boolean loaded;
+    private boolean loading = false;
     private BukkitTask unloadTask;
 
     public BuildWorld(
@@ -71,12 +74,14 @@ public class BuildWorld implements ConfigurationSerializable {
             WorldType worldType,
             long creationDate,
             boolean privateWorld,
-            CustomGenerator customGenerator
+            CustomGenerator customGenerator,
+            Optional<UUID> uuid
     ) {
         this.plugin = JavaPlugin.getPlugin(BuildSystem.class);
         this.configValues = plugin.getConfigValues();
 
         this.name = name;
+        this.worldUUID = uuid;
         this.creator = creator;
         this.worldType = worldType;
         this.worldData = new WorldData(
@@ -138,6 +143,7 @@ public class BuildWorld implements ConfigurationSerializable {
         this.configValues = plugin.getConfigValues();
 
         this.name = name;
+        this.worldUUID = Optional.ofNullable(worldData.uuid().get());
         this.creator = creator;
         this.worldType = worldType;
         this.worldData = worldData;
@@ -164,6 +170,23 @@ public class BuildWorld implements ConfigurationSerializable {
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Get the uuid of the world.
+     *
+     * @return The world's uuid
+     */
+    public Optional<UUID> getUUID() {
+        return this.worldUUID;
+    }
+
+    /**
+     * Set the uuid of the world.
+     *
+     */
+    public void setUUID(UUID uuid) {
+        this.worldUUID = Optional.ofNullable(uuid);
     }
 
     /**
@@ -365,7 +388,7 @@ public class BuildWorld implements ConfigurationSerializable {
      * @return Whether the player is a builder
      */
     public boolean isBuilder(UUID uuid) {
-        return this.builders.parallelStream().anyMatch(builder -> builder.getUniqueId().equals(uuid));
+        return this.builders.stream().anyMatch(builder -> builder.getUniqueId().equals(uuid));
     }
 
     /**
@@ -498,7 +521,7 @@ public class BuildWorld implements ConfigurationSerializable {
         if (unloadEvent.isCancelled()) {
             return;
         }
-
+        /*
         if (save) {
             bukkitWorld.save();
         }
@@ -506,8 +529,9 @@ public class BuildWorld implements ConfigurationSerializable {
         for (Chunk chunk : bukkitWorld.getLoadedChunks()) {
             chunk.unload(save);
         }
+
+         */
         Bukkit.unloadWorld(bukkitWorld, save);
-        Bukkit.getWorlds().remove(bukkitWorld);
 
         this.worldData.lastUnloaded().set(System.currentTimeMillis());
         this.loaded = false;
@@ -550,19 +574,26 @@ public class BuildWorld implements ConfigurationSerializable {
         if (loadEvent.isCancelled()) {
             return;
         }
-
         plugin.getLogger().info("*** Loading world \"" + name + "\" ***");
+        this.loading = true;
         World world = new BuildWorldCreator(plugin, this).generateBukkitWorld();
         if (world == null) {
             return;
         }
-
+        if (this.worldUUID.isEmpty()) {
+            this.setUUID(world.getUID());
+        }
         this.worldData.lastLoaded().set(System.currentTimeMillis());
         this.loaded = true;
+        this.loading = false;
 
         Bukkit.getServer().getPluginManager().callEvent(new BuildWorldPostLoadEvent(this));
 
         resetUnloadTask();
+    }
+
+    public boolean isLoading() {
+        return loading;
     }
 
     @Override

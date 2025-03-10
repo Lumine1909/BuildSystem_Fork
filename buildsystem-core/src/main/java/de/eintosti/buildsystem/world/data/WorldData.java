@@ -21,6 +21,7 @@ import com.cryptomorin.xseries.XMaterial;
 import de.eintosti.buildsystem.config.ConfigValues;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
@@ -36,6 +37,8 @@ public class WorldData implements ConfigurationSerializable {
     private final Type<String> customSpawn = register("spawn");
     private final Type<String> permission = register("permission");
     private final Type<String> project = register("project");
+
+    private final Type<UUID> uuid = register("uuid");
 
     private final Type<Difficulty> difficulty = register("difficulty", new DifficultyType());
     private final Type<XMaterial> material = register("material", new MaterialType());
@@ -82,6 +85,7 @@ public class WorldData implements ConfigurationSerializable {
 
     public WorldData(
             String worldName,
+            UUID worldUUID,
             String customSpawn,
             String permission,
             String project,
@@ -100,6 +104,8 @@ public class WorldData implements ConfigurationSerializable {
             long lastUnloaded,
             long lastEdited
     ) {
+        this.uuid.set(worldUUID);
+
         this.customSpawn.set(customSpawn);
         this.permission.set(permission);
         this.project.set(project);
@@ -153,6 +159,10 @@ public class WorldData implements ConfigurationSerializable {
                 Float.parseFloat(spawnString[3]),
                 Float.parseFloat(spawnString[4])
         );
+    }
+
+    public Type<UUID> uuid() {
+        return uuid;
     }
 
     public Type<String> permission() {

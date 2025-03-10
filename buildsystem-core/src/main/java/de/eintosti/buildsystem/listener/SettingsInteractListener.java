@@ -26,6 +26,7 @@ import de.eintosti.buildsystem.config.ConfigValues;
 import de.eintosti.buildsystem.settings.Settings;
 import de.eintosti.buildsystem.settings.SettingsManager;
 import de.eintosti.buildsystem.util.MaterialUtils;
+import de.eintosti.buildsystem.util.PlotUtil;
 import de.eintosti.buildsystem.version.customblocks.CustomBlocks;
 import de.eintosti.buildsystem.version.util.DirectionUtil;
 import de.eintosti.buildsystem.version.util.MinecraftVersion;
@@ -36,6 +37,7 @@ import de.eintosti.buildsystem.world.data.WorldData;
 import de.eintosti.buildsystem.world.data.WorldStatus;
 import java.util.EnumSet;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import org.bukkit.Bukkit;
@@ -350,7 +352,7 @@ public class SettingsInteractListener implements Listener {
 
         BuildWorld buildWorld = worldManager.getBuildWorld(player.getWorld().getName());
         if (buildWorld == null) {
-            return true;
+            return PlotUtil.hasPermissionAt(event.getPlayer(), Objects.requireNonNull(event.getClickedBlock()).getLocation());
         }
 
         WorldData worldData = buildWorld.getData();

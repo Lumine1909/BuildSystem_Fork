@@ -76,6 +76,7 @@ public class WorldManager {
     private final ConfigValues configValues;
     private final WorldConfig worldConfig;
     private final Map<String, BuildWorld> buildWorlds;
+    private final Map<UUID, BuildWorld> buildWorldsByUUID;
 
     public WorldManager(BuildSystem plugin) {
         this.plugin = plugin;
@@ -83,6 +84,7 @@ public class WorldManager {
         this.worldConfig = new WorldConfig(plugin);
 
         this.buildWorlds = new HashMap<>();
+        this.buildWorldsByUUID = new HashMap<>();
     }
 
     /**
@@ -92,7 +94,17 @@ public class WorldManager {
      * @return The world object if one was found, {@code null} otherwise
      */
     public BuildWorld getBuildWorld(String worldName) {
-        return this.buildWorlds.get(worldName);
+        return this.buildWorlds.get(worldName.toLowerCase());
+    }
+
+    /**
+     * Gets the {@link BuildWorld} by the given name.
+     *
+     * @param worldUUID The uuid of the world
+     * @return The world object if one was found, {@code null} otherwise
+     */
+    public BuildWorld getBuildWorld(UUID worldUUID) {
+        return this.buildWorldsByUUID.get(worldUUID);
     }
 
     /**
@@ -111,7 +123,10 @@ public class WorldManager {
      * @param buildWorld The world to add
      */
     public void addBuildWorld(BuildWorld buildWorld) {
-        this.buildWorlds.put(buildWorld.getName(), buildWorld);
+        this.buildWorlds.put(buildWorld.getName().toLowerCase(), buildWorld);
+        if (buildWorld.getUUID().isPresent()) {
+            this.buildWorldsByUUID.put(buildWorld.getUUID().get(), buildWorld);
+        }
     }
 
     /**
@@ -120,7 +135,7 @@ public class WorldManager {
      * @param buildWorld The world to remove
      */
     public void removeBuildWorld(BuildWorld buildWorld) {
-        this.buildWorlds.remove(buildWorld.getName());
+        this.buildWorlds.remove(buildWorld.getName().toLowerCase());
     }
 
     /**
@@ -196,11 +211,11 @@ public class WorldManager {
                 Messages.sendMessage(player, "worlds_world_creation_invalid_characters");
             }
 
-            String worldName = input
+            String worldName = plugin.getConfigValues().getWorldNameFormat().replace("${name}", input
                     .replaceAll("[^A-Za-z\\d/_-]", "")
                     .replaceAll(configValues.getInvalidNameCharacters(), "")
                     .replace(" ", "_")
-                    .trim();
+                    .trim());
             if (worldName.isEmpty()) {
                 Messages.sendMessage(player, "worlds_world_creation_name_bank");
                 return;
@@ -502,11 +517,12 @@ public class WorldManager {
         if (hasInvalidChar) {
             Messages.sendMessage(player, "worlds_world_creation_invalid_characters");
         }
-        String parsedNewName = newName
+        String parsedNewName = plugin.getConfigValues().getWorldNameFormat().replace("${name}", newName
                 .replaceAll("[^A-Za-z\\d/_-]", "")
                 .replaceAll(configValues.getInvalidNameCharacters(), "")
                 .replace(" ", "_")
-                .trim();
+                .trim());
+
         if (parsedNewName.isEmpty()) {
             Messages.sendMessage(player, "worlds_world_creation_name_bank");
             return;
@@ -844,7 +860,7 @@ public class WorldManager {
                     && configuration.getBoolean("worlds." + worldName + ".private");
 
             return new WorldData(
-                    worldName, customSpawn, permission, project, difficulty, material, worldStatus, blockBreaking,
+                    worldName, null, customSpawn, permission, project, difficulty, material, worldStatus, blockBreaking,
                     blockInteractions, blockPlacement, buildersEnabled, explosions, mobAi, physics, privateWorld,
                     -1, -1, -1
             );
@@ -853,6 +869,10 @@ public class WorldManager {
         String customSpawn = configuration.getString("worlds." + worldName + ".spawn");
         String permission = configuration.getString(path + ".permission");
         String project = configuration.getString(path + ".project");
+
+        String uuidStr = configuration.getString("worlds." + worldName + ".uuid");
+
+        UUID uuid = uuidStr == null ? null : UUID.fromString(uuidStr);
 
         Difficulty difficulty = Difficulty.valueOf(
                 configuration.getString(path + ".difficulty").toUpperCase(Locale.ROOT)
@@ -874,7 +894,7 @@ public class WorldManager {
         long lastEdited = configuration.getLong(path + ".last-edited");
 
         return new WorldData(
-                worldName, customSpawn, permission, project, difficulty, material, worldStatus, blockBreaking,
+                worldName, uuid, customSpawn, permission, project, difficulty, material, worldStatus, blockBreaking,
                 blockInteractions, blockPlacement, buildersEnabled, explosions, mobAi, physics, privateWorld,
                 lastLoaded, lastUnloaded, lastEdited
         );

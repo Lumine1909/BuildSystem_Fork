@@ -34,6 +34,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.AbstractMap;
 import java.util.Locale;
+import java.util.Optional;
+import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Difficulty;
@@ -54,6 +56,7 @@ public class BuildWorldCreator {
     private final WorldManager worldManager;
 
     private String worldName;
+    private Optional<UUID> uuid;
     private Builder creator;
     private boolean privateWorld = false;
     private WorldType worldType = WorldType.NORMAL;
@@ -67,6 +70,7 @@ public class BuildWorldCreator {
         this.worldManager = plugin.getWorldManager();
 
         setName(name);
+        uuid = Optional.empty();
         setDifficulty(plugin.getConfigValues().getWorldDifficulty());
     }
 
@@ -78,6 +82,7 @@ public class BuildWorldCreator {
         setType(buildWorld.getType());
         setCustomGenerator(buildWorld.getCustomGenerator());
         setPrivate(buildWorld.getData().privateWorld().get());
+        uuid = buildWorld.getUUID();
     }
 
     public BuildWorldCreator setName(String name) {
@@ -144,7 +149,8 @@ public class BuildWorldCreator {
                 worldType,
                 creationDate,
                 privateWorld,
-                customGenerator
+                customGenerator,
+                uuid
         );
         buildWorld.getData().lastLoaded().set(System.currentTimeMillis());
         return buildWorld;
@@ -268,7 +274,6 @@ public class BuildWorldCreator {
                     ));
             return null;
         }
-
         WorldCreator worldCreator = new WorldCreator(worldName);
         org.bukkit.WorldType bukkitWorldType;
 
@@ -328,6 +333,7 @@ public class BuildWorldCreator {
             configValues.getDefaultGameRules().forEach(bukkitWorld::setGameRuleValue);
         }
 
+        uuid = Optional.ofNullable(bukkitWorld.getUID());
         updateDataVersion();
         return bukkitWorld;
     }
