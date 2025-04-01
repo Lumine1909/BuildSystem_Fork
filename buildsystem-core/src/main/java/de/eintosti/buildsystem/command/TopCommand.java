@@ -65,23 +65,23 @@ public class TopCommand implements CommandExecutor {
     private void sendToTop(Player player) {
         Location playerLocation = player.getLocation();
         Location blockLocation = player.getWorld()
-                .getHighestBlockAt(playerLocation.getBlockX(), playerLocation.getBlockZ())
-                .getLocation();
+            .getHighestBlockAt(playerLocation.getBlockX(), playerLocation.getBlockZ())
+            .getLocation();
 
         boolean failed = !worldManager.isSafeLocation(blockLocation)
-                || blockLocation.getBlock().getY() < playerLocation.getBlock().getY();
+            || blockLocation.getBlock().getY() < playerLocation.getBlock().getY();
         if (failed) {
             Messages.sendMessage(player, "top_failed");
             return;
         }
 
         PaperLib.teleportAsync(player, blockLocation.add(0.5, 1, 0.5))
-                .whenComplete((completed, throwable) -> {
-                    if (!completed) {
-                        return;
-                    }
-                    XSound.ENTITY_ZOMBIE_INFECT.play(player);
-                    Messages.sendMessage(player, "top_teleported");
-                });
+            .whenComplete((completed, throwable) -> {
+                if (!completed) {
+                    return;
+                }
+                XSound.ENTITY_ZOMBIE_INFECT.play(player);
+                Messages.sendMessage(player, "top_teleported");
+            });
     }
 }

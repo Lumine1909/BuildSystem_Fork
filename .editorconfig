@@ -55,11 +55,11 @@ ij_css_value_alignment = do_not_align
 max_line_length = 80
 
 [*.dcl]
-ij_continuation_indent_size = 8
+ij_continuation_indent_size = 4
 ij_declarative_keep_indents_on_empty_lines = false
 
 [*.java]
-ij_continuation_indent_size = 8
+ij_continuation_indent_size = 4
 ij_java_align_consecutive_assignments = false
 ij_java_align_consecutive_variable_declarations = false
 ij_java_align_group_field_declarations = false

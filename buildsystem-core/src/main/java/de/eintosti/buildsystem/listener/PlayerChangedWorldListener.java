@@ -88,7 +88,7 @@ public class PlayerChangedWorldListener implements Listener {
 
         BuildWorld newWorld = worldManager.getBuildWorld(worldName);
         if (newWorld != null && !newWorld.getData().physics().get()
-                && player.hasPermission("buildsystem.physics.message")) {
+            && player.hasPermission("buildsystem.physics.message")) {
             Messages.sendMessage(player, "physics_deactivated_in_world", new AbstractMap.SimpleEntry<>("%world%", newWorld.getName()));
         }
 
@@ -124,7 +124,7 @@ public class PlayerChangedWorldListener implements Listener {
 
     private void setGoldBlock(BuildWorld buildWorld) {
         if (buildWorld == null || buildWorld.getType() != WorldType.VOID
-                || buildWorld.getData().status().get() != WorldStatus.NOT_STARTED) {
+            || buildWorld.getData().status().get() != WorldStatus.NOT_STARTED) {
             return;
         }
 

@@ -98,8 +98,8 @@ public class FilteredWorldsInventory extends PaginatedInventory implements Liste
      */
     private int numOfWorlds(Player player) {
         return (int) worldManager.getBuildWorlds().stream()
-                .filter(buildWorld -> isValidWorld(player, buildWorld))
-                .count();
+            .filter(buildWorld -> isValidWorld(player, buildWorld))
+            .count();
     }
 
     /**
@@ -123,8 +123,8 @@ public class FilteredWorldsInventory extends PaginatedInventory implements Liste
     private void addWorlds(Player player) {
         int numWorlds = numOfWorlds(player);
         int numInventories = numWorlds % MAX_WORLDS == 0
-                ? Math.max(numWorlds, 1)
-                : numWorlds + 1;
+            ? Math.max(numWorlds, 1)
+            : numWorlds + 1;
 
         inventories = new Inventory[numInventories];
         Inventory inventory = createInventory(player);
@@ -138,7 +138,7 @@ public class FilteredWorldsInventory extends PaginatedInventory implements Liste
 
         int columnWorld = 9, maxColumnWorld = 44;
         for (BuildWorld buildWorld : inventoryUtils.getDisplayOrder(worldManager, plugin.getSettingsManager()
-                .getSettings(player))) {
+            .getSettings(player))) {
             if (isValidWorld(player, buildWorld)) {
                 inventoryUtils.addWorldItem(player, inventory, columnWorld++, buildWorld);
             }
@@ -163,7 +163,7 @@ public class FilteredWorldsInventory extends PaginatedInventory implements Liste
 
         List<String> lore = new ArrayList<>();
         lore.add(Messages.getString(worldFilter.getMode()
-                .getLoreKey(), player, new AbstractMap.SimpleEntry<>("%text%", worldFilter.getText())));
+            .getLoreKey(), player, new AbstractMap.SimpleEntry<>("%text%", worldFilter.getText())));
         lore.addAll(Messages.getStringList("world_filter_lore", player));
 
         inventoryUtils.addItemStack(inventory, 46, XMaterial.HOPPER, Messages.getString("world_filter_title", player), lore);
@@ -219,8 +219,8 @@ public class FilteredWorldsInventory extends PaginatedInventory implements Liste
         switch (event.getSlot()) {
             case 45:
                 WorldSort newSort = event.isLeftClick()
-                        ? worldDisplay.getWorldSort().getNext()
-                        : worldDisplay.getWorldSort().getPrevious();
+                    ? worldDisplay.getWorldSort().getNext()
+                    : worldDisplay.getWorldSort().getPrevious();
                 worldDisplay.setWorldSort(newSort);
                 openInventory(player);
                 return;

@@ -47,14 +47,14 @@ public class DeleteInventory implements Listener {
         fillGuiWithGlass(inventory);
 
         inventoryUtils.addItemStack(inventory, 11, XMaterial.LIME_DYE,
-                Messages.getString("delete_world_confirm", player)
+            Messages.getString("delete_world_confirm", player)
         );
         inventoryUtils.addItemStack(inventory, 13, XMaterial.FILLED_MAP,
-                Messages.getString("delete_world_name", player, new AbstractMap.SimpleEntry<>("%world%", buildWorld.getName())),
-                Messages.getStringList("delete_world_name_lore", player)
+            Messages.getString("delete_world_name", player, new AbstractMap.SimpleEntry<>("%world%", buildWorld.getName())),
+            Messages.getStringList("delete_world_name_lore", player)
         );
         inventoryUtils.addItemStack(inventory, 15, XMaterial.RED_DYE,
-                Messages.getString("delete_world_cancel", player)
+            Messages.getString("delete_world_cancel", player)
         );
 
         return inventory;

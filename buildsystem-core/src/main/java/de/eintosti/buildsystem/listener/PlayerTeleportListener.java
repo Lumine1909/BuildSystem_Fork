@@ -19,6 +19,7 @@ package de.eintosti.buildsystem.listener;
 
 import de.eintosti.buildsystem.BuildSystem;
 import de.eintosti.buildsystem.Messages;
+import de.eintosti.buildsystem.player.BuildPlayer;
 import de.eintosti.buildsystem.player.PlayerManager;
 import de.eintosti.buildsystem.world.BuildWorld;
 import de.eintosti.buildsystem.world.WorldManager;
@@ -46,7 +47,10 @@ public class PlayerTeleportListener implements Listener {
         Player player = event.getPlayer();
 
         if (event.getCause() != PlayerTeleportEvent.TeleportCause.UNKNOWN) {
-            playerManager.getBuildPlayer(player).setPreviousLocation(event.getFrom());
+            BuildPlayer buildPlayer = playerManager.getBuildPlayer(player);
+            if (buildPlayer != null) { //Ignore npc
+                buildPlayer.setPreviousLocation(event.getFrom());
+            }
         }
 
         Location to = event.getTo();

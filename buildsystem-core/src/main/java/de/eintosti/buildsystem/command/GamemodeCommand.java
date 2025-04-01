@@ -123,8 +123,8 @@ public class GamemodeCommand implements CommandExecutor {
         target.setGameMode(gameMode);
         Messages.sendMessage(target, "gamemode_set_self", new AbstractMap.SimpleEntry<>("%gamemode%", gameModeName));
         Messages.sendMessage(player, "gamemode_set_other",
-                new AbstractMap.SimpleEntry<>("%target%", target.getName()),
-                new AbstractMap.SimpleEntry<>("%gamemode%", gameModeName)
+            new AbstractMap.SimpleEntry<>("%target%", target.getName()),
+            new AbstractMap.SimpleEntry<>("%gamemode%", gameModeName)
         );
     }
 }

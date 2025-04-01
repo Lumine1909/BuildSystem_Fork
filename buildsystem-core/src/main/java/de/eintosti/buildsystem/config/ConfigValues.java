@@ -127,7 +127,7 @@ public class ConfigValues {
         this.invalidNameCharacters = config.getString("world.invalid-characters", "^\b$");
         this.worldNameFormat = config.getString("world.name-format", "${name}");
         this.worldDifficulty = Difficulty.valueOf(
-                config.getString("world.default.difficulty", "PEACEFUL").toUpperCase(Locale.ROOT)
+            config.getString("world.default.difficulty", "PEACEFUL").toUpperCase(Locale.ROOT)
         );
         this.sunriseTime = config.getInt("world.default.time.sunrise", 0);
         this.noonTime = config.getInt("world.default.time.noon", 6000);
@@ -153,8 +153,8 @@ public class ConfigValues {
         this.worldBlockPlacement = config.getBoolean("world.default.settings.block-placement", true);
         this.worldBlockInteractions = config.getBoolean("world.default.settings.block-interactions", true);
         this.worldBuildersEnabled = new boolean[]{
-                config.getBoolean("world.default.settings.builders-enabled.public", false),
-                config.getBoolean("world.default.settings.builders-enabled.private", true)
+            config.getBoolean("world.default.settings.builders-enabled.public", false),
+            config.getBoolean("world.default.settings.builders-enabled.private", true)
         };
 
         this.unloadWorlds = config.getBoolean("world.unload.enabled", true);
@@ -181,9 +181,9 @@ public class ConfigValues {
         }
 
         return Arrays.stream(GameMode.values())
-                .filter(gameMode -> gameMode.name().equalsIgnoreCase(gameModeName))
-                .findAny()
-                .orElse(GameMode.ADVENTURE);
+            .filter(gameMode -> gameMode.name().equalsIgnoreCase(gameModeName))
+            .findAny()
+            .orElse(GameMode.ADVENTURE);
     }
 
     private XMaterial parseWorldEditWand() {

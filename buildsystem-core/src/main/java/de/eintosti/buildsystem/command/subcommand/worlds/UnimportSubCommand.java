@@ -58,7 +58,7 @@ public class UnimportSubCommand implements SubCommand {
 
         worldManager.unimportWorld(player, buildWorld, true);
         Messages.sendMessage(player, "worlds_unimport_finished",
-                new AbstractMap.SimpleEntry<>("%world%", buildWorld.getName())
+            new AbstractMap.SimpleEntry<>("%world%", buildWorld.getName())
         );
     }
 

@@ -177,7 +177,7 @@ public class BlocksInventory implements Listener {
                 itemMeta.addEnchant(XEnchantment.UNBREAKING.getEnchant(), 1, true);
                 // Inline imports to allow backwards compatibility
                 itemMeta.getPersistentDataContainer().set(
-                        new org.bukkit.NamespacedKey(plugin, "invisible-itemframe"), org.bukkit.persistence.PersistentDataType.BYTE, (byte) 1
+                    new org.bukkit.NamespacedKey(plugin, "invisible-itemframe"), org.bukkit.persistence.PersistentDataType.BYTE, (byte) 1
                 );
                 itemStack.setItemMeta(itemMeta);
                 giveCustomBlock(player, CustomBlock.INVISIBLE_ITEM_FRAME, itemStack);

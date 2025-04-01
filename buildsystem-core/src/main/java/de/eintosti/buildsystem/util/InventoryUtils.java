@@ -184,9 +184,9 @@ public class InventoryUtils {
 
     public ItemStack getSkull(String displayName, Profileable profileable, List<String> lore) {
         ItemStack skull = XSkull.createItem()
-                .profile(profileable)
-                .lenient()
-                .apply();
+            .profile(profileable)
+            .lenient()
+            .apply();
 
         ItemMeta itemMeta = skull.getItemMeta();
         itemMeta.setDisplayName(displayName);
@@ -210,7 +210,7 @@ public class InventoryUtils {
 
     public boolean checkIfValidClick(InventoryClickEvent event, String titleKey) {
         if (!CompatibilityUtils.getInventoryTitle(event)
-                .equals(Messages.getString(titleKey, (Player) event.getWhoClicked()))) {
+            .equals(Messages.getString(titleKey, (Player) event.getWhoClicked()))) {
             return false;
         }
 
@@ -240,20 +240,20 @@ public class InventoryUtils {
         // The try to set texture asynchronously
         try {
             XSkull.createItem()
-                    .profile(buildWorld.getData().privateWorld().get()
-                            ? buildWorld.asProfilable()
-                            : Profileable.username(buildWorld.getName())
-                    )
-                    .fallback(buildWorld.asProfilable())
-                    .lenient()
-                    .applyAsync()
-                    .thenAcceptAsync(itemStack -> {
-                        ItemMeta itemMeta = itemStack.getItemMeta();
-                        itemMeta.setDisplayName(displayName);
-                        itemMeta.setLore(lore);
-                        itemStack.setItemMeta(itemMeta);
-                        inventory.setItem(position, itemStack);
-                    });
+                .profile(buildWorld.getData().privateWorld().get()
+                    ? buildWorld.asProfilable()
+                    : Profileable.username(buildWorld.getName())
+                )
+                .fallback(buildWorld.asProfilable())
+                .lenient()
+                .applyAsync()
+                .thenAcceptAsync(itemStack -> {
+                    ItemMeta itemMeta = itemStack.getItemMeta();
+                    itemMeta.setDisplayName(displayName);
+                    itemMeta.setLore(lore);
+                    itemStack.setItemMeta(itemMeta);
+                    inventory.setItem(position, itemStack);
+                });
         } catch (Exception e) {
             // Probably too many requests
         }
@@ -280,9 +280,9 @@ public class InventoryUtils {
         String displayName = itemMeta.getDisplayName();
 
         if (slot == 22 &&
-                displayName.equals(Messages.getString("world_navigator_no_worlds", player))
-                || displayName.equals(Messages.getString("archive_no_worlds", player))
-                || displayName.equals(Messages.getString("private_no_worlds", player))) {
+            displayName.equals(Messages.getString("world_navigator_no_worlds", player))
+            || displayName.equals(Messages.getString("archive_no_worlds", player))
+            || displayName.equals(Messages.getString("private_no_worlds", player))) {
             return;
         }
 
@@ -315,7 +315,7 @@ public class InventoryUtils {
      */
     private void manageWorldItemClick(InventoryClickEvent event, Player player, ItemMeta itemMeta, BuildWorld buildWorld) {
         if (event.isLeftClick() || !plugin.getWorldManager()
-                .isPermitted(player, WorldsTabComplete.WorldsArgument.EDIT.getPermission(), buildWorld.getName())) {
+            .isPermitted(player, WorldsTabComplete.WorldsArgument.EDIT.getPermission(), buildWorld.getName())) {
             performNonEditClick(player, itemMeta);
             return;
         }
@@ -373,8 +373,8 @@ public class InventoryUtils {
     public List<BuildWorld> getDisplayOrder(WorldManager worldManager, Settings settings) {
         WorldDisplay worldDisplay = settings.getWorldDisplay();
         List<BuildWorld> buildWorlds = worldManager.getBuildWorlds().stream()
-                .filter(worldDisplay.getWorldFilter().apply())
-                .collect(Collectors.toList());
+            .filter(worldDisplay.getWorldFilter().apply())
+            .collect(Collectors.toList());
 
         switch (worldDisplay.getWorldSort()) {
             default: // NAME_A_TO_Z
@@ -386,11 +386,11 @@ public class InventoryUtils {
                 break;
             case PROJECT_A_TO_Z:
                 buildWorlds.sort(Comparator.comparing(worldA -> worldA.getData().project().get()
-                        .toLowerCase(Locale.ROOT)));
+                    .toLowerCase(Locale.ROOT)));
                 break;
             case PROJECT_Z_TO_A:
                 buildWorlds.sort(Comparator.comparing(worldA -> worldA.getData().project().get()
-                        .toLowerCase(Locale.ROOT)));
+                    .toLowerCase(Locale.ROOT)));
                 Collections.reverse(buildWorlds);
                 break;
             case STATUS_NOT_STARTED:
@@ -420,20 +420,20 @@ public class InventoryUtils {
         WorldData worldData = buildWorld.getData();
         @SuppressWarnings("unchecked")
         Map.Entry<String, Object>[] placeholders = new Map.Entry[]{
-                new AbstractMap.SimpleEntry<>("%status%", worldData.status().get().getName(player)),
-                new AbstractMap.SimpleEntry<>("%project%", worldData.project().get()),
-                new AbstractMap.SimpleEntry<>("%permission%", worldData.permission().get()),
-                new AbstractMap.SimpleEntry<>("%creator%",
-                        buildWorld.hasCreator() ? buildWorld.getCreator().getName() : "-"),
-                new AbstractMap.SimpleEntry<>("%creation%", Messages.formatDate(buildWorld.getCreationDate())),
-                new AbstractMap.SimpleEntry<>("%lastedited%", Messages.formatDate(worldData.lastEdited().get())),
-                new AbstractMap.SimpleEntry<>("%lastloaded%", Messages.formatDate(worldData.lastLoaded().get())),
-                new AbstractMap.SimpleEntry<>("%lastunloaded%", Messages.formatDate(worldData.lastUnloaded().get()))
+            new AbstractMap.SimpleEntry<>("%status%", worldData.status().get().getName(player)),
+            new AbstractMap.SimpleEntry<>("%project%", worldData.project().get()),
+            new AbstractMap.SimpleEntry<>("%permission%", worldData.permission().get()),
+            new AbstractMap.SimpleEntry<>("%creator%",
+                buildWorld.hasCreator() ? buildWorld.getCreator().getName() : "-"),
+            new AbstractMap.SimpleEntry<>("%creation%", Messages.formatDate(buildWorld.getCreationDate())),
+            new AbstractMap.SimpleEntry<>("%lastedited%", Messages.formatDate(worldData.lastEdited().get())),
+            new AbstractMap.SimpleEntry<>("%lastloaded%", Messages.formatDate(worldData.lastLoaded().get())),
+            new AbstractMap.SimpleEntry<>("%lastunloaded%", Messages.formatDate(worldData.lastUnloaded().get()))
         };
         List<String> messageList = plugin.getWorldManager()
-                .isPermitted(player, WorldsTabComplete.WorldsArgument.EDIT.getPermission(), buildWorld.getName())
-                ? Messages.getStringList("world_item_lore_edit", player, placeholders)
-                : Messages.getStringList("world_item_lore_normal", player, placeholders);
+            .isPermitted(player, WorldsTabComplete.WorldsArgument.EDIT.getPermission(), buildWorld.getName())
+            ? Messages.getStringList("world_item_lore_edit", player, placeholders)
+            : Messages.getStringList("world_item_lore_normal", player, placeholders);
 
         // Replace %builders% placeholder
         List<String> lore = new ArrayList<>();
@@ -827,7 +827,7 @@ public class InventoryUtils {
         @Override
         public int compare(BuildWorld buildWorld1, BuildWorld buildWorld2) {
             return Integer.compare(buildWorld1.getData().status().get().getStage(), buildWorld2.getData().status().get()
-                    .getStage());
+                .getStage());
         }
     }
 }

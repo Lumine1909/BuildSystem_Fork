@@ -47,8 +47,8 @@ public class BuildModeCalculator implements ContextCalculator<Player> {
     @Override
     public ContextSet estimatePotentialContexts() {
         return ImmutableContextSet.builder()
-                .add(KEY, "true")
-                .add(KEY, "false")
-                .build();
+            .add(KEY, "true")
+            .add(KEY, "false")
+            .build();
     }
 }

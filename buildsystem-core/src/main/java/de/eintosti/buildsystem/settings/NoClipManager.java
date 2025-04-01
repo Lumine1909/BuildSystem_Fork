@@ -95,19 +95,19 @@ public class NoClipManager {
         Location playerLocation = player.getLocation();
 
         Set<Location> locations = Sets.newHashSet(
-                playerLocation.clone().add(0.4, 0, 0),
-                playerLocation.clone().add(-0.4, 0, 0),
-                playerLocation.clone().add(0.4, 1, 0),
-                playerLocation.clone().add(-0.4, 1, 0),
-                playerLocation.clone().add(0, 0, 0.4),
-                playerLocation.clone().add(0, 0, -0.4),
-                playerLocation.clone().add(0, 1, 0.4),
-                playerLocation.clone().add(0, 1, -0.4),
-                playerLocation.clone().add(0, 1.9, 0)
+            playerLocation.clone().add(0.4, 0, 0),
+            playerLocation.clone().add(-0.4, 0, 0),
+            playerLocation.clone().add(0.4, 1, 0),
+            playerLocation.clone().add(-0.4, 1, 0),
+            playerLocation.clone().add(0, 0, 0.4),
+            playerLocation.clone().add(0, 0, -0.4),
+            playerLocation.clone().add(0, 1, 0.4),
+            playerLocation.clone().add(0, 1, -0.4),
+            playerLocation.clone().add(0, 1.9, 0)
         );
 
         return locations.stream().anyMatch(location -> isSolidBlock(location.getBlock()))
-                || (player.isSneaking() && isSolidBlock(playerLocation.clone().add(0, -0.1, 0).getBlock()));
+            || (player.isSneaking() && isSolidBlock(playerLocation.clone().add(0, -0.1, 0).getBlock()));
     }
 
     private boolean isSolidBlock(Block block) {

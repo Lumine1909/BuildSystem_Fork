@@ -119,7 +119,7 @@ public class CreateInventory extends PaginatedInventory implements Listener {
 
     private void addTemplates(Player player, Page page) {
         File[] templateFiles = new File(plugin.getDataFolder() + File.separator + "templates")
-                .listFiles(new TemplateFilter());
+            .listFiles(new TemplateFilter());
 
         int columnTemplate = 29, maxColumnTemplate = 33;
         int fileLength = templateFiles != null ? templateFiles.length : 0;
@@ -231,7 +231,7 @@ public class CreateInventory extends PaginatedInventory implements Listener {
                 }
 
                 if (worldType == null || !player.hasPermission(
-                        "buildsystem.create.type." + worldType.name().toLowerCase(Locale.ROOT))) {
+                    "buildsystem.create.type." + worldType.name().toLowerCase(Locale.ROOT))) {
                     XSound.ENTITY_ITEM_BREAK.play(player);
                     return;
                 }
@@ -259,7 +259,7 @@ public class CreateInventory extends PaginatedInventory implements Listener {
                 switch (xMaterial) {
                     case FILLED_MAP:
                         worldManager.startWorldNameInput(player, WorldType.TEMPLATE, itemStack.getItemMeta()
-                                .getDisplayName(), createPrivateWorld);
+                            .getDisplayName(), createPrivateWorld);
                         break;
                     case PLAYER_HEAD:
                         if (slot == 38 && !decrementInv(player, numTemplates, MAX_TEMPLATES)) {

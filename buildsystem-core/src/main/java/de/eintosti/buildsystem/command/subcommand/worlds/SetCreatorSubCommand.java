@@ -71,7 +71,7 @@ public class SetCreatorSubCommand implements SubCommand {
             plugin.getPlayerManager().forceUpdateSidebar(buildWorld);
             XSound.ENTITY_PLAYER_LEVELUP.play(player);
             Messages.sendMessage(player, "worlds_setcreator_set",
-                    new AbstractMap.SimpleEntry<>("%world%", buildWorld.getName())
+                new AbstractMap.SimpleEntry<>("%world%", buildWorld.getName())
             );
             player.closeInventory();
         });

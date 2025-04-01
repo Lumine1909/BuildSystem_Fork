@@ -57,13 +57,13 @@ public class SpawnManager {
 
         player.setFallDistance(0);
         PaperLib.teleportAsync(player, spawn)
-                .whenComplete((completed, throwable) -> {
-                    if (!completed) {
-                        return;
-                    }
-                    XSound.ENTITY_ZOMBIE_INFECT.play(player);
-                    Titles.clearTitle(player);
-                });
+            .whenComplete((completed, throwable) -> {
+                if (!completed) {
+                    return;
+                }
+                XSound.ENTITY_ZOMBIE_INFECT.play(player);
+                Titles.clearTitle(player);
+            });
         return true;
     }
 
@@ -115,7 +115,7 @@ public class SpawnManager {
         BuildWorld buildWorld = worldManager.getBuildWorld(worldName);
         if (buildWorld == null) {
             plugin.getLogger()
-                    .warning("Could load spawn world \"" + worldName + "\". Please check logs for possible errors.");
+                .warning("Could load spawn world \"" + worldName + "\". Please check logs for possible errors.");
             return;
         }
 

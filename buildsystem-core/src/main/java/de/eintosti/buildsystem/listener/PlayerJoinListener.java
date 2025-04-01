@@ -70,8 +70,8 @@ public class PlayerJoinListener implements Listener {
     public void sendPlayerJoinMessage(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         String message = plugin.getConfigValues().isJoinQuitMessages()
-                ? Messages.getString("player_join", player, new AbstractMap.SimpleEntry<>("%player%", player.getName()))
-                : null;
+            ? Messages.getString("player_join", player, new AbstractMap.SimpleEntry<>("%player%", player.getName()))
+            : null;
         event.setJoinMessage(message);
     }
 
@@ -185,17 +185,17 @@ public class PlayerJoinListener implements Listener {
         }
 
         UpdateChecker.init(plugin, BuildSystem.SPIGOT_ID)
-                .requestUpdateCheck()
-                .whenComplete((result, e) -> {
-                    if (result.requiresUpdate()) {
-                        StringBuilder stringBuilder = new StringBuilder();
-                        Messages.getStringList("update_available", player).forEach(line ->
-                                stringBuilder.append(line
-                                                .replace("%new_version%", result.getNewestVersion())
-                                                .replace("%current_version%", plugin.getDescription().getVersion()))
-                                        .append("\n"));
-                        player.sendMessage(stringBuilder.toString());
-                    }
-                });
+            .requestUpdateCheck()
+            .whenComplete((result, e) -> {
+                if (result.requiresUpdate()) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    Messages.getStringList("update_available", player).forEach(line ->
+                        stringBuilder.append(line
+                                .replace("%new_version%", result.getNewestVersion())
+                                .replace("%current_version%", plugin.getDescription().getVersion()))
+                            .append("\n"));
+                    player.sendMessage(stringBuilder.toString());
+                }
+            });
     }
 }

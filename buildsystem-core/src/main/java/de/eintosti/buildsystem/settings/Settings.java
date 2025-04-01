@@ -64,21 +64,21 @@ public class Settings implements ConfigurationSerializable {
     }
 
     public Settings(
-            NavigatorType navigatorType,
-            DesignColor designColor,
-            WorldDisplay worldDisplay,
-            boolean clearInventory,
-            boolean disableInteract,
-            boolean hidePlayers,
-            boolean instantPlaceSigns,
-            boolean keepNavigator,
-            boolean nightVision,
-            boolean noClip,
-            boolean placePlants,
-            boolean scoreboard,
-            boolean slabBreaking,
-            boolean spawnTeleport,
-            boolean trapDoor
+        NavigatorType navigatorType,
+        DesignColor designColor,
+        WorldDisplay worldDisplay,
+        boolean clearInventory,
+        boolean disableInteract,
+        boolean hidePlayers,
+        boolean instantPlaceSigns,
+        boolean keepNavigator,
+        boolean nightVision,
+        boolean noClip,
+        boolean placePlants,
+        boolean scoreboard,
+        boolean slabBreaking,
+        boolean spawnTeleport,
+        boolean trapDoor
     ) {
         this.navigatorType = navigatorType == null ? NavigatorType.OLD : navigatorType;
         this.designColor = designColor == null ? DesignColor.BLACK : designColor;

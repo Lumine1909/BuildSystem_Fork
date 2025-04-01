@@ -93,7 +93,7 @@ public final class FileUtils {
      */
     private static void copyFile(@NotNull File source, @NotNull File target) throws IOException {
         try (InputStream inputStream = Files.newInputStream(source.toPath());
-                OutputStream outputStream = Files.newOutputStream(target.toPath())) {
+            OutputStream outputStream = Files.newOutputStream(target.toPath())) {
             byte[] buffer = new byte[1024];
             int length;
             while ((length = inputStream.read(buffer)) > 0) {
@@ -110,8 +110,8 @@ public final class FileUtils {
     public static void deleteDirectory(File directory) {
         try (Stream<Path> walk = Files.walk(directory.toPath())) {
             walk.sorted(Comparator.reverseOrder())
-                    .map(Path::toFile)
-                    .forEach(File::delete);
+                .map(Path::toFile)
+                .forEach(File::delete);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -112,7 +112,7 @@ public class NavigatorListener implements Listener {
 
         XMaterial xMaterial = XMaterial.matchXMaterial(itemStack);
         if (xMaterial != configValues.getNavigatorItem()
-                || !itemMeta.getDisplayName().equals(Messages.getString("navigator_item", player))) {
+            || !itemMeta.getDisplayName().equals(Messages.getString("navigator_item", player))) {
             return;
         }
 

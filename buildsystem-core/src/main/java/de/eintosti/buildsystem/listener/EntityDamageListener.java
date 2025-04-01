@@ -67,11 +67,11 @@ public class EntityDamageListener implements Listener {
         event.setCancelled(true);
         player.setFallDistance(0);
         PaperLib.teleportAsync(player, teleportLoc)
-                .whenComplete((completed, throwable) -> {
-                    if (!completed) {
-                        return;
-                    }
-                    XSound.ENTITY_ZOMBIE_INFECT.play(player);
-                });
+            .whenComplete((completed, throwable) -> {
+                if (!completed) {
+                    return;
+                }
+                XSound.ENTITY_ZOMBIE_INFECT.play(player);
+            });
     }
 }

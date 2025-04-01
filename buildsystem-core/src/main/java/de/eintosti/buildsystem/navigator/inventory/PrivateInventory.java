@@ -35,7 +35,7 @@ public class PrivateInventory extends FilteredWorldsInventory {
 
     public PrivateInventory(BuildSystem plugin) {
         super(plugin, "private_title", "private_no_worlds", Visibility.PRIVATE,
-                Sets.newHashSet(WorldStatus.NOT_STARTED, WorldStatus.IN_PROGRESS, WorldStatus.ALMOST_FINISHED, WorldStatus.FINISHED)
+            Sets.newHashSet(WorldStatus.NOT_STARTED, WorldStatus.IN_PROGRESS, WorldStatus.ALMOST_FINISHED, WorldStatus.FINISHED)
         );
 
         this.plugin = plugin;
