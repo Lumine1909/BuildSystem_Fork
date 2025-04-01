@@ -74,15 +74,15 @@ public class ImportSubCommand implements SubCommand {
         }
 
         String invalidChar = Arrays.stream(worldName.split(""))
-                .filter(c -> c.matches("[^A-Za-z\\d/_-]")
-                        || c.matches(plugin.getConfigValues().getInvalidNameCharacters())
-                )
-                .findFirst()
-                .orElse(null);
+            .filter(c -> c.matches("[^A-Za-z\\d/_-]")
+                || c.matches(plugin.getConfigValues().getInvalidNameCharacters())
+            )
+            .findFirst()
+            .orElse(null);
         if (invalidChar != null) {
             Messages.sendMessage(player, "worlds_import_invalid_character",
-                    new AbstractMap.SimpleEntry<>("%world%", worldName),
-                    new AbstractMap.SimpleEntry<>("%char%", invalidChar)
+                new AbstractMap.SimpleEntry<>("%world%", worldName),
+                new AbstractMap.SimpleEntry<>("%char%", invalidChar)
             );
             return;
         }
@@ -138,7 +138,7 @@ public class ImportSubCommand implements SubCommand {
         }
 
         Messages.sendMessage(player, "worlds_import_started",
-                new AbstractMap.SimpleEntry<>("%world%", worldName)
+            new AbstractMap.SimpleEntry<>("%world%", worldName)
         );
         if (worldManager.importWorld(player, worldName, creator, worldType, generator, generatorName, true)) {
             Messages.sendMessage(player, "worlds_import_finished");

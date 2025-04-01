@@ -62,8 +62,8 @@ public class ArmorStandManager {
         armorStand.setGravity(false);
         armorStand.setCanPickupItems(false);
         armorStand.setHelmet(XSkull.createItem()
-                .profile(Profileable.detect(customSkull ? skullUrl : player.getName()))
-                .apply()
+            .profile(Profileable.detect(customSkull ? skullUrl : player.getName()))
+            .apply()
         );
 
         return armorStand;

@@ -155,7 +155,7 @@ public class PlayerManager {
 
         int maxWorldAmountPlayer = getMaxWorlds(player, showPrivateWorlds);
         return maxWorldAmountPlayer < 0
-                || worldManager.getBuildWorldsCreatedByPlayer(player, visibility).size() < maxWorldAmountPlayer;
+            || worldManager.getBuildWorldsCreatedByPlayer(player, visibility).size() < maxWorldAmountPlayer;
     }
 
     /**
@@ -245,7 +245,7 @@ public class PlayerManager {
         }
 
         ItemStack itemStack = plugin.getInventoryUtil()
-                .getItemStack(configValues.getNavigatorItem(), Messages.getString("navigator_item", player));
+            .getItemStack(configValues.getNavigatorItem(), Messages.getString("navigator_item", player));
         PlayerInventory playerInventory = player.getInventory();
         ItemStack slot8 = playerInventory.getItem(8);
         if (slot8 == null || slot8.getType() == XMaterial.AIR.get()) {
@@ -285,7 +285,7 @@ public class PlayerManager {
         InventoryUtils inventoryUtils = plugin.getInventoryUtil();
         String findItemName = Messages.getString("barrier_item", player);
         ItemStack replaceItem = inventoryUtils.getItemStack(plugin.getConfigValues()
-                .getNavigatorItem(), Messages.getString("navigator_item", player));
+            .getNavigatorItem(), Messages.getString("navigator_item", player));
 
         inventoryUtils.replaceItem(player, findItemName, XMaterial.BARRIER, replaceItem);
     }
@@ -332,9 +332,9 @@ public class PlayerManager {
             final Vector vector = otherLocation.toVector().subtract(entityLocation.toVector());
 
             if (entityLocation.getDirection().normalize().crossProduct(vector).lengthSquared() < threshold
-                    && vector.normalize().dot(entityLocation.getDirection().normalize()) >= 0) {
+                && vector.normalize().dot(entityLocation.getDirection().normalize()) >= 0) {
                 if (target == null || target.getLocation().distanceSquared(entityLocation)
-                        > otherLocation.distanceSquared(entityLocation)) {
+                    > otherLocation.distanceSquared(entityLocation)) {
                     target = other;
                 }
             }
@@ -400,8 +400,8 @@ public class PlayerManager {
         Set<String> uuids = configurationSection.getKeys(false);
         uuids.forEach(uuid -> {
             BuildPlayer buildPlayer = createBuildPlayer(
-                    UUID.fromString(uuid),
-                    loadSettings(configuration, "players." + uuid + ".settings.")
+                UUID.fromString(uuid),
+                loadSettings(configuration, "players." + uuid + ".settings.")
             );
             buildPlayer.setLogoutLocation(loadLogoutLocation(configuration, "players." + uuid + ".logout-location"));
         });
@@ -447,16 +447,16 @@ public class PlayerManager {
         boolean trapDoor = configuration.getBoolean(pathPrefix + "trapdoor", false);
 
         return new Settings(
-                navigatorType, glassColor, worldDisplay, clearInventory, disableInteract, hidePlayers, instantPlaceSigns,
-                keepNavigator, nightVision, noClip, placePlants, scoreboard, slabBreaking, spawnTeleport, trapDoor
+            navigatorType, glassColor, worldDisplay, clearInventory, disableInteract, hidePlayers, instantPlaceSigns,
+            keepNavigator, nightVision, noClip, placePlants, scoreboard, slabBreaking, spawnTeleport, trapDoor
         );
     }
 
     private WorldDisplay loadWorldDisplay(FileConfiguration configuration, String pathPrefix) {
         WorldSort worldSort = WorldSort.matchWorldSort(configuration.getString(
-                pathPrefix + "sort", WorldSort.NAME_A_TO_Z.name()));
+            pathPrefix + "sort", WorldSort.NAME_A_TO_Z.name()));
         WorldFilter.Mode filterMode = WorldFilter.Mode.valueOf(configuration.getString(
-                pathPrefix + "filter.mode", WorldFilter.Mode.NONE.name()));
+            pathPrefix + "filter.mode", WorldFilter.Mode.NONE.name()));
         String filterText = configuration.getString(pathPrefix + "filter.text", "");
         return new WorldDisplay(worldSort, new WorldFilter(filterMode, filterText));
     }

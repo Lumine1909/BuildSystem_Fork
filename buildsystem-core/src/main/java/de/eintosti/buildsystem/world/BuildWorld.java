@@ -41,7 +41,6 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
 import org.bukkit.Difficulty;
 import org.bukkit.World;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
@@ -69,13 +68,13 @@ public class BuildWorld implements ConfigurationSerializable {
     private BukkitTask unloadTask;
 
     public BuildWorld(
-            String name,
-            Builder creator,
-            WorldType worldType,
-            long creationDate,
-            boolean privateWorld,
-            CustomGenerator customGenerator,
-            Optional<UUID> uuid
+        String name,
+        Builder creator,
+        WorldType worldType,
+        long creationDate,
+        boolean privateWorld,
+        CustomGenerator customGenerator,
+        Optional<UUID> uuid
     ) {
         this.plugin = JavaPlugin.getPlugin(BuildSystem.class);
         this.configValues = plugin.getConfigValues();
@@ -85,9 +84,9 @@ public class BuildWorld implements ConfigurationSerializable {
         this.creator = creator;
         this.worldType = worldType;
         this.worldData = new WorldData(
-                name,
-                configValues,
-                privateWorld
+            name,
+            configValues,
+            privateWorld
         );
         this.customGenerator = customGenerator;
         this.creationDate = creationDate;
@@ -120,7 +119,7 @@ public class BuildWorld implements ConfigurationSerializable {
                 break;
             default:
                 throw new IllegalArgumentException(
-                        "Unsupported world type '" + worldType.name() + "' for world " + name);
+                    "Unsupported world type '" + worldType.name() + "' for world " + name);
         }
         if (privateWorld) {
             material = XMaterial.PLAYER_HEAD;
@@ -131,13 +130,13 @@ public class BuildWorld implements ConfigurationSerializable {
     }
 
     public BuildWorld(
-            String name,
-            Builder creator,
-            WorldType worldType,
-            WorldData worldData,
-            long creationDate,
-            CustomGenerator customGenerator,
-            List<Builder> builders
+        String name,
+        Builder creator,
+        WorldType worldType,
+        WorldData worldData,
+        long creationDate,
+        CustomGenerator customGenerator,
+        List<Builder> builders
     ) {
         this.plugin = JavaPlugin.getPlugin(BuildSystem.class);
         this.configValues = plugin.getConfigValues();
@@ -173,6 +172,16 @@ public class BuildWorld implements ConfigurationSerializable {
     }
 
     /**
+     * Set the name of the world.
+     *
+     * @param name The name to set to
+     */
+    public void setName(String name) {
+        this.name = name;
+        this.worldData.setWorldName(name);
+    }
+
+    /**
      * Get the uuid of the world.
      *
      * @return The world's uuid
@@ -183,26 +192,15 @@ public class BuildWorld implements ConfigurationSerializable {
 
     /**
      * Set the uuid of the world.
-     *
      */
     public void setUUID(UUID uuid) {
         this.worldUUID = Optional.ofNullable(uuid);
     }
 
-    /**
-     * Set the name of the world.
-     *
-     * @param name The name to set to
-     */
-    public void setName(String name) {
-        this.name = name;
-        this.worldData.setWorldName(name);
-    }
-
     public Profileable asProfilable() {
         return hasCreator()
-                ? Profileable.of(creator.getUniqueId())
-                : Profileable.username(name);
+            ? Profileable.of(creator.getUniqueId())
+            : Profileable.username(name);
     }
 
     /**
@@ -363,8 +361,8 @@ public class BuildWorld implements ConfigurationSerializable {
      */
     public List<String> getBuilderNames() {
         return getBuilders().stream()
-                .map(Builder::getName)
-                .collect(Collectors.toList());
+            .map(Builder::getName)
+            .collect(Collectors.toList());
     }
 
     /**
@@ -376,9 +374,9 @@ public class BuildWorld implements ConfigurationSerializable {
     @Nullable
     public Builder getBuilder(UUID uuid) {
         return this.builders.parallelStream()
-                .filter(builder -> builder.getUniqueId().equals(uuid))
-                .findFirst()
-                .orElse(null);
+            .filter(builder -> builder.getUniqueId().equals(uuid))
+            .findFirst()
+            .orElse(null);
     }
 
     /**
@@ -558,7 +556,7 @@ public class BuildWorld implements ConfigurationSerializable {
 
         player.closeInventory();
         Titles.sendTitle(player, 5, 70, 20, " ",
-                Messages.getString("loading_world", player, new AbstractMap.SimpleEntry<>("%world%", name))
+            Messages.getString("loading_world", player, new AbstractMap.SimpleEntry<>("%world%", name))
         );
 
         load();

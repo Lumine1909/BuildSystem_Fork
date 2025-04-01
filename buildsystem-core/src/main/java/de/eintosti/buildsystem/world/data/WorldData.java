@@ -84,25 +84,25 @@ public class WorldData implements ConfigurationSerializable {
     }
 
     public WorldData(
-            String worldName,
-            UUID worldUUID,
-            String customSpawn,
-            String permission,
-            String project,
-            Difficulty difficulty,
-            XMaterial material,
-            WorldStatus worldStatus,
-            boolean blockBreaking,
-            boolean blockInteractions,
-            boolean blockPlacement,
-            boolean buildersEnabled,
-            boolean explosions,
-            boolean mobAi,
-            boolean physics,
-            boolean privateWorld,
-            long lastLoaded,
-            long lastUnloaded,
-            long lastEdited
+        String worldName,
+        UUID worldUUID,
+        String customSpawn,
+        String permission,
+        String project,
+        Difficulty difficulty,
+        XMaterial material,
+        WorldStatus worldStatus,
+        boolean blockBreaking,
+        boolean blockInteractions,
+        boolean blockPlacement,
+        boolean buildersEnabled,
+        boolean explosions,
+        boolean mobAi,
+        boolean physics,
+        boolean privateWorld,
+        long lastLoaded,
+        long lastUnloaded,
+        long lastEdited
     ) {
         this.uuid.set(worldUUID);
 
@@ -152,12 +152,12 @@ public class WorldData implements ConfigurationSerializable {
 
         String[] spawnString = customSpawn.split(";");
         return new Location(
-                Bukkit.getWorld(worldName),
-                Double.parseDouble(spawnString[0]),
-                Double.parseDouble(spawnString[1]),
-                Double.parseDouble(spawnString[2]),
-                Float.parseFloat(spawnString[3]),
-                Float.parseFloat(spawnString[4])
+            Bukkit.getWorld(worldName),
+            Double.parseDouble(spawnString[0]),
+            Double.parseDouble(spawnString[1]),
+            Double.parseDouble(spawnString[2]),
+            Float.parseFloat(spawnString[3]),
+            Float.parseFloat(spawnString[4])
         );
     }
 
@@ -236,8 +236,8 @@ public class WorldData implements ConfigurationSerializable {
     @Override
     public @NotNull Map<String, Object> serialize() {
         return data.entrySet().stream()
-                .filter(entry -> entry.getValue().get() != null)
-                .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().getConfigFormat()));
+            .filter(entry -> entry.getValue().get() != null)
+            .collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().getConfigFormat()));
     }
 
     public static class Type<T> {

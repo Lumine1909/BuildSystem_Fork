@@ -86,29 +86,29 @@ public class WorldsTabComplete extends ArgumentSorter implements TabCompleter {
                     case "tp":
                     case "unimport": {
                         worldManager.getBuildWorlds().stream()
-                                .filter(world -> player.hasPermission(world.getData().permission().get())
-                                        || world.getData()
-                                        .permission().get().equalsIgnoreCase("-"))
-                                .filter(world -> worldManager.isPermitted(player,
-                                        "buildsystem." + args[0].toLowerCase(Locale.ROOT), world.getName()))
-                                .forEach(world -> addArgument(args[1], world.getName(), arrayList));
+                            .filter(world -> player.hasPermission(world.getData().permission().get())
+                                || world.getData()
+                                .permission().get().equalsIgnoreCase("-"))
+                            .filter(world -> worldManager.isPermitted(player,
+                                "buildsystem." + args[0].toLowerCase(Locale.ROOT), world.getName()))
+                            .forEach(world -> addArgument(args[1], world.getName(), arrayList));
                         break;
                     }
 
                     case "delete": {
                         worldManager.getBuildWorlds().stream()
-                                .filter(world -> worldManager.isPermitted(player,
-                                        "buildsystem." + args[0].toLowerCase(Locale.ROOT), world.getName()))
-                                .forEach(world -> addArgument(args[1], world.getName(), arrayList));
+                            .filter(world -> worldManager.isPermitted(player,
+                                "buildsystem." + args[0].toLowerCase(Locale.ROOT), world.getName()))
+                            .forEach(world -> addArgument(args[1], world.getName(), arrayList));
                         break;
                     }
 
                     case "addbuilder": {
                         BuildWorld buildWorld = worldManager.getBuildWorld(player.getWorld().getName());
                         Bukkit.getOnlinePlayers().stream()
-                                .filter(pl -> buildWorld != null && !buildWorld.isBuilder(pl)
-                                        && !buildWorld.isCreator(pl))
-                                .forEach(pl -> addArgument(args[1], pl.getName(), arrayList));
+                            .filter(pl -> buildWorld != null && !buildWorld.isBuilder(pl)
+                                && !buildWorld.isCreator(pl))
+                            .forEach(pl -> addArgument(args[1], pl.getName(), arrayList));
                         break;
                     }
 
@@ -163,16 +163,16 @@ public class WorldsTabComplete extends ArgumentSorter implements TabCompleter {
 
                 Map<String, List<String>> arguments = new HashMap<String, List<String>>() {{
                     put("-g", Arrays.stream(Generator.values()).filter(generator -> generator != Generator.CUSTOM)
-                            .map(Enum::name)
-                            .collect(Collectors.toList()));
+                        .map(Enum::name)
+                        .collect(Collectors.toList()));
                     put("-c", Lists.newArrayList());
                     put("-t", Arrays.stream(WorldType.values()).map(Enum::name).collect(Collectors.toList()));
                 }};
 
                 if (args.length % 2 == 1) {
                     arguments.keySet().stream()
-                            .filter(key -> !Lists.newArrayList(args).contains(key))
-                            .forEach(argument -> addArgument(args[args.length - 1], argument, arrayList));
+                        .filter(key -> !Lists.newArrayList(args).contains(key))
+                        .forEach(argument -> addArgument(args[args.length - 1], argument, arrayList));
                 } else {
                     List<String> values = arguments.get(args[args.length - 2]);
                     if (values != null) {
@@ -218,9 +218,9 @@ public class WorldsTabComplete extends ArgumentSorter implements TabCompleter {
         @Nullable
         public static WorldsArgument matchArgument(String input) {
             return Arrays.stream(values())
-                    .filter(argument -> argument.getName().equalsIgnoreCase(input))
-                    .findFirst()
-                    .orElse(null);
+                .filter(argument -> argument.getName().equalsIgnoreCase(input))
+                .findFirst()
+                .orElse(null);
         }
 
         @Override

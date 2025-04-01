@@ -95,7 +95,7 @@ public class SettingsManager {
 
         board.updateTitle(Messages.getString("title", player));
         BukkitTask scoreboardTask = Bukkit.getScheduler()
-                .runTaskTimerAsynchronously(plugin, () -> updateScoreboard(player, board), 0L, 20L);
+            .runTaskTimerAsynchronously(plugin, () -> updateScoreboard(player, board), 0L, 20L);
         settings.setScoreboardTask(scoreboardTask);
     }
 
@@ -123,7 +123,7 @@ public class SettingsManager {
         // Scoreboard line cannot be longer than 30 chars in versions <1.13
         if (MinecraftVersion.getCurrent().isLowerThan(MinecraftVersion.AQUATIC_13)) {
             body = body.stream().map(line -> line.substring(0, Math.min(line.length(), 30)))
-                    .collect(Collectors.toList());
+                .collect(Collectors.toList());
         }
 
         board.updateLines(body);
@@ -139,15 +139,15 @@ public class SettingsManager {
         BuildWorld buildWorld = worldManager.getBuildWorld(worldName);
 
         return new Map.Entry[]{
-                new AbstractMap.SimpleEntry<>("%world%", worldName),
-                new AbstractMap.SimpleEntry<>("%status%", parseWorldInformation(player, buildWorld, "%status%")),
-                new AbstractMap.SimpleEntry<>("%permission%", parseWorldInformation(player, buildWorld, "%permission%")),
-                new AbstractMap.SimpleEntry<>("%project%", parseWorldInformation(player, buildWorld, "%project%")),
-                new AbstractMap.SimpleEntry<>("%creator%", parseWorldInformation(player, buildWorld, "%creator%")),
-                new AbstractMap.SimpleEntry<>("%creation%", parseWorldInformation(player, buildWorld, "%creation%")),
-                new AbstractMap.SimpleEntry<>("%lastedited%", parseWorldInformation(player, buildWorld, "%lastedited%")),
-                new AbstractMap.SimpleEntry<>("%lastloaded%", parseWorldInformation(player, buildWorld, "%lastloaded%")),
-                new AbstractMap.SimpleEntry<>("%lastunloaded%", parseWorldInformation(player, buildWorld, "%lastunloaded%"))
+            new AbstractMap.SimpleEntry<>("%world%", worldName),
+            new AbstractMap.SimpleEntry<>("%status%", parseWorldInformation(player, buildWorld, "%status%")),
+            new AbstractMap.SimpleEntry<>("%permission%", parseWorldInformation(player, buildWorld, "%permission%")),
+            new AbstractMap.SimpleEntry<>("%project%", parseWorldInformation(player, buildWorld, "%project%")),
+            new AbstractMap.SimpleEntry<>("%creator%", parseWorldInformation(player, buildWorld, "%creator%")),
+            new AbstractMap.SimpleEntry<>("%creation%", parseWorldInformation(player, buildWorld, "%creation%")),
+            new AbstractMap.SimpleEntry<>("%lastedited%", parseWorldInformation(player, buildWorld, "%lastedited%")),
+            new AbstractMap.SimpleEntry<>("%lastloaded%", parseWorldInformation(player, buildWorld, "%lastloaded%")),
+            new AbstractMap.SimpleEntry<>("%lastunloaded%", parseWorldInformation(player, buildWorld, "%lastunloaded%"))
         };
     }
 

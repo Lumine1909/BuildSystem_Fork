@@ -68,7 +68,7 @@ public class SetProjectSubCommand implements SubCommand {
 
             XSound.ENTITY_PLAYER_LEVELUP.play(player);
             Messages.sendMessage(player, "worlds_setproject_set",
-                    new AbstractMap.SimpleEntry<>("%world%", buildWorld.getName())
+                new AbstractMap.SimpleEntry<>("%world%", buildWorld.getName())
             );
 
             if (closeInventory) {

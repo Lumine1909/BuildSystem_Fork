@@ -9,7 +9,6 @@ project.description = "Core"
 
 repositories {
     mavenCentral()
-    mavenLocal()
     maven {
         name = "AuthLib"
         url = uri("https://libraries.minecraft.net/")
@@ -30,7 +29,6 @@ repositories {
         name = "Modrinth"
         url = uri("https://api.modrinth.com/maven")
     }
-
     modrinthMavenWorkaround(
         "axiom-paper-plugin",
         "4.0.1-1.21.1",

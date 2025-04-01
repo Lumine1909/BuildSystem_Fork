@@ -36,7 +36,7 @@ annotations = { group = "org.jetbrains", name = "annotations", version.ref = "an
 authlib = { group = "com.mojang", name = "authlib", version.ref = "authlib" }
 bstats = { group = "org.bstats", name = "bstats-bukkit", version.ref = "bstats" }
 fastboard = { group = "fr.mrmicky", name = "fastboard", version.ref = "fastboard" }
-nbt = { group = "io.github.lumine1909", name = "NBT", version.ref = "nbt" }
+nbt = { group = "io.github.lumine1909", name = "nbt", version.ref = "nbt" }
 xseries = { group = "com.github.cryptomorin", name = "XSeries", version.ref = "xseries" }
 fastutil = { group = "fastutil", name = "fastutil", version.ref = "fastutil" }
 intellsbom = { group = "com.intellectualsites.bom", name = "bom-newest", version.ref = "intellsbom" }

@@ -97,16 +97,16 @@ public class InventoryCloseListener implements Listener {
         ItemStack hiddenStatusItem = inventory.getItem(34);
 
         inventoryUtils.setStatusItem(WorldStatus.NOT_STARTED,
-                notStartedStatusItem != null ? XMaterial.matchXMaterial(notStartedStatusItem) : null);
+            notStartedStatusItem != null ? XMaterial.matchXMaterial(notStartedStatusItem) : null);
         inventoryUtils.setStatusItem(WorldStatus.IN_PROGRESS,
-                inProgressStatusItem != null ? XMaterial.matchXMaterial(inProgressStatusItem) : null);
+            inProgressStatusItem != null ? XMaterial.matchXMaterial(inProgressStatusItem) : null);
         inventoryUtils.setStatusItem(WorldStatus.ALMOST_FINISHED,
-                almostFinishedStatusItem != null ? XMaterial.matchXMaterial(almostFinishedStatusItem) : null);
+            almostFinishedStatusItem != null ? XMaterial.matchXMaterial(almostFinishedStatusItem) : null);
         inventoryUtils.setStatusItem(WorldStatus.FINISHED,
-                finishedStatusItem != null ? XMaterial.matchXMaterial(finishedStatusItem) : null);
+            finishedStatusItem != null ? XMaterial.matchXMaterial(finishedStatusItem) : null);
         inventoryUtils.setStatusItem(WorldStatus.ARCHIVE,
-                archiveStatusItem != null ? XMaterial.matchXMaterial(archiveStatusItem) : null);
+            archiveStatusItem != null ? XMaterial.matchXMaterial(archiveStatusItem) : null);
         inventoryUtils.setStatusItem(WorldStatus.HIDDEN,
-                hiddenStatusItem != null ? XMaterial.matchXMaterial(hiddenStatusItem) : null);
+            hiddenStatusItem != null ? XMaterial.matchXMaterial(hiddenStatusItem) : null);
     }
 }

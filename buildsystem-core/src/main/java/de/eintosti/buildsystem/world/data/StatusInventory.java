@@ -161,8 +161,8 @@ public class StatusInventory implements Listener {
 
         XSound.ENTITY_CHICKEN_EGG.play(player);
         Messages.sendMessage(player, "worlds_setstatus_set",
-                new AbstractMap.SimpleEntry<>("%world%", buildWorld.getName()),
-                new AbstractMap.SimpleEntry<>("%status%", status.getName(player))
+            new AbstractMap.SimpleEntry<>("%world%", buildWorld.getName()),
+            new AbstractMap.SimpleEntry<>("%status%", status.getName(player))
         );
     }
 

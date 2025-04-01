@@ -185,9 +185,9 @@ public class InventoryUtils {
 
     public ItemStack getSkull(String displayName, Profileable profileable, List<String> lore) {
         ItemStack skull = XSkull.createItem()
-                .profile(profileable)
-                .lenient()
-                .apply();
+            .profile(profileable)
+            .lenient()
+            .apply();
 
         ItemMeta itemMeta = skull.getItemMeta();
         itemMeta.setDisplayName(displayName);
@@ -210,8 +210,8 @@ public class InventoryUtils {
     }
 
     public boolean checkIfValidClick(InventoryClickEvent event, String titleKey) {
-        String title = XInventoryView.of(event.getView()).getTitle();
-        if (!title.equals(Messages.getString(titleKey, (Player) event.getWhoClicked()))) {
+        if (!CompatibilityUtils.getInventoryTitle(event)
+                .equals(Messages.getString(titleKey, (Player) event.getWhoClicked()))) {
             return false;
         }
 
@@ -237,20 +237,20 @@ public class InventoryUtils {
         // The try to set texture asynchronously
         try {
             XSkull.createItem()
-                    .profile(buildWorld.getData().privateWorld().get()
-                            ? buildWorld.asProfilable()
-                            : Profileable.username(buildWorld.getName())
-                    )
-                    .fallback(buildWorld.asProfilable())
-                    .lenient()
-                    .applyAsync()
-                    .thenAcceptAsync(itemStack -> {
-                        ItemMeta itemMeta = itemStack.getItemMeta();
-                        itemMeta.setDisplayName(displayName);
-                        itemMeta.setLore(lore);
-                        itemStack.setItemMeta(itemMeta);
-                        inventory.setItem(position, itemStack);
-                    });
+                .profile(buildWorld.getData().privateWorld().get()
+                    ? buildWorld.asProfilable()
+                    : Profileable.username(buildWorld.getName())
+                )
+                .fallback(buildWorld.asProfilable())
+                .lenient()
+                .applyAsync()
+                .thenAcceptAsync(itemStack -> {
+                    ItemMeta itemMeta = itemStack.getItemMeta();
+                    itemMeta.setDisplayName(displayName);
+                    itemMeta.setLore(lore);
+                    itemStack.setItemMeta(itemMeta);
+                    inventory.setItem(position, itemStack);
+                });
         } catch (Exception e) {
             // Probably too many requests
         }
@@ -277,9 +277,9 @@ public class InventoryUtils {
         String displayName = itemMeta.getDisplayName();
 
         if (slot == 22 &&
-                displayName.equals(Messages.getString("world_navigator_no_worlds", player))
-                || displayName.equals(Messages.getString("archive_no_worlds", player))
-                || displayName.equals(Messages.getString("private_no_worlds", player))) {
+            displayName.equals(Messages.getString("world_navigator_no_worlds", player))
+            || displayName.equals(Messages.getString("archive_no_worlds", player))
+            || displayName.equals(Messages.getString("private_no_worlds", player))) {
             return;
         }
 
@@ -312,7 +312,7 @@ public class InventoryUtils {
      */
     private void manageWorldItemClick(InventoryClickEvent event, Player player, ItemMeta itemMeta, BuildWorld buildWorld) {
         if (event.isLeftClick() || !plugin.getWorldManager()
-                .isPermitted(player, WorldsTabComplete.WorldsArgument.EDIT.getPermission(), buildWorld.getName())) {
+            .isPermitted(player, WorldsTabComplete.WorldsArgument.EDIT.getPermission(), buildWorld.getName())) {
             performNonEditClick(player, itemMeta);
             return;
         }
@@ -413,7 +413,7 @@ public class InventoryUtils {
      * @param buildWorld The world the lore displays information about
      * @return The formatted lore
      */
-    public List<String> getWorldLore(Player player, BuildWorld buildWorld) {
+    private List<String> getLore(Player player, BuildWorld buildWorld) {
         WorldData worldData = buildWorld.getData();
         @SuppressWarnings("unchecked")
         Map.Entry<String, Object>[] placeholders = new Map.Entry[]{
@@ -823,7 +823,7 @@ public class InventoryUtils {
         @Override
         public int compare(BuildWorld buildWorld1, BuildWorld buildWorld2) {
             return Integer.compare(buildWorld1.getData().status().get().getStage(), buildWorld2.getData().status().get()
-                    .getStage());
+                .getStage());
         }
     }
 }

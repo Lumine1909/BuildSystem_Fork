@@ -52,18 +52,18 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class EditInventory implements Listener {
 
     private static final Set<XEntityType> IGNORED_ENTITIES = Sets.newHashSet(
-            XEntityType.ARMOR_STAND,
-            XEntityType.END_CRYSTAL,
-            XEntityType.ITEM_FRAME,
-            XEntityType.FALLING_BLOCK,
-            XEntityType.MINECART,
-            XEntityType.CHEST_MINECART,
-            XEntityType.COMMAND_BLOCK_MINECART,
-            XEntityType.FURNACE_MINECART,
-            XEntityType.HOPPER_MINECART,
-            XEntityType.SPAWNER_MINECART,
-            XEntityType.TNT_MINECART,
-            XEntityType.PLAYER
+        XEntityType.ARMOR_STAND,
+        XEntityType.END_CRYSTAL,
+        XEntityType.ITEM_FRAME,
+        XEntityType.FALLING_BLOCK,
+        XEntityType.MINECART,
+        XEntityType.CHEST_MINECART,
+        XEntityType.COMMAND_BLOCK_MINECART,
+        XEntityType.FURNACE_MINECART,
+        XEntityType.HOPPER_MINECART,
+        XEntityType.SPAWNER_MINECART,
+        XEntityType.TNT_MINECART,
+        XEntityType.PLAYER
     );
     private final BuildSystem plugin;
     private final ConfigValues configValues;
@@ -147,7 +147,7 @@ public class EditInventory implements Listener {
         XMaterial material = buildWorld.getData().material().get();
 
         if (material == XMaterial.PLAYER_HEAD) {
-            inventoryUtils.addWorldItem(inventory, 4, buildWorld, displayName, new ArrayList<>());
+            inventoryUtils.addSkull(inventory, 4, displayName, buildWorld.asProfilable());
         } else {
             inventoryUtils.addItemStack(inventory, 4, material, displayName);
         }

@@ -125,7 +125,7 @@ public final class UpdateChecker {
     @NotNull
     public static UpdateChecker get() {
         Preconditions.checkState(
-                instance != null, "Instance has not yet been initialized. Be sure #init() has been invoked");
+            instance != null, "Instance has not yet been initialized. Be sure #init() has been invoked");
         return instance;
     }
 
@@ -170,7 +170,7 @@ public final class UpdateChecker {
                     return new UpdateResult(UpdateReason.UNSUPPORTED_VERSION_SCHEME);
                 } else if (latest.equals(pluginVersion)) {
                     return new UpdateResult(pluginVersion.equals(currentVersion) ? UpdateReason.UP_TO_DATE
-                            : UpdateReason.UNRELEASED_VERSION);
+                        : UpdateReason.UNRELEASED_VERSION);
                 } else if (latest.equals(currentVersion)) {
                     return new UpdateResult(UpdateReason.NEW_UPDATE, latest);
                 }
@@ -276,7 +276,7 @@ public final class UpdateChecker {
 
         private UpdateResult(@NotNull UpdateReason reason) {
             Preconditions.checkArgument(reason
-                    != UpdateReason.NEW_UPDATE, "Reasons that require updates must also provide the latest version String");
+                != UpdateReason.NEW_UPDATE, "Reasons that require updates must also provide the latest version String");
 
             this.reason = reason;
             this.newestVersion = plugin.getDescription().getVersion();

@@ -77,11 +77,11 @@ public class BuilderInventory extends PaginatedInventory implements Listener {
             inventoryUtils.addItemStack(inventory, 4, XMaterial.BARRIER, Messages.getString("worldeditor_builders_no_creator_item", player));
         } else {
             inventoryUtils.addSkull(inventory, 4,
-                    Messages.getString("worldeditor_builders_creator_item", player),
-                    Profileable.of(creator.getUniqueId()),
-                    Messages.getString("worldeditor_builders_creator_lore", player,
-                            new AbstractMap.SimpleEntry<>("%creator%", buildWorld.getCreator().getName())
-                    )
+                Messages.getString("worldeditor_builders_creator_item", player),
+                Profileable.of(creator.getUniqueId()),
+                Messages.getString("worldeditor_builders_creator_lore", player,
+                    new AbstractMap.SimpleEntry<>("%creator%", buildWorld.getCreator().getName())
+                )
             );
         }
     }
@@ -107,13 +107,13 @@ public class BuilderInventory extends PaginatedInventory implements Listener {
         int columnSkull = 9, maxColumnSkull = 17;
         for (Builder builder : builders) {
             inventoryUtils.addSkull(
-                    inventory,
-                    columnSkull++,
-                    Messages.getString("worldeditor_builders_builder_item", player,
-                            new AbstractMap.SimpleEntry<>("%builder%", builder.getName())
-                    ),
-                    Profileable.username(builder.getName()),
-                    Messages.getStringList("worldeditor_builders_builder_lore", player)
+                inventory,
+                columnSkull++,
+                Messages.getString("worldeditor_builders_builder_item", player,
+                    new AbstractMap.SimpleEntry<>("%builder%", builder.getName())
+                ),
+                Profileable.username(builder.getName()),
+                Messages.getStringList("worldeditor_builders_builder_lore", player)
             );
 
             if (columnSkull > maxColumnSkull) {

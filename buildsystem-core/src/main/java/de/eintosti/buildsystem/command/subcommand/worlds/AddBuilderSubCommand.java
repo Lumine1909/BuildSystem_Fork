@@ -103,7 +103,7 @@ public class AddBuilderSubCommand implements SubCommand {
         buildWorld.addBuilder(builder);
         XSound.ENTITY_PLAYER_LEVELUP.play(player);
         Messages.sendMessage(player, "worlds_addbuilder_added",
-                new AbstractMap.SimpleEntry<>("%builder%", builderName)
+            new AbstractMap.SimpleEntry<>("%builder%", builderName)
         );
 
         if (closeInventory) {

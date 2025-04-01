@@ -53,7 +53,7 @@ public class PlayerInventoryClearListener implements Listener {
 
         PlayerInventory playerInventory = player.getInventory();
         ItemStack navigatorItem = inventoryUtils.getItemStack(
-                plugin.getConfigValues().getNavigatorItem(), Messages.getString("navigator_item", player)
+            plugin.getConfigValues().getNavigatorItem(), Messages.getString("navigator_item", player)
         );
         event.getNavigatorSlots().forEach(slot -> playerInventory.setItem(slot, navigatorItem));
     }

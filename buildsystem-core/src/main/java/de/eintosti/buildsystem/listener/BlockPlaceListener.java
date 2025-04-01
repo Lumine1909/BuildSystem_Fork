@@ -57,7 +57,8 @@ public class BlockPlaceListener implements Listener {
 
     @EventHandler
     public void onCustomBlockPlace(BlockPlaceEvent event) {
-        if (event.isCancelled() || !event.getPlayer().hasPermission("buildsystem.customblock.place") || !PlotUtil.hasPermissionAt(event.getPlayer(), event.getBlockPlaced().getLocation())) {
+        if (event.isCancelled() || !event.getPlayer().hasPermission("buildsystem.customblock.place") || !PlotUtil.hasPermissionAt(event.getPlayer(), event.getBlockPlaced()
+            .getLocation())) {
             return;
         }
 

@@ -35,7 +35,7 @@ public class WorldsInventory extends FilteredWorldsInventory {
 
     public WorldsInventory(BuildSystem plugin) {
         super(plugin, "world_navigator_title", "world_navigator_no_worlds", Visibility.PUBLIC,
-                Sets.newHashSet(WorldStatus.NOT_STARTED, WorldStatus.IN_PROGRESS, WorldStatus.ALMOST_FINISHED, WorldStatus.FINISHED)
+            Sets.newHashSet(WorldStatus.NOT_STARTED, WorldStatus.IN_PROGRESS, WorldStatus.ALMOST_FINISHED, WorldStatus.FINISHED)
         );
 
         this.plugin = plugin;

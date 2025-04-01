@@ -82,10 +82,10 @@ public class SpawnCommand implements CommandExecutor {
 
                         spawnManager.set(playerLocation, buildWorld.getName());
                         Messages.sendMessage(player, "spawn_set",
-                                new AbstractMap.SimpleEntry<>("%x%", round(playerLocation.getX())),
-                                new AbstractMap.SimpleEntry<>("%y%", round(playerLocation.getY())),
-                                new AbstractMap.SimpleEntry<>("%z%", round(playerLocation.getZ())),
-                                new AbstractMap.SimpleEntry<>("%world%", playerLocation.getWorld().getName())
+                            new AbstractMap.SimpleEntry<>("%x%", round(playerLocation.getX())),
+                            new AbstractMap.SimpleEntry<>("%y%", round(playerLocation.getY())),
+                            new AbstractMap.SimpleEntry<>("%z%", round(playerLocation.getZ())),
+                            new AbstractMap.SimpleEntry<>("%world%", playerLocation.getWorld().getName())
                         );
                         break;
                     case "remove":

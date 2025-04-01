@@ -170,10 +170,10 @@ public enum CraftBukkitVersion {
                 if (Boolean.getBoolean("Paper.ignoreWorldDataVersion")) {
                     // Get latest version if server version is to be ignored
                     return Lists.newArrayList(values()).stream()
-                            .sorted()
-                            .filter(craftBukkitVersion -> craftBukkitVersion != UNKNOWN)
-                            .reduce((first, second) -> second)
-                            .orElse(UNKNOWN);
+                        .sorted()
+                        .filter(craftBukkitVersion -> craftBukkitVersion != UNKNOWN)
+                        .reduce((first, second) -> second)
+                        .orElse(UNKNOWN);
                 } else {
                     return UNKNOWN;
                 }
@@ -227,10 +227,10 @@ public enum CraftBukkitVersion {
         try {
             Constructor<? extends GameRules> constructor = gameRules.getConstructor(String.class, List.class, List.class, List.class);
             return constructor.newInstance(
-                    Messages.getString("worldeditor_gamerules_title", null),
-                    Messages.getStringList("worldeditor_gamerules_boolean_enabled", null),
-                    Messages.getStringList("worldeditor_gamerules_boolean_disabled", null),
-                    Messages.getStringList("worldeditor_gamerules_integer", null)
+                Messages.getString("worldeditor_gamerules_title", null),
+                Messages.getStringList("worldeditor_gamerules_boolean_enabled", null),
+                Messages.getStringList("worldeditor_gamerules_boolean_disabled", null),
+                Messages.getStringList("worldeditor_gamerules_integer", null)
             );
         } catch (Exception e) {
             e.printStackTrace();
