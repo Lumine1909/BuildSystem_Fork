@@ -17,16 +17,23 @@ public class CraftServerInjector {
         if (!plugin.getConfigValues().isDynamicWorldLoad()) {
             return null;
         }
-        String queryStackTrace = Arrays.toString(new Throwable().getStackTrace());
-        if (queryStackTrace.contains("BuildWorld.unload") || queryStackTrace.contains("BuildWorld.<init>") || queryStackTrace.contains("BuildWorld.getWorld")) {
+
+        boolean shouldAbort = StackWalker.getInstance().walk(frames -> frames.anyMatch(frame -> {
+            String className = frame.getClassName();
+            String methodName = frame.getMethodName();
+            return (className.contains("BuildWorld") && (methodName.contains("unload") || methodName.contains("<init>") || methodName.contains("getWorld")));
+        }));
+        if (shouldAbort) {
             return null;
         }
+
         BuildWorld buildWorld = null;
-        if (key instanceof String string) {
-            buildWorld = plugin.getWorldManager().getBuildWorld(string);
-        } else if (key instanceof UUID uuid) {
-            buildWorld = plugin.getWorldManager().getBuildWorld(uuid);
+        if (key instanceof String stringKey) {
+            buildWorld = plugin.getWorldManager().getBuildWorld(stringKey);
+        } else if (key instanceof UUID uuidKey) {
+            buildWorld = plugin.getWorldManager().getBuildWorld(uuidKey);
         }
+
         if (buildWorld == null || buildWorld.isLoading()) {
             return null;
         }
