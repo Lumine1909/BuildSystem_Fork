@@ -54,10 +54,9 @@ public class WorldsTabComplete extends ArgumentSorter implements TabCompleter {
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
         ArrayList<String> arrayList = new ArrayList<>();
 
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             return arrayList;
         }
-        Player player = (Player) sender;
 
         switch (args.length) {
             case 1: {

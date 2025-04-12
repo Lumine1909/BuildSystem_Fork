@@ -4,7 +4,6 @@ import static de.eintosti.buildsystem.BuildSystem.plugin;
 
 import de.eintosti.buildsystem.world.BuildWorld;
 import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Function;

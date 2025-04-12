@@ -83,8 +83,8 @@ public class GameRules_1_13_R1 extends AbstractGameRulesInventory {
             lore = enabled ? this.booleanEnabledLore : this.booleanDisabledLore;
         } else {
             lore = this.integerLore.stream()
-                    .map(line -> line.replace("%value%", world.getGameRuleValue(gameRule).toString()))
-                    .collect(Collectors.toList());
+                .map(line -> line.replace("%value%", world.getGameRuleValue(gameRule).toString()))
+                .collect(Collectors.toList());
         }
         return lore;
     }

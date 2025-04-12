@@ -74,12 +74,12 @@ public class GameRules_1_12_R1 extends AbstractGameRulesInventory {
             lore = enabled ? this.booleanEnabledLore : this.booleanDisabledLore;
         } else if (gameRule.equals("gameLoopFunction")) {
             lore = Collections.singletonList(ChatColor.translateAlternateColorCodes('&',
-                    String.format("&7&nCurrently&7: &e%s", gameRuleValue)
+                String.format("&7&nCurrently&7: &e%s", gameRuleValue)
             ));
         } else {
             lore = this.integerLore.stream()
-                    .map(line -> line.replace("%value%", gameRuleValue))
-                    .collect(Collectors.toList());
+                .map(line -> line.replace("%value%", gameRuleValue))
+                .collect(Collectors.toList());
         }
 
         return lore;

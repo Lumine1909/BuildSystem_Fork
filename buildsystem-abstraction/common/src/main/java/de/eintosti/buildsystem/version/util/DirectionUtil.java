@@ -23,7 +23,7 @@ import org.bukkit.entity.Player;
 public final class DirectionUtil {
 
     public static final BlockFace[] BLOCK_SIDES = new BlockFace[]{
-            BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST, BlockFace.UP, BlockFace.DOWN
+        BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST, BlockFace.UP, BlockFace.DOWN
     };
 
     public static BlockFace getPlayerDirection(Player player) {

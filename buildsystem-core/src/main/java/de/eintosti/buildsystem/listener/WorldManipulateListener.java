@@ -67,10 +67,9 @@ public class WorldManipulateListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if (!(event.getDamager() instanceof Player)) {
+        if (!(event.getDamager() instanceof Player player)) {
             return;
         }
-        Player player = (Player) event.getDamager();
         BuildWorld buildWorld = worldManager.getBuildWorld(player.getWorld().getName());
         if (buildWorld == null) {
             return;

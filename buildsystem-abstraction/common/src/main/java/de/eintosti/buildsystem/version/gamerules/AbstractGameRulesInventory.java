@@ -34,7 +34,7 @@ import org.bukkit.inventory.Inventory;
 public abstract class AbstractGameRulesInventory implements GameRules {
 
     private static final int[] SLOTS = new int[]{
-            11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 29, 30, 31, 32, 33
+        11, 12, 13, 14, 15, 20, 21, 22, 23, 24, 29, 30, 31, 32, 33
     };
 
     private final Map<UUID, Integer> invIndex;
@@ -64,8 +64,8 @@ public abstract class AbstractGameRulesInventory implements GameRules {
         setNumGameRules(world);
 
         int numInventories = numGameRules % SLOTS.length == 0
-                ? Math.max(numGameRules, 1)
-                : numGameRules + 1;
+            ? Math.max(numGameRules, 1)
+            : numGameRules + 1;
 
         inventories = new Inventory[numInventories];
         Inventory inventory = createInventory();

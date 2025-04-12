@@ -210,8 +210,8 @@ public class InventoryUtils {
     }
 
     public boolean checkIfValidClick(InventoryClickEvent event, String titleKey) {
-        if (!CompatibilityUtils.getInventoryTitle(event)
-                .equals(Messages.getString(titleKey, (Player) event.getWhoClicked()))) {
+        String title = XInventoryView.of(event.getView()).getTitle();
+        if (!title.equals(Messages.getString(titleKey, (Player) event.getWhoClicked()))) {
             return false;
         }
 
@@ -370,24 +370,21 @@ public class InventoryUtils {
     public List<BuildWorld> getDisplayOrder(WorldManager worldManager, Settings settings) {
         WorldDisplay worldDisplay = settings.getWorldDisplay();
         List<BuildWorld> buildWorlds = worldManager.getBuildWorlds().stream()
-                .filter(worldDisplay.getWorldFilter().apply())
-                .collect(Collectors.toList());
+            .filter(worldDisplay.getWorldFilter().apply())
+            .collect(Collectors.toList());
 
         switch (worldDisplay.getWorldSort()) {
-            default: // NAME_A_TO_Z
-                buildWorlds.sort(Comparator.comparing(worldA -> worldA.getName().toLowerCase(Locale.ROOT)));
-                break;
             case NAME_Z_TO_A:
                 buildWorlds.sort(Comparator.comparing(worldA -> worldA.getName().toLowerCase(Locale.ROOT)));
                 Collections.reverse(buildWorlds);
                 break;
             case PROJECT_A_TO_Z:
                 buildWorlds.sort(Comparator.comparing(worldA -> worldA.getData().project().get()
-                        .toLowerCase(Locale.ROOT)));
+                    .toLowerCase(Locale.ROOT)));
                 break;
             case PROJECT_Z_TO_A:
                 buildWorlds.sort(Comparator.comparing(worldA -> worldA.getData().project().get()
-                        .toLowerCase(Locale.ROOT)));
+                    .toLowerCase(Locale.ROOT)));
                 Collections.reverse(buildWorlds);
                 break;
             case STATUS_NOT_STARTED:
@@ -402,6 +399,9 @@ public class InventoryUtils {
             case OLDEST_FIRST:
                 buildWorlds.sort(new WorldCreationComparator());
                 break;
+            default: // NAME_A_TO_Z
+                buildWorlds.sort(Comparator.comparing(worldA -> worldA.getName().toLowerCase(Locale.ROOT)));
+                break;
         }
         return buildWorlds;
     }
@@ -413,23 +413,23 @@ public class InventoryUtils {
      * @param buildWorld The world the lore displays information about
      * @return The formatted lore
      */
-    private List<String> getLore(Player player, BuildWorld buildWorld) {
+    public List<String> getWorldLore(Player player, BuildWorld buildWorld) {
         WorldData worldData = buildWorld.getData();
         @SuppressWarnings("unchecked")
         Map.Entry<String, Object>[] placeholders = new Map.Entry[]{
-                new AbstractMap.SimpleEntry<>("%status%", worldData.status().get().getName(player)),
-                new AbstractMap.SimpleEntry<>("%project%", worldData.project().get()),
-                new AbstractMap.SimpleEntry<>("%permission%", worldData.permission().get()),
-                new AbstractMap.SimpleEntry<>("%creator%", buildWorld.hasCreator() ? buildWorld.getCreator().getName() : "-"),
-                new AbstractMap.SimpleEntry<>("%creation%", Messages.formatDate(buildWorld.getCreationDate())),
-                new AbstractMap.SimpleEntry<>("%lastedited%", Messages.formatDate(worldData.lastEdited().get())),
-                new AbstractMap.SimpleEntry<>("%lastloaded%", Messages.formatDate(worldData.lastLoaded().get())),
-                new AbstractMap.SimpleEntry<>("%lastunloaded%", Messages.formatDate(worldData.lastUnloaded().get()))
+            new AbstractMap.SimpleEntry<>("%status%", worldData.status().get().getName(player)),
+            new AbstractMap.SimpleEntry<>("%project%", worldData.project().get()),
+            new AbstractMap.SimpleEntry<>("%permission%", worldData.permission().get()),
+            new AbstractMap.SimpleEntry<>("%creator%", buildWorld.hasCreator() ? buildWorld.getCreator().getName() : "-"),
+            new AbstractMap.SimpleEntry<>("%creation%", Messages.formatDate(buildWorld.getCreationDate())),
+            new AbstractMap.SimpleEntry<>("%lastedited%", Messages.formatDate(worldData.lastEdited().get())),
+            new AbstractMap.SimpleEntry<>("%lastloaded%", Messages.formatDate(worldData.lastLoaded().get())),
+            new AbstractMap.SimpleEntry<>("%lastunloaded%", Messages.formatDate(worldData.lastUnloaded().get()))
         };
         List<String> messageList = plugin.getWorldManager()
-                .isPermitted(player, WorldsTabComplete.WorldsArgument.EDIT.getPermission(), buildWorld.getName())
-                ? Messages.getStringList("world_item_lore_edit", player, placeholders)
-                : Messages.getStringList("world_item_lore_normal", player, placeholders);
+            .isPermitted(player, WorldsTabComplete.WorldsArgument.EDIT.getPermission(), buildWorld.getName())
+            ? Messages.getStringList("world_item_lore_edit", player, placeholders)
+            : Messages.getStringList("world_item_lore_normal", player, placeholders);
 
         // Replace %builders% placeholder
         List<String> lore = new ArrayList<>();

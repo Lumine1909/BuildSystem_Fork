@@ -149,10 +149,10 @@ public class MinecraftVersion implements Comparable<MinecraftVersion> {
             return 0;
         }
         return ComparisonChain.start()
-                .compare(getMajor(), other.getMajor())
-                .compare(getMinor(), other.getMinor())
-                .compare(getPatch(), other.getPatch())
-                .result();
+            .compare(getMajor(), other.getMajor())
+            .compare(getMinor(), other.getMinor())
+            .compare(getPatch(), other.getPatch())
+            .result();
     }
 
     @Override

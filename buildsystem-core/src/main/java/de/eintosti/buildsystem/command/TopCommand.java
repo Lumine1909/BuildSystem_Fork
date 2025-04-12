@@ -42,12 +42,11 @@ public class TopCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             plugin.getLogger().warning(Messages.getString("sender_not_player", null));
             return true;
         }
 
-        Player player = (Player) sender;
         if (!player.hasPermission("buildsystem.top")) {
             plugin.sendPermissionMessage(player);
             return true;

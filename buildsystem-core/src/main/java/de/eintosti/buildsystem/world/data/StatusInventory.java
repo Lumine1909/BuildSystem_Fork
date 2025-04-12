@@ -27,7 +27,6 @@ import de.eintosti.buildsystem.player.BuildPlayer;
 import de.eintosti.buildsystem.player.PlayerManager;
 import de.eintosti.buildsystem.util.InventoryUtils;
 import de.eintosti.buildsystem.world.BuildWorld;
-import java.util.AbstractMap;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -39,6 +38,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.AbstractMap;
 
 public class StatusInventory implements Listener {
 

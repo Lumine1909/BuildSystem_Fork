@@ -189,7 +189,7 @@ public class CustomBlocks_1_14_R1 implements CustomBlocks {
                 adjacent.setType(material);
                 MultipleFacing multipleFacing = (MultipleFacing) adjacent.getBlockData();
                 Arrays.stream(DirectionUtil.BLOCK_SIDES)
-                        .forEach(blockFace -> multipleFacing.setFace(blockFace, blockFace == toPlace));
+                    .forEach(blockFace -> multipleFacing.setFace(blockFace, blockFace == toPlace));
                 adjacent.setBlockData(multipleFacing);
                 break;
             default:

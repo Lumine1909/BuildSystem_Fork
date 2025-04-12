@@ -39,11 +39,10 @@ public class GamemodeTabComplete extends ArgumentSorter implements TabCompleter 
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
         ArrayList<String> arrayList = new ArrayList<>();
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             return arrayList;
         }
 
-        Player player = (Player) sender;
         if (args.length == 1) {
             Arrays.stream(GameMode.values())
                 .map(gameMode -> gameMode.name().toLowerCase(Locale.ROOT))

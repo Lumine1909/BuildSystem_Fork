@@ -93,11 +93,10 @@ public class Builder {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Builder)) {
+        if (!(obj instanceof Builder other)) {
             return false;
         }
 
-        Builder other = (Builder) obj;
         return other.getUniqueId().equals(this.uuid) && other.getName().equals(this.name);
     }
 }
