@@ -20,7 +20,8 @@ public class CraftServerInjector {
         boolean shouldAbort = StackWalker.getInstance().walk(frames -> frames.anyMatch(frame -> {
             String className = frame.getClassName();
             String methodName = frame.getMethodName();
-            return (className.contains("BuildWorld") && (methodName.contains("unload") || methodName.contains("<init>") || methodName.contains("getWorld")));
+            return (className.contains("BuildWorld") && (methodName.contains("unload") || methodName.contains("<init>") || methodName.contains("getWorld")) ||
+                (className.contains("FilteredWorldsInventory") && methodName.contains("isValidWorld")));
         }));
         if (shouldAbort) {
             return null;
