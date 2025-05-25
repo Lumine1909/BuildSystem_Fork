@@ -866,7 +866,7 @@ public class WorldManager {
             );
         }
 
-        String customSpawn = configuration.getString("worlds." + worldName + ".spawn");
+        String customSpawn = configuration.getString(path + ".spawn");
         String permission = configuration.getString(path + ".permission");
         String project = configuration.getString(path + ".project");
 

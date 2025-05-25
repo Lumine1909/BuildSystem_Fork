@@ -370,6 +370,10 @@ public class SettingsInteractListener implements Listener {
             return buildWorld.isCreator(player);
         }
 
+        if (!player.hasPermission("buildsystem.interactplace")) {
+            return false;
+        }
+
         return true;
     }
 

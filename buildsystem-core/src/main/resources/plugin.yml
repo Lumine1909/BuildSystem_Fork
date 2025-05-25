@@ -126,3 +126,6 @@ permissions:
   buildsystem.customblock.use:
     description: Use custom block provided by the plugin.
     default: op
+  buildsystem.interactplace:
+    description: Place blocks as interaction.
+    default: op

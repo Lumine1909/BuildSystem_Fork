@@ -21,7 +21,7 @@ public class CraftServerInjector {
             String className = frame.getClassName();
             String methodName = frame.getMethodName();
             return (className.contains("BuildWorld") && (methodName.contains("unload") || methodName.contains("<init>") || methodName.contains("getWorld")) ||
-                (className.contains("FilteredWorldsInventory") && methodName.contains("isValidWorld")));
+                (className.contains("FilteredWorldsInventory") && methodName.contains("isValidWorld")) || className.contains("de.Ste3et_C0st"));
         }));
         if (shouldAbort) {
             return null;
