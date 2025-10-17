@@ -149,8 +149,8 @@ public class WorldPermissionsImpl implements WorldPermissions {
         }
 
         return worldData.privateWorld().get()
-                ? player.hasPermission("buildsystem.bypass.permission.private")
-                : player.hasPermission("buildsystem.bypass.permission.public");
+            ? player.hasPermission("buildsystem.bypass.permission.private")
+            : player.hasPermission("buildsystem.bypass.permission.public");
     }
 
     @Override

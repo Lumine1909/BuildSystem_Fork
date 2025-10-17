@@ -107,8 +107,8 @@ public class PlayerServiceImpl implements PlayerService {
         WorldStorageImpl worldStorage = plugin.getWorldService().getWorldStorage();
 
         int maxWorldAmountConfig = showPrivateWorlds
-                ? Limits.privateWorlds
-                : Limits.publicWorlds;
+            ? Limits.privateWorlds
+            : Limits.publicWorlds;
         if (maxWorldAmountConfig >= 0 && worldStorage.getBuildWorlds().size() >= maxWorldAmountConfig) {
             return false;
         }
@@ -264,8 +264,8 @@ public class PlayerServiceImpl implements PlayerService {
             Vector point = eyeLocation.toVector().add(direction.clone().multiply(distance));
 
             if (point.getX() >= minX && point.getX() <= maxX
-                    && point.getY() >= minY && point.getY() <= maxY
-                    && point.getZ() >= minZ && point.getZ() <= maxZ) {
+                && point.getY() >= minY && point.getY() <= maxY
+                && point.getZ() >= minZ && point.getZ() <= maxZ) {
                 return true;
             }
         }
@@ -308,9 +308,9 @@ public class PlayerServiceImpl implements PlayerService {
             final Vector vector = otherLocation.toVector().subtract(entityLocation.toVector());
 
             if (entityLocation.getDirection().normalize().crossProduct(vector).lengthSquared() < threshold
-                    && vector.normalize().dot(entityLocation.getDirection().normalize()) >= 0) {
+                && vector.normalize().dot(entityLocation.getDirection().normalize()) >= 0) {
                 if (target == null
-                        || target.getLocation().distanceSquared(entityLocation) > otherLocation.distanceSquared(entityLocation)) {
+                    || target.getLocation().distanceSquared(entityLocation) > otherLocation.distanceSquared(entityLocation)) {
                     target = other;
                 }
             }

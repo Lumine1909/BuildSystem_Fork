@@ -153,8 +153,8 @@ public class StatusInventory implements InventoryHandler {
 
         XSound.ENTITY_CHICKEN_EGG.play(player);
         Messages.sendMessage(player, "worlds_setstatus_set",
-                Map.entry("%world%", buildWorld.getName()),
-                Map.entry("%status%", Messages.getString(Messages.getMessageKey(status), player))
+            Map.entry("%world%", buildWorld.getName()),
+            Map.entry("%status%", Messages.getString(Messages.getMessageKey(status), player))
         );
     }
 

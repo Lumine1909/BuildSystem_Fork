@@ -108,8 +108,8 @@ public class YamlFolderStorage extends FolderStorageImpl {
 
             // First pass: Create all folders without parent references
             Map<String, Folder> loadedFolders = folders.stream()
-                    .map(this::loadFolder)
-                    .collect(Collectors.toMap(Folder::getName, Function.identity()));
+                .map(this::loadFolder)
+                .collect(Collectors.toMap(Folder::getName, Function.identity()));
 
             // Second pass: Set up parent references
             for (String folderName : folders) {
@@ -162,16 +162,16 @@ public class YamlFolderStorage extends FolderStorageImpl {
         List<UUID> worlds = config.getStringList(path + ".worlds").stream().map(UUID::fromString).toList();
 
         return new FolderImpl(
-                folderName,
-                creation,
-                category,
-                null, // Parent will be set in second pass
-                creator,
-                material,
-                permission,
-                project,
-                worlds,
-                new ArrayList<>()
+            folderName,
+            creation,
+            category,
+            null, // Parent will be set in second pass
+            creator,
+            material,
+            permission,
+            project,
+            worlds,
+            new ArrayList<>()
         );
     }
 

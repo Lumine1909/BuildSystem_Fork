@@ -128,8 +128,8 @@ public final class FileUtils {
      */
     private static void copyFile(File source, File target) throws IOException {
         try (
-                InputStream inputStream = Files.newInputStream(source.toPath());
-                OutputStream outputStream = Files.newOutputStream(target.toPath())
+            InputStream inputStream = Files.newInputStream(source.toPath());
+            OutputStream outputStream = Files.newOutputStream(target.toPath())
         ) {
             byte[] buffer = new byte[1024];
             int length;
@@ -158,8 +158,8 @@ public final class FileUtils {
     public static void deleteDirectory(Path directoryPath) throws IOException {
         try (Stream<Path> walk = Files.walk(directoryPath)) {
             walk.sorted(Comparator.reverseOrder())
-                    .map(Path::toFile)
-                    .forEach(File::delete);
+                .map(Path::toFile)
+                .forEach(File::delete);
         }
     }
 
@@ -187,8 +187,8 @@ public final class FileUtils {
             File worldContainer = new File(Bukkit.getWorldContainer(), buildWorld.getName());
 
             ExcludeFileFilter excludeFileFilter = Sets.newHashSet(
-                    new File(worldContainer, "uid.dat"),
-                    new File(worldContainer, "session.lock")
+                new File(worldContainer, "uid.dat"),
+                new File(worldContainer, "session.lock")
             )::contains;
             ZipParameters zipParameters = new ZipParameters();
             zipParameters.setExcludeFileFilter(excludeFileFilter);
@@ -206,8 +206,8 @@ public final class FileUtils {
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
 
         try (
-                ZipOutputStream zipOut = new ZipOutputStream(byteOut);
-                Stream<Path> walk = Files.walk(worldPath)
+            ZipOutputStream zipOut = new ZipOutputStream(byteOut);
+            Stream<Path> walk = Files.walk(worldPath)
         ) {
             walk.filter(Files::isRegularFile).forEach(file -> {
                 try {

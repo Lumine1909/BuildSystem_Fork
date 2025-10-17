@@ -65,13 +65,13 @@ public class SpawnManager {
 
         player.setFallDistance(0);
         PaperLib.teleportAsync(player, spawn)
-                .whenComplete((completed, throwable) -> {
-                    if (!completed) {
-                        return;
-                    }
-                    XSound.ENTITY_ZOMBIE_INFECT.play(player);
-                    player.resetTitle();
-                });
+            .whenComplete((completed, throwable) -> {
+                if (!completed) {
+                    return;
+                }
+                XSound.ENTITY_ZOMBIE_INFECT.play(player);
+                player.resetTitle();
+            });
         return true;
     }
 

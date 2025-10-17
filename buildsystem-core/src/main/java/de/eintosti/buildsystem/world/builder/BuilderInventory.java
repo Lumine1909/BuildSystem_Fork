@@ -115,13 +115,13 @@ public class BuilderInventory extends PaginatedInventory {
 
         if (!builders.hasCreator()) {
             creatorInfoItem = InventoryUtils.createItem(XMaterial.BARRIER,
-                    Messages.getString("worldeditor_builders_no_creator_item", player)
+                Messages.getString("worldeditor_builders_no_creator_item", player)
             );
         } else {
             creatorInfoItem = InventoryUtils.createSkull(Messages.getString("worldeditor_builders_creator_item", player), Profileable.of(creator.getUniqueId()),
-                    Messages.getString("worldeditor_builders_creator_lore", player,
-                            Map.entry("%creator%", builders.getCreator().getName())
-                    )
+                Messages.getString("worldeditor_builders_creator_lore", player,
+                    Map.entry("%creator%", builders.getCreator().getName())
+                )
             );
         }
         inventory.setItem(4, creatorInfoItem);
@@ -139,11 +139,11 @@ public class BuilderInventory extends PaginatedInventory {
 
     private ItemStack createBuilderItem(Builder builder, Player player) {
         ItemStack itemStack = InventoryUtils.createSkull(
-                Messages.getString("worldeditor_builders_builder_item", player,
-                        Map.entry("%builder%", builder.getName())
-                ),
-                Profileable.username(builder.getName()),
-                Messages.getStringList("worldeditor_builders_builder_lore", player)
+            Messages.getString("worldeditor_builders_builder_item", player,
+                Map.entry("%builder%", builder.getName())
+            ),
+            Profileable.username(builder.getName()),
+            Messages.getStringList("worldeditor_builders_builder_lore", player)
         );
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.getPersistentDataContainer().set(this.builderNameKey, PersistentDataType.STRING, builder.getName());

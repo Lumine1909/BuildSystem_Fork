@@ -58,16 +58,16 @@ public class FolderImpl implements Folder {
     }
 
     public FolderImpl(
-            String name,
-            long creation,
-            NavigatorCategory category,
-            @Nullable Folder parent,
-            Builder creator,
-            XMaterial material,
-            String permission,
-            String project,
-            List<UUID> worlds,
-            List<Folder> subfolders
+        String name,
+        long creation,
+        NavigatorCategory category,
+        @Nullable Folder parent,
+        Builder creator,
+        XMaterial material,
+        String permission,
+        String project,
+        List<UUID> worlds,
+        List<Folder> subfolders
     ) {
         this.name = name;
         this.creation = creation;
@@ -92,7 +92,7 @@ public class FolderImpl implements Folder {
     @Override
     public String getDisplayName(Player player) {
         return Messages.getString("folder_item_title", player,
-                Map.entry("%folder%", name)
+            Map.entry("%folder%", name)
         );
     }
 
@@ -120,9 +120,9 @@ public class FolderImpl implements Folder {
     @Contract("_ -> new")
     public List<String> getLore(Player player) {
         return new ArrayList<>(Messages.getStringList("folder_item_lore", player,
-                Map.entry("%permission%", this.permission),
-                Map.entry("%project%", this.project),
-                Map.entry("%worlds%", String.valueOf(getWorldCount())))
+            Map.entry("%permission%", this.permission),
+            Map.entry("%project%", this.project),
+            Map.entry("%worlds%", String.valueOf(getWorldCount())))
         );
     }
 

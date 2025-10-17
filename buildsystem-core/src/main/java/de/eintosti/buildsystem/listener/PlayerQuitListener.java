@@ -53,8 +53,8 @@ public class PlayerQuitListener implements Listener {
     public void sendPlayerQuitMessage(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         String message = Config.Messages.joinQuitMessages
-                ? Messages.getString("player_quit", player, Map.entry("%player%", player.getName()))
-                : null;
+            ? Messages.getString("player_quit", player, Map.entry("%player%", player.getName()))
+            : null;
         event.setQuitMessage(message);
     }
 
@@ -78,8 +78,8 @@ public class PlayerQuitListener implements Listener {
 
         BuildPlayer buildPlayer = playerManager.getPlayerStorage().getBuildPlayer(player);
         buildPlayer.setLogoutLocation(new LogoutLocationImpl(
-                player.getWorld().getName(),
-                player.getLocation()
+            player.getWorld().getName(),
+            player.getLocation()
         ));
 
         CachedValues cachedValues = buildPlayer.getCachedValues();

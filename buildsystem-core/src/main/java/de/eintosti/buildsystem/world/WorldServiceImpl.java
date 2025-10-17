@@ -114,11 +114,11 @@ public class WorldServiceImpl implements WorldService {
                 startCustomGeneratorInput(player, worldName, template, privateWorld, folder);
             } else {
                 createWorld(worldName)
-                        .setType(worldType)
-                        .setTemplate(template)
-                        .setPrivate(privateWorld)
-                        .setFolder(folder)
-                        .createWorld(player);
+                    .setType(worldType)
+                    .setTemplate(template)
+                    .setPrivate(privateWorld)
+                    .setFolder(folder)
+                    .createWorld(player);
             }
         });
     }
@@ -133,12 +133,12 @@ public class WorldServiceImpl implements WorldService {
             }
 
             createWorld(worldName)
-                    .setType(BuildWorldType.CUSTOM)
-                    .setTemplate(template)
-                    .setPrivate(privateWorld)
-                    .setCustomGenerator(customGenerator)
-                    .setFolder(folder)
-                    .createWorld(player);
+                .setType(BuildWorldType.CUSTOM)
+                .setTemplate(template)
+                .setPrivate(privateWorld)
+                .setCustomGenerator(customGenerator)
+                .setFolder(folder)
+                .createWorld(player);
         });
     }
 
@@ -153,16 +153,16 @@ public class WorldServiceImpl implements WorldService {
         }
 
         BuildWorldCreatorImpl worldCreator = createWorld(worldName)
-                .setType(worldType)
-                .setCreator(creator)
-                .setCustomGenerator(customGenerator != null ? customGenerator : new CustomGeneratorImpl("BuildSystem", generatorData, null))
-                .setPrivate(false)
-                .setCreationDate(FileUtils.getDirectoryCreation(new File(Bukkit.getWorldContainer(), worldName)));
+            .setType(worldType)
+            .setCreator(creator)
+            .setCustomGenerator(customGenerator != null ? customGenerator : new CustomGeneratorImpl("BuildSystem", generatorData, null))
+            .setPrivate(false)
+            .setCreationDate(FileUtils.getDirectoryCreation(new File(Bukkit.getWorldContainer(), worldName)));
 
         if (worldCreator.isDataVersionTooHigh()) {
             String key = single ? "import" : "importall";
             Messages.sendMessage(player, "worlds_" + key + "_newer_version",
-                    Map.entry("%world%", worldName)
+                Map.entry("%world%", worldName)
             );
             return false;
         }
@@ -176,10 +176,10 @@ public class WorldServiceImpl implements WorldService {
         int delay = Config.World.importAllDelay;
 
         Messages.sendMessage(player, "worlds_importall_started",
-                Map.entry("%amount%", String.valueOf(worlds))
+            Map.entry("%amount%", String.valueOf(worlds))
         );
         Messages.sendMessage(player, "worlds_importall_delay",
-                Map.entry("%delay%", String.valueOf(delay))
+            Map.entry("%delay%", String.valueOf(delay))
         );
         importingAllWorlds = true;
 
@@ -198,7 +198,7 @@ public class WorldServiceImpl implements WorldService {
                 String worldName = worldList[i];
                 if (worldStorage.worldExists(worldName)) {
                     Messages.sendMessage(player, "worlds_importall_world_already_imported",
-                            Map.entry("%world%", worldName)
+                        Map.entry("%world%", worldName)
                     );
                     return;
                 }
@@ -206,8 +206,8 @@ public class WorldServiceImpl implements WorldService {
                 String invalidChar = StringCleaner.firstInvalidChar(worldName);
                 if (invalidChar != null) {
                     Messages.sendMessage(player, "worlds_importall_invalid_character",
-                            Map.entry("%world%", worldName),
-                            Map.entry("%char%", invalidChar)
+                        Map.entry("%world%", worldName),
+                        Map.entry("%char%", invalidChar)
                     );
                     return;
                 }
@@ -235,19 +235,19 @@ public class WorldServiceImpl implements WorldService {
         String worldName = buildWorld.getName();
         Messages.sendMessage(player, "worlds_delete_started", Map.entry("%world%", worldName));
         deleteWorld(buildWorld)
-                .thenRun(() -> Messages.sendMessage(player, "worlds_delete_finished"))
-                .exceptionally(e -> {
-                    Throwable cause = e.getCause() != null ? e.getCause() : e;
-                    switch (cause) {
-                        case WorldNotFoundException ignored -> Messages.sendMessage(player, "worlds_delete_unknown_world");
-                        case WorldDirectoryNotFoundException ignored -> Messages.sendMessage(player, "worlds_delete_unknown_directory");
-                        default -> {
-                            Messages.sendMessage(player, "worlds_delete_error", Map.entry("%world%", worldName));
-                            plugin.getLogger().log(Level.SEVERE, "An unexpected error occurred while deleting the world: " + worldName, cause);
-                        }
+            .thenRun(() -> Messages.sendMessage(player, "worlds_delete_finished"))
+            .exceptionally(e -> {
+                Throwable cause = e.getCause() != null ? e.getCause() : e;
+                switch (cause) {
+                    case WorldNotFoundException ignored -> Messages.sendMessage(player, "worlds_delete_unknown_world");
+                    case WorldDirectoryNotFoundException ignored -> Messages.sendMessage(player, "worlds_delete_unknown_directory");
+                    default -> {
+                        Messages.sendMessage(player, "worlds_delete_error", Map.entry("%world%", worldName));
+                        plugin.getLogger().log(Level.SEVERE, "An unexpected error occurred while deleting the world: " + worldName, cause);
                     }
-                    return null;
-                });
+                }
+                return null;
+            });
     }
 
     @Override
@@ -266,14 +266,14 @@ public class WorldServiceImpl implements WorldService {
         removePlayersFromWorld(worldName, "worlds_delete_players_world");
 
         return CompletableFuture.allOf(
-                unimportWorld(buildWorld, false),
-                CompletableFuture.runAsync(() -> {
-                    try {
-                        FileUtils.deleteDirectory(deleteFolder);
-                    } catch (IOException e) {
-                        throw new CompletionException(new WorldDeletionException("An unexpected error occurred during directory deletion for world: " + worldName, e));
-                    }
-                })
+            unimportWorld(buildWorld, false),
+            CompletableFuture.runAsync(() -> {
+                try {
+                    FileUtils.deleteDirectory(deleteFolder);
+                } catch (IOException e) {
+                    throw new CompletionException(new WorldDeletionException("An unexpected error occurred during directory deletion for world: " + worldName, e));
+                }
+            })
         );
     }
 
@@ -346,26 +346,26 @@ public class WorldServiceImpl implements WorldService {
             spawnLocation.setWorld(newWorld);
 
             removedPlayers.stream()
-                    .filter(Objects::nonNull)
-                    .forEach(pl -> PaperLib.teleportAsync(pl, spawnLocation.clone().add(0.5, 0, 0.5)));
+                .filter(Objects::nonNull)
+                .forEach(pl -> PaperLib.teleportAsync(pl, spawnLocation.clone().add(0.5, 0, 0.5)));
 
             SpawnManager spawnManager = plugin.getSpawnManager();
             Location oldSpawn = spawnManager.getSpawn();
             if (oldSpawn != null && Objects.equals(spawnManager.getSpawnWorld(), oldWorld)) {
                 Location newSpawn = new Location(
-                        newWorld,
-                        oldSpawn.getX(),
-                        oldSpawn.getY(),
-                        oldSpawn.getZ(),
-                        oldSpawn.getYaw(),
-                        oldSpawn.getPitch()
+                    newWorld,
+                    oldSpawn.getX(),
+                    oldSpawn.getY(),
+                    oldSpawn.getZ(),
+                    oldSpawn.getYaw(),
+                    oldSpawn.getPitch()
                 );
                 spawnManager.set(newSpawn, sanitizedNewName);
             }
 
             Messages.sendMessage(player, "worlds_rename_set",
-                    Map.entry("%oldName%", oldName),
-                    Map.entry("%newName%", sanitizedNewName)
+                Map.entry("%oldName%", oldName),
+                Map.entry("%newName%", sanitizedNewName)
             );
         }));
     }

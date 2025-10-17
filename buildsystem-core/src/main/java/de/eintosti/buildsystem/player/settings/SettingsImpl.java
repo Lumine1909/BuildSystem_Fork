@@ -67,21 +67,21 @@ public class SettingsImpl implements Settings {
     }
 
     public SettingsImpl(
-            @Nullable NavigatorType navigatorType,
-            @Nullable DesignColor designColor,
-            WorldDisplay worldDisplay,
-            boolean clearInventory,
-            boolean disableInteract,
-            boolean hidePlayers,
-            boolean instantPlaceSigns,
-            boolean keepNavigator,
-            boolean nightVision,
-            boolean noClip,
-            boolean placePlants,
-            boolean scoreboard,
-            boolean slabBreaking,
-            boolean spawnTeleport,
-            boolean openTrapDoors
+        @Nullable NavigatorType navigatorType,
+        @Nullable DesignColor designColor,
+        WorldDisplay worldDisplay,
+        boolean clearInventory,
+        boolean disableInteract,
+        boolean hidePlayers,
+        boolean instantPlaceSigns,
+        boolean keepNavigator,
+        boolean nightVision,
+        boolean noClip,
+        boolean placePlants,
+        boolean scoreboard,
+        boolean slabBreaking,
+        boolean spawnTeleport,
+        boolean openTrapDoors
     ) {
         this.navigatorType = navigatorType == null ? NavigatorType.OLD : navigatorType;
         this.designColor = designColor == null ? DesignColor.BLACK : designColor;

@@ -44,21 +44,21 @@ import org.jspecify.annotations.NullMarked;
 public class SetupInventory implements InventoryHandler {
 
     private static final Map<BuildWorldType, Integer> CREATE_ITEM_SLOTS = Map.of(
-            BuildWorldType.NORMAL, 11,
-            BuildWorldType.FLAT, 12,
-            BuildWorldType.NETHER, 13,
-            BuildWorldType.END, 14,
-            BuildWorldType.VOID, 15,
-            BuildWorldType.IMPORTED, 16
+        BuildWorldType.NORMAL, 11,
+        BuildWorldType.FLAT, 12,
+        BuildWorldType.NETHER, 13,
+        BuildWorldType.END, 14,
+        BuildWorldType.VOID, 15,
+        BuildWorldType.IMPORTED, 16
     );
 
     private static final Map<BuildWorldStatus, Integer> STATUS_ITEM_SLOTS = Map.of(
-            BuildWorldStatus.NOT_STARTED, 20,
-            BuildWorldStatus.IN_PROGRESS, 21,
-            BuildWorldStatus.ALMOST_FINISHED, 22,
-            BuildWorldStatus.FINISHED, 23,
-            BuildWorldStatus.ARCHIVE, 24,
-            BuildWorldStatus.HIDDEN, 25
+        BuildWorldStatus.NOT_STARTED, 20,
+        BuildWorldStatus.IN_PROGRESS, 21,
+        BuildWorldStatus.ALMOST_FINISHED, 22,
+        BuildWorldStatus.FINISHED, 23,
+        BuildWorldStatus.ARCHIVE, 24,
+        BuildWorldStatus.HIDDEN, 25
     );
 
     private final BuildSystemPlugin plugin;
@@ -160,8 +160,8 @@ public class SetupInventory implements InventoryHandler {
     private <T extends Enum<T>> void processIconMapping(Inventory inventory, Map<T, Integer> slotMapping, BiConsumer<T, XMaterial> setter) {
         slotMapping.forEach((enumConstant, slot) -> {
             XMaterial material = Optional.ofNullable(inventory.getItem(slot))
-                    .map(XMaterial::matchXMaterial)
-                    .orElse(null);
+                .map(XMaterial::matchXMaterial)
+                .orElse(null);
             if (material == null) {
                 plugin.getLogger().warning("Failed to set icon for " + enumConstant.name() + " in setup inventory. ItemStack is null or not a valid Material.");
                 return;

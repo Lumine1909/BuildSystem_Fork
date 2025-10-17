@@ -92,9 +92,9 @@ public class DesignInventory implements InventoryHandler {
 
         String displayName = Messages.getString(key, player);
         ItemStack itemStack = InventoryUtils.createItem(material,
-                settings.getDesignColor() == color
-                        ? "§a" + displayName
-                        : "§7" + displayName
+            settings.getDesignColor() == color
+                ? "§a" + displayName
+                : "§7" + displayName
         );
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (itemMeta != null) {

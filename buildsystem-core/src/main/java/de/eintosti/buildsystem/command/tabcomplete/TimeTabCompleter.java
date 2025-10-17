@@ -51,8 +51,8 @@ public class TimeTabCompleter extends ArgumentSorter implements TabCompleter {
             case "day":
             case "night":
                 worldStorage.getBuildWorlds().stream()
-                        .filter(world -> world.getPermissions().canPerformCommand(player, "buildsystem." + labelLowerCase))
-                        .forEach(world -> addArgument(args[0], world.getName(), arrayList));
+                    .filter(world -> world.getPermissions().canPerformCommand(player, "buildsystem." + labelLowerCase))
+                    .forEach(world -> addArgument(args[0], world.getName(), arrayList));
                 break;
         }
 

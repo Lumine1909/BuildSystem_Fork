@@ -112,8 +112,8 @@ public class BackupService {
     public BackupProfile getProfile(BuildWorld buildWorld) {
         try {
             return this.backupProfileCache.get(
-                    buildWorld.getUniqueId(),
-                    () -> new BackupProfileImpl(this.plugin, this.backupStorage, buildWorld)
+                buildWorld.getUniqueId(),
+                () -> new BackupProfileImpl(this.plugin, this.backupStorage, buildWorld)
             );
         } catch (ExecutionException e) {
             BackupProfileImpl profile = new BackupProfileImpl(this.plugin, this.backupStorage, buildWorld);

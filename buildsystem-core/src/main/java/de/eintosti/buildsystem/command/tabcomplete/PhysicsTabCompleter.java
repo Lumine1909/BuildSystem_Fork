@@ -46,8 +46,8 @@ public class PhysicsTabCompleter extends ArgumentSorter implements TabCompleter 
 
         if (args.length == 1) {
             worldStorage.getBuildWorlds().stream()
-                    .filter(world -> world.getPermissions().canPerformCommand(player, "buildsystem.physics"))
-                    .forEach(world -> addArgument(args[0], world.getName(), arrayList));
+                .filter(world -> world.getPermissions().canPerformCommand(player, "buildsystem.physics"))
+                .forEach(world -> addArgument(args[0], world.getName(), arrayList));
         }
 
         return arrayList;

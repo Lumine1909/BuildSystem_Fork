@@ -106,7 +106,7 @@ public class AddBuilderSubCommand implements SubCommand {
         builders.addBuilder(builder);
         XSound.ENTITY_PLAYER_LEVELUP.play(player);
         Messages.sendMessage(player, "worlds_addbuilder_added",
-                Map.entry("%builder%", builderName)
+            Map.entry("%builder%", builderName)
         );
 
         if (closeInventory) {

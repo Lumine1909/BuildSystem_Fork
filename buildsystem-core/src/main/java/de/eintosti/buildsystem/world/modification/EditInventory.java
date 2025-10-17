@@ -64,11 +64,11 @@ public class EditInventory implements InventoryHandler {
      * A set of entities which are ignored when the butcher item is used.
      */
     private static final Set<XEntityType> IGNORED_ENTITIES = Sets.newHashSet(
-            XEntityType.ARMOR_STAND, XEntityType.END_CRYSTAL, XEntityType.ITEM_FRAME,
-            XEntityType.FALLING_BLOCK, XEntityType.MINECART, XEntityType.CHEST_MINECART,
-            XEntityType.COMMAND_BLOCK_MINECART, XEntityType.FURNACE_MINECART,
-            XEntityType.HOPPER_MINECART, XEntityType.SPAWNER_MINECART, XEntityType.TNT_MINECART,
-            XEntityType.PLAYER
+        XEntityType.ARMOR_STAND, XEntityType.END_CRYSTAL, XEntityType.ITEM_FRAME,
+        XEntityType.FALLING_BLOCK, XEntityType.MINECART, XEntityType.CHEST_MINECART,
+        XEntityType.COMMAND_BLOCK_MINECART, XEntityType.FURNACE_MINECART,
+        XEntityType.HOPPER_MINECART, XEntityType.SPAWNER_MINECART, XEntityType.TNT_MINECART,
+        XEntityType.PLAYER
     );
 
     private final BuildSystemPlugin plugin;
@@ -95,47 +95,47 @@ public class EditInventory implements InventoryHandler {
         addBuildWorldInfoItem(player, inventory, buildWorld);
 
         addSettingsItem(player, inventory, 20, XMaterial.OAK_PLANKS,
-                worldData.blockBreaking().get(), "worldeditor_blockbreaking_item", "worldeditor_blockbreaking_lore"
+            worldData.blockBreaking().get(), "worldeditor_blockbreaking_item", "worldeditor_blockbreaking_lore"
         );
         addSettingsItem(player, inventory, 21, XMaterial.POLISHED_ANDESITE,
-                worldData.blockPlacement().get(), "worldeditor_blockplacement_item", "worldeditor_blockplacement_lore"
+            worldData.blockPlacement().get(), "worldeditor_blockplacement_item", "worldeditor_blockplacement_lore"
         );
         addSettingsItem(player, inventory, 22, XMaterial.SAND,
-                worldData.physics().get(), "worldeditor_physics_item", "worldeditor_physics_lore"
+            worldData.physics().get(), "worldeditor_physics_item", "worldeditor_physics_lore"
         );
         addTimeItem(player, inventory, buildWorld);
         addSettingsItem(player, inventory, 24, XMaterial.TNT,
-                worldData.explosions().get(), "worldeditor_explosions_item", "worldeditor_explosions_lore"
+            worldData.explosions().get(), "worldeditor_explosions_item", "worldeditor_explosions_lore"
         );
         inventory.setItem(29, InventoryUtils.createItem(XMaterial.DIAMOND_SWORD,
-                Messages.getString("worldeditor_butcher_item", player), Messages.getStringList("worldeditor_butcher_lore", player)
+            Messages.getString("worldeditor_butcher_item", player), Messages.getStringList("worldeditor_butcher_lore", player)
         ));
         addBuildersItem(player, inventory, buildWorld);
         addSettingsItem(player, inventory, 31, XMaterial.ARMOR_STAND,
-                worldData.mobAi().get(), "worldeditor_mobai_item", "worldeditor_mobai_lore"
+            worldData.mobAi().get(), "worldeditor_mobai_item", "worldeditor_mobai_lore"
         );
         addVisibilityItem(player, inventory, buildWorld);
         addSettingsItem(player, inventory, 33, XMaterial.TRIPWIRE_HOOK,
-                worldData.blockInteractions().get(), "worldeditor_blockinteractions_item", "worldeditor_blockinteractions_lore"
+            worldData.blockInteractions().get(), "worldeditor_blockinteractions_item", "worldeditor_blockinteractions_lore"
         );
         inventory.setItem(38, InventoryUtils.createItem(XMaterial.FILLED_MAP,
-                Messages.getString("worldeditor_gamerules_item", player), Messages.getStringList("worldeditor_gamerules_lore", player)
+            Messages.getString("worldeditor_gamerules_item", player), Messages.getStringList("worldeditor_gamerules_lore", player)
         ));
         addDifficultyItem(player, inventory, buildWorld);
         inventory.setItem(40, InventoryUtils.createItem(plugin.getCustomizableIcons().getIcon(worldData.status().get()), Messages.getString("worldeditor_status_item", player),
-                Messages.getStringList("worldeditor_status_lore", player,
-                        Map.entry("%status%", Messages.getString(Messages.getMessageKey(buildWorld.getData().status().get()), player))
-                )
+            Messages.getStringList("worldeditor_status_lore", player,
+                Map.entry("%status%", Messages.getString(Messages.getMessageKey(buildWorld.getData().status().get()), player))
+            )
         ));
         inventory.setItem(41, InventoryUtils.createItem(XMaterial.ANVIL, Messages.getString("worldeditor_project_item", player),
-                Messages.getStringList("worldeditor_project_lore", player,
-                        Map.entry("%project%", buildWorld.getData().project().get())
-                )
+            Messages.getStringList("worldeditor_project_lore", player,
+                Map.entry("%project%", buildWorld.getData().project().get())
+            )
         ));
         inventory.setItem(42, InventoryUtils.createItem(XMaterial.PAPER, Messages.getString("worldeditor_permission_item", player),
-                Messages.getStringList("worldeditor_permission_lore", player,
-                        Map.entry("%permission%", buildWorld.getData().permission().get())
-                )
+            Messages.getStringList("worldeditor_permission_lore", player,
+                Map.entry("%permission%", buildWorld.getData().permission().get())
+            )
         ));
 
         return inventory;
@@ -192,7 +192,7 @@ public class EditInventory implements InventoryHandler {
         }
 
         inventory.setItem(23, InventoryUtils.createItem(xMaterial, Messages.getString("worldeditor_time_item", player),
-                Messages.getStringList("worldeditor_time_lore", player, Map.entry("%time%", value))
+            Messages.getStringList("worldeditor_time_lore", player, Map.entry("%time%", value))
         ));
     }
 
@@ -212,12 +212,12 @@ public class EditInventory implements InventoryHandler {
     private void addBuildersItem(Player player, Inventory inventory, BuildWorld buildWorld) {
         if (buildWorld.getBuilders().isCreator(player) || player.hasPermission(BuildSystemPlugin.ADMIN_PERMISSION)) {
             addSettingsItem(player, inventory, 30, XMaterial.IRON_PICKAXE, buildWorld.getData().buildersEnabled().get(),
-                    "worldeditor_builders_item", "worldeditor_builders_lore"
+                "worldeditor_builders_item", "worldeditor_builders_lore"
             );
         } else {
             inventory.setItem(30, InventoryUtils.createItem(XMaterial.BARRIER,
-                    Messages.getString("worldeditor_builders_not_creator_item", player),
-                    Messages.getStringList("worldeditor_builders_not_creator_lore", player)
+                Messages.getString("worldeditor_builders_not_creator_item", player),
+                Messages.getStringList("worldeditor_builders_not_creator_lore", player)
             ));
         }
     }
@@ -252,10 +252,10 @@ public class EditInventory implements InventoryHandler {
         };
 
         inventory.setItem(39, InventoryUtils.createItem(material,
-                Messages.getString("worldeditor_difficulty_item", player),
-                Messages.getStringList("worldeditor_difficulty_lore", player,
-                        Map.entry("%difficulty%", getDifficultyName(buildWorld, player))
-                )
+            Messages.getString("worldeditor_difficulty_item", player),
+            Messages.getStringList("worldeditor_difficulty_lore", player,
+                Map.entry("%difficulty%", getDifficultyName(buildWorld, player))
+            )
         ));
     }
 
@@ -427,11 +427,11 @@ public class EditInventory implements InventoryHandler {
 
         AtomicInteger entitiesRemoved = new AtomicInteger();
         bukkitWorld.getEntities().stream()
-                .filter(entity -> !IGNORED_ENTITIES.contains(XEntityType.of(entity)))
-                .forEach(entity -> {
-                    entity.remove();
-                    entitiesRemoved.incrementAndGet();
-                });
+            .filter(entity -> !IGNORED_ENTITIES.contains(XEntityType.of(entity)))
+            .forEach(entity -> {
+                entity.remove();
+                entitiesRemoved.incrementAndGet();
+            });
 
         player.closeInventory();
         Messages.sendMessage(player, "worldeditor_butcher_removed", Map.entry("%amount%", entitiesRemoved.get()));

@@ -160,12 +160,12 @@ public class WorldDataImpl implements WorldData {
 
         String[] spawnString = customSpawn.split(";");
         return new Location(
-                Bukkit.getWorld(worldName),
-                Double.parseDouble(spawnString[0]),
-                Double.parseDouble(spawnString[1]),
-                Double.parseDouble(spawnString[2]),
-                Float.parseFloat(spawnString[3]),
-                Float.parseFloat(spawnString[4])
+            Bukkit.getWorld(worldName),
+            Double.parseDouble(spawnString[0]),
+            Double.parseDouble(spawnString[1]),
+            Double.parseDouble(spawnString[2]),
+            Float.parseFloat(spawnString[3]),
+            Float.parseFloat(spawnString[4])
         );
     }
 

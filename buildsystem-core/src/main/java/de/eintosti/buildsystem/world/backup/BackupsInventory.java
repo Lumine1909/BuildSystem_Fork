@@ -63,11 +63,11 @@ public class BackupsInventory implements InventoryHandler {
         }
 
         inventory.setItem(4, InventoryUtils.createItem(XMaterial.OAK_HANGING_SIGN,
-                Messages.getString("backups_information_name", player),
-                Messages.getStringList("backups_information_lore", player,
-                        Map.entry("%interval%", AutoBackup.interval / 60),
-                        Map.entry("%remaining%", getDurationUntilBackup(buildWorld))
-                )
+            Messages.getString("backups_information_name", player),
+            Messages.getStringList("backups_information_lore", player,
+                Map.entry("%interval%", AutoBackup.interval / 60),
+                Map.entry("%remaining%", getDurationUntilBackup(buildWorld))
+            )
         ));
 
         for (int i = 27; i <= 35; i++) {
@@ -91,9 +91,9 @@ public class BackupsInventory implements InventoryHandler {
             Inventory inventory = backupsHolder.getInventory();
             for (int i = 0; i < backups.size(); i++) {
                 inventory.setItem(FIRST_BACKUP_SLOT + i, InventoryUtils.createItem(XMaterial.GRASS_BLOCK,
-                        Messages.getString("backups_backup_name", player,
-                                Map.entry("%timestamp%", StringUtils.formatTime(backups.get(i).creationTime()))
-                        )
+                    Messages.getString("backups_backup_name", player,
+                        Map.entry("%timestamp%", StringUtils.formatTime(backups.get(i).creationTime()))
+                    )
                 ));
             }
         });
@@ -134,13 +134,13 @@ public class BackupsInventory implements InventoryHandler {
         }
 
         inventory.setItem(11, InventoryUtils.createItem(XMaterial.LIME_DYE,
-                Messages.getString("restore_backup_confirm_name", player),
-                Messages.getStringList("restore_backup_confirm_lore", player,
-                        Map.entry("%timestamp%", StringUtils.formatTime(backup.creationTime()))
-                )
+            Messages.getString("restore_backup_confirm_name", player),
+            Messages.getStringList("restore_backup_confirm_lore", player,
+                Map.entry("%timestamp%", StringUtils.formatTime(backup.creationTime()))
+            )
         ));
         inventory.setItem(15, InventoryUtils.createItem(XMaterial.RED_DYE,
-                Messages.getString("restore_backup_cancel_name", player)
+            Messages.getString("restore_backup_cancel_name", player)
         ));
         return inventory;
     }

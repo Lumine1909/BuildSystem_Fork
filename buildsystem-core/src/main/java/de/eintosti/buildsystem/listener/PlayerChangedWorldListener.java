@@ -119,7 +119,7 @@ public class PlayerChangedWorldListener implements Listener {
 
     private void setGoldBlock(@Nullable BuildWorld buildWorld) {
         if (buildWorld == null || buildWorld.getType() != BuildWorldType.VOID
-                || buildWorld.getData().status().get() != BuildWorldStatus.NOT_STARTED) {
+            || buildWorld.getData().status().get() != BuildWorldStatus.NOT_STARTED) {
             return;
         }
 

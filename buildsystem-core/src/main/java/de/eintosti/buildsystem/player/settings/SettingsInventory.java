@@ -78,8 +78,8 @@ public class SettingsInventory implements InventoryHandler {
         addSettingsItem(player, inventory, 24, XMaterial.IRON_TRAPDOOR, settings.isOpenTrapDoors(), "settings_open_trapdoors_item", "settings_open_trapdoors_lore");
         addSettingsItem(player, inventory, 29, XMaterial.FERN, settings.isPlacePlants(), "settings_placeplants_item", "settings_placeplants_lore");
         addSettingsItem(player, inventory, 30, XMaterial.PAPER, settings.isScoreboard(),
-                Config.Settings.scoreboard ? "settings_scoreboard_item" : "settings_scoreboard_disabled_item",
-                Config.Settings.scoreboard ? "settings_scoreboard_lore" : "settings_scoreboard_disabled_lore");
+            Config.Settings.scoreboard ? "settings_scoreboard_item" : "settings_scoreboard_disabled_item",
+            Config.Settings.scoreboard ? "settings_scoreboard_lore" : "settings_scoreboard_disabled_lore");
         addSettingsItem(player, inventory, 31, XMaterial.SMOOTH_STONE_SLAB, settings.isSlabBreaking(), "settings_slab_breaking_item", "settings_slab_breaking_lore");
         addSettingsItem(player, inventory, 32, XMaterial.MAGMA_CREAM, settings.isSpawnTeleport(), "settings_spawnteleport_item", "settings_spawnteleport_lore");
 
@@ -112,7 +112,7 @@ public class SettingsInventory implements InventoryHandler {
         Settings settings = settingsManager.getSettings(player);
         XMaterial xMaterial = settings.isClearInventory() ? XMaterial.MINECART : XMaterial.CHEST_MINECART;
         addSettingsItem(player, inventory, 12, xMaterial, settings.isClearInventory(),
-                "settings_clear_inventory_item", "settings_clear_inventory_lore"
+            "settings_clear_inventory_item", "settings_clear_inventory_lore"
         );
     }
 
