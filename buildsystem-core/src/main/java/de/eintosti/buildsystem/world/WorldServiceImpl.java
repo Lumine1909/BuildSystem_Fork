@@ -104,7 +104,7 @@ public class WorldServiceImpl implements WorldService {
                 Messages.sendMessage(player, "worlds_world_creation_invalid_characters");
             }
 
-            String worldName = StringCleaner.sanitize(input);
+            String worldName = Config.World.nameFormat.replace("${name}", StringCleaner.sanitize(input));
             if (worldName.isEmpty()) {
                 Messages.sendMessage(player, "worlds_world_creation_name_bank");
                 return;
@@ -301,7 +301,7 @@ public class WorldServiceImpl implements WorldService {
         if (StringCleaner.hasInvalidNameCharacters(newName)) {
             Messages.sendMessage(player, "worlds_world_creation_invalid_characters");
         }
-        String sanitizedNewName = StringCleaner.sanitize(newName);
+        String sanitizedNewName = Config.World.nameFormat.replace("${name}", StringCleaner.sanitize(newName));
         if (sanitizedNewName.isEmpty()) {
             Messages.sendMessage(player, "worlds_world_creation_name_bank");
             return;

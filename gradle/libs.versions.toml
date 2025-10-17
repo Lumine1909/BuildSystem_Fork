@@ -16,7 +16,7 @@ bouncycastle = "1.83"
 bstats = "3.1.0"
 fastboard = "2.1.5"
 jspecify = "1.0.0"
-nbt = "1.5.1"
+nbt = "1.6.0"
 sshd-sftp = "2.16.0"
 xseries = "13.6.0"
 zip4j = "2.11.5"
@@ -43,7 +43,7 @@ bouncycastle = { group = "org.bouncycastle", name = "bcpkix-jdk18on", version.re
 bstats = { group = "org.bstats", name = "bstats-bukkit", version.ref = "bstats" }
 fastboard = { group = "fr.mrmicky", name = "fastboard", version.ref = "fastboard" }
 jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
-nbt = { group = "dev.dewy", name = "nbt", version.ref = "nbt" }
+nbt = { group = "io.github.lumine1909", name = "nbt", version.ref = "nbt" }
 sftp = { group = "org.apache.sshd", name = "sshd-sftp", version.ref = "sshd-sftp" }
 zip4j = { group = "net.lingala.zip4j", name = "zip4j", version.ref = "zip4j" }
 xseries = { group = "com.github.cryptomorin", name = "XSeries", version.ref = "xseries" }
