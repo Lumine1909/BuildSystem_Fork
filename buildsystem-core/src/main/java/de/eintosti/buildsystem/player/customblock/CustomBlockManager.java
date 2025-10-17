@@ -60,6 +60,10 @@ public class CustomBlockManager implements Listener {
         }
 
         Player player = event.getPlayer();
+        if (!player.hasPermission("buildsystem.customblock.use")) {
+            return;
+        }
+
         BuildWorld buildWorld = plugin.getWorldService().getWorldStorage().getBuildWorld(player.getWorld());
         boolean isBuildWorld = buildWorld != null;
 
