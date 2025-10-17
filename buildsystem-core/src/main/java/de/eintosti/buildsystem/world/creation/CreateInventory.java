@@ -86,8 +86,8 @@ public class CreateInventory extends PaginatedInventory {
 
     private void addTemplates(Player player, Page page) {
         File[] templateFiles = FileUtils.resolve(plugin.getDataFolder(), "templates")
-                .toFile()
-                .listFiles((file) -> file.isDirectory() && !file.isHidden());
+            .toFile()
+            .listFiles((file) -> file.isDirectory() && !file.isHidden());
 
         this.numTemplates = templateFiles != null ? templateFiles.length : 0;
         int numPages = calculateNumPages(numTemplates, MAX_TEMPLATES);
@@ -112,9 +112,9 @@ public class CreateInventory extends PaginatedInventory {
         int columnTemplate = 29, maxColumnTemplate = 33;
         for (File templateFile : templateFiles) {
             inventory.setItem(columnTemplate++,
-                    InventoryUtils.createItem(XMaterial.FILLED_MAP, Messages.getString("create_template", player,
-                            Map.entry("%template%", templateFile.getName()))
-                    )
+                InventoryUtils.createItem(XMaterial.FILLED_MAP, Messages.getString("create_template", player,
+                    Map.entry("%template%", templateFile.getName()))
+                )
             );
 
             if (columnTemplate > maxColumnTemplate) {
@@ -285,9 +285,9 @@ public class CreateInventory extends PaginatedInventory {
         @Nullable
         public static Page of(int slot) {
             return Arrays.stream(values())
-                    .filter(value -> value.slot == slot)
-                    .findFirst()
-                    .orElse(null);
+                .filter(value -> value.slot == slot)
+                .findFirst()
+                .orElse(null);
         }
 
         public int getSlot() {

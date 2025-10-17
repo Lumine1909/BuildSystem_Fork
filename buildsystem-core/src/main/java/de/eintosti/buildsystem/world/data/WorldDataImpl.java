@@ -71,48 +71,48 @@ public class WorldDataImpl implements WorldData {
 
     public WorldDataImpl(String worldName, boolean privateWorld, XMaterial material) {
         this(
-                worldName,
-                "",
-                (privateWorld ? Permission.privatePermission : Permission.publicPermission).replace("%world%", worldName),
-                "-",
-                Default.difficulty,
-                material,
-                BuildWorldStatus.NOT_STARTED,
-                Settings.blockBreaking,
-                Settings.blockInteractions,
-                Settings.blockPlacement,
-                (privateWorld ? BuildersEnabled.privateBuilders : BuildersEnabled.publicBuilders),
-                Settings.explosions,
-                Settings.mobAi,
-                Settings.physics,
-                privateWorld,
-                0,
-                -1L,
-                -1L,
-                -1L
+            worldName,
+            "",
+            (privateWorld ? Permission.privatePermission : Permission.publicPermission).replace("%world%", worldName),
+            "-",
+            Default.difficulty,
+            material,
+            BuildWorldStatus.NOT_STARTED,
+            Settings.blockBreaking,
+            Settings.blockInteractions,
+            Settings.blockPlacement,
+            (privateWorld ? BuildersEnabled.privateBuilders : BuildersEnabled.publicBuilders),
+            Settings.explosions,
+            Settings.mobAi,
+            Settings.physics,
+            privateWorld,
+            0,
+            -1L,
+            -1L,
+            -1L
         );
     }
 
     public WorldDataImpl(
-            String worldName,
-            String customSpawn,
-            String permission,
-            String project,
-            Difficulty difficulty,
-            XMaterial material,
-            BuildWorldStatus worldStatus,
-            boolean blockBreaking,
-            boolean blockInteractions,
-            boolean blockPlacement,
-            boolean buildersEnabled,
-            boolean explosions,
-            boolean mobAi,
-            boolean physics,
-            boolean privateWorld,
-            int timeSinceBackup,
-            long lastLoaded,
-            long lastUnloaded,
-            long lastEdited
+        String worldName,
+        String customSpawn,
+        String permission,
+        String project,
+        Difficulty difficulty,
+        XMaterial material,
+        BuildWorldStatus worldStatus,
+        boolean blockBreaking,
+        boolean blockInteractions,
+        boolean blockPlacement,
+        boolean buildersEnabled,
+        boolean explosions,
+        boolean mobAi,
+        boolean physics,
+        boolean privateWorld,
+        int timeSinceBackup,
+        long lastLoaded,
+        long lastUnloaded,
+        long lastEdited
     ) {
         this.customSpawn = register("spawn", customSpawn);
         this.permission = registerOverridable("permission", permission, Config.Folder.overridePermissions, worldName, Folder::getPermission);
@@ -200,12 +200,12 @@ public class WorldDataImpl implements WorldData {
 
         String[] spawnString = customSpawn.split(";");
         return new Location(
-                Bukkit.getWorld(worldName),
-                Double.parseDouble(spawnString[0]),
-                Double.parseDouble(spawnString[1]),
-                Double.parseDouble(spawnString[2]),
-                Float.parseFloat(spawnString[3]),
-                Float.parseFloat(spawnString[4])
+            Bukkit.getWorld(worldName),
+            Double.parseDouble(spawnString[0]),
+            Double.parseDouble(spawnString[1]),
+            Double.parseDouble(spawnString[2]),
+            Float.parseFloat(spawnString[3]),
+            Float.parseFloat(spawnString[4])
         );
     }
 

@@ -114,8 +114,8 @@ public class SftpBackupStorage implements BackupStorage {
 
         try {
             this.clientSession = this.sshClient.connect(this.username, this.host, this.port)
-                    .verify(CONNECTION_TIMEOUT.toMillis())
-                    .getSession();
+                .verify(CONNECTION_TIMEOUT.toMillis())
+                .getSession();
 
             if (this.clientSession == null) {
                 throw new IllegalStateException();
@@ -135,8 +135,8 @@ public class SftpBackupStorage implements BackupStorage {
     private void initializeSshClient() {
         this.sshClient = SshClient.setUpDefaultClient();
         this.sshClient.setSignatureFactories(Arrays.asList(
-                BuiltinSignatures.rsa,
-                BuiltinSignatures.ed25519
+            BuiltinSignatures.rsa,
+            BuiltinSignatures.ed25519
         ));
         this.sshClient.start();
     }
@@ -175,13 +175,13 @@ public class SftpBackupStorage implements BackupStorage {
 
                     Attributes attributes = file.getAttributes();
                     long timestamp = Optional.ofNullable(attributes.getCreateTime())
-                            .orElse(attributes.getModifyTime())
-                            .toMillis();
+                        .orElse(attributes.getModifyTime())
+                        .toMillis();
 
                     backups.add(new BackupImpl(
-                            plugin.getBackupService().getProfile(buildWorld),
-                            timestamp,
-                            backupDirectory + file.getFilename()
+                        plugin.getBackupService().getProfile(buildWorld),
+                        timestamp,
+                        backupDirectory + file.getFilename()
                     ));
                 }
             } catch (IOException e) {
@@ -214,8 +214,8 @@ public class SftpBackupStorage implements BackupStorage {
                 createDirectoryIfNotExists(sftp, backupDirectory);
 
                 try (
-                        OutputStream out = sftp.write(remotePath);
-                        BufferedOutputStream bufferedOut = new BufferedOutputStream(out, BUFFER_SIZE)
+                    OutputStream out = sftp.write(remotePath);
+                    BufferedOutputStream bufferedOut = new BufferedOutputStream(out, BUFFER_SIZE)
                 ) {
                     bufferedOut.write(zipBytes);
                     bufferedOut.flush();
@@ -278,10 +278,10 @@ public class SftpBackupStorage implements BackupStorage {
             Path target = tmpDownloadPath.resolve(UUID.randomUUID() + ".zip");
 
             try (
-                    InputStream in = sftp.read(backup.key());
-                    BufferedInputStream bufferedIn = new BufferedInputStream(in, BUFFER_SIZE);
-                    OutputStream out = Files.newOutputStream(target);
-                    BufferedOutputStream bufferedOut = new BufferedOutputStream(out, BUFFER_SIZE)
+                InputStream in = sftp.read(backup.key());
+                BufferedInputStream bufferedIn = new BufferedInputStream(in, BUFFER_SIZE);
+                OutputStream out = Files.newOutputStream(target);
+                BufferedOutputStream bufferedOut = new BufferedOutputStream(out, BUFFER_SIZE)
             ) {
                 bufferedIn.transferTo(bufferedOut);
                 return target.toFile();

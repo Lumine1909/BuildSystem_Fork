@@ -139,9 +139,9 @@ public class YamlPlayerStorage extends PlayerStorageImpl {
     @Override
     public CompletableFuture<Collection<BuildPlayer>> load() {
         return CompletableFuture.supplyAsync(() ->
-                loadPlayerKeys().stream()
-                        .map(this::loadPlayer)
-                        .collect(Collectors.toCollection(ArrayList::new))
+            loadPlayerKeys().stream()
+                .map(this::loadPlayer)
+                .collect(Collectors.toCollection(ArrayList::new))
         );
     }
 
@@ -218,8 +218,8 @@ public class YamlPlayerStorage extends PlayerStorageImpl {
         boolean trapDoor = configuration.getBoolean(pathPrefix + ".trapdoor", false);
 
         return new SettingsImpl(
-                navigatorType, glassColor, worldDisplay, clearInventory, disableInteract, hidePlayers, instantPlaceSigns,
-                keepNavigator, nightVision, noClip, placePlants, scoreboard, slabBreaking, spawnTeleport, trapDoor
+            navigatorType, glassColor, worldDisplay, clearInventory, disableInteract, hidePlayers, instantPlaceSigns,
+            keepNavigator, nightVision, noClip, placePlants, scoreboard, slabBreaking, spawnTeleport, trapDoor
         );
     }
 

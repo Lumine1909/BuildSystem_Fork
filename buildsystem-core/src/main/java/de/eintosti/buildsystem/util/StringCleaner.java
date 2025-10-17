@@ -49,9 +49,9 @@ public final class StringCleaner {
     @Nullable
     public static String firstInvalidChar(String input) {
         return Arrays.stream(input.split(""))
-                .filter(c -> c.matches(INVALID_NAME_CHARACTERS) || c.matches(World.invalidCharacters))
-                .findFirst()
-                .orElse(null);
+            .filter(c -> c.matches(INVALID_NAME_CHARACTERS) || c.matches(World.invalidCharacters))
+            .findFirst()
+            .orElse(null);
     }
 
     /**
@@ -62,9 +62,9 @@ public final class StringCleaner {
      */
     public static String sanitize(String input) {
         return input
-                .replaceAll(INVALID_NAME_CHARACTERS, "")
-                .replaceAll(World.invalidCharacters, "")
-                .replace(" ", "_")
-                .trim();
+            .replaceAll(INVALID_NAME_CHARACTERS, "")
+            .replaceAll(World.invalidCharacters, "")
+            .replace(" ", "_")
+            .trim();
     }
 }

@@ -49,9 +49,9 @@ public abstract class PagedCommand {
         List<TextComponent> page = createPage(commands, numPages, pageNum);
         page.add(0, new TextComponent("§7§m----------------------------------------------------"));
         page.add(1, new TextComponent(Messages.getString(this.title, player)
-                .replace("%page%", String.valueOf(pageNum))
-                .replace("%max%", String.valueOf(numPages))
-                .concat("\n"))
+            .replace("%page%", String.valueOf(pageNum))
+            .replace("%max%", String.valueOf(numPages))
+            .concat("\n"))
         );
         page.add(new TextComponent("§7§m----------------------------------------------------"));
         page.forEach(line -> player.spigot().sendMessage(line));
@@ -89,7 +89,7 @@ public abstract class PagedCommand {
 
         commandComponent.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, suggest));
         commandComponent.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-                new Text(Messages.getString(this.permissionTemplate, player, Map.entry("%permission%", permission)))
+            new Text(Messages.getString(this.permissionTemplate, player, Map.entry("%permission%", permission)))
         ));
         commandComponent.addExtra(textComponent);
         return commandComponent;

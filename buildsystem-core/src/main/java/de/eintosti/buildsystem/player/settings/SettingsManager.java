@@ -129,15 +129,15 @@ public class SettingsManager {
         BuildWorld buildWorld = worldService.getWorldStorage().getBuildWorld(worldName);
 
         return new Map.Entry[]{
-                Map.entry("%world%", worldName),
-                Map.entry("%status%", parseWorldInformation(player, buildWorld, "%status%")),
-                Map.entry("%permission%", parseWorldInformation(player, buildWorld, "%permission%")),
-                Map.entry("%project%", parseWorldInformation(player, buildWorld, "%project%")),
-                Map.entry("%creator%", parseWorldInformation(player, buildWorld, "%creator%")),
-                Map.entry("%creation%", parseWorldInformation(player, buildWorld, "%creation%")),
-                Map.entry("%lastedited%", parseWorldInformation(player, buildWorld, "%lastedited%")),
-                Map.entry("%lastloaded%", parseWorldInformation(player, buildWorld, "%lastloaded%")),
-                Map.entry("%lastunloaded%", parseWorldInformation(player, buildWorld, "%lastunloaded%"))
+            Map.entry("%world%", worldName),
+            Map.entry("%status%", parseWorldInformation(player, buildWorld, "%status%")),
+            Map.entry("%permission%", parseWorldInformation(player, buildWorld, "%permission%")),
+            Map.entry("%project%", parseWorldInformation(player, buildWorld, "%project%")),
+            Map.entry("%creator%", parseWorldInformation(player, buildWorld, "%creator%")),
+            Map.entry("%creation%", parseWorldInformation(player, buildWorld, "%creation%")),
+            Map.entry("%lastedited%", parseWorldInformation(player, buildWorld, "%lastedited%")),
+            Map.entry("%lastloaded%", parseWorldInformation(player, buildWorld, "%lastloaded%")),
+            Map.entry("%lastunloaded%", parseWorldInformation(player, buildWorld, "%lastunloaded%"))
         };
     }
 

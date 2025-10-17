@@ -72,13 +72,13 @@ public class BackCommand implements CommandExecutor {
         }
 
         PaperLib.teleportAsync(player, previousLocation)
-                .whenComplete((completed, throwable) -> {
-                    if (!completed) {
-                        return;
-                    }
-                    XSound.ENTITY_ZOMBIE_INFECT.play(player);
-                    Messages.sendMessage(player, "back_teleported");
-                    buildPlayer.setPreviousLocation(null);
-                });
+            .whenComplete((completed, throwable) -> {
+                if (!completed) {
+                    return;
+                }
+                XSound.ENTITY_ZOMBIE_INFECT.play(player);
+                Messages.sendMessage(player, "back_teleported");
+                buildPlayer.setPreviousLocation(null);
+            });
     }
 }

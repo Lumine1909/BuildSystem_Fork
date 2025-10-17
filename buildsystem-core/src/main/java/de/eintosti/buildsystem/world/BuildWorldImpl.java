@@ -57,6 +57,7 @@ public final class BuildWorldImpl implements BuildWorld {
     private final UUID uuid;
     private String name;
     private boolean loaded;
+    private boolean loading;
     @Nullable
     private Folder folder;
 
@@ -71,41 +72,41 @@ public final class BuildWorldImpl implements BuildWorld {
     private final WorldUnloaderImpl worldUnloader;
 
     public BuildWorldImpl(
-            String name,
-            Builder creator,
-            BuildWorldType worldType,
-            long creation,
-            boolean privateWorld,
-            @Nullable CustomGenerator customGenerator,
-            @Nullable Folder folder
+        String name,
+        Builder creator,
+        BuildWorldType worldType,
+        long creation,
+        boolean privateWorld,
+        @Nullable CustomGenerator customGenerator,
+        @Nullable Folder folder
     ) {
         this(
-                UUID.randomUUID(),
+            UUID.randomUUID(),
+            name,
+            worldType,
+            new WorldDataImpl(
                 name,
-                worldType,
-                new WorldDataImpl(
-                        name,
-                        privateWorld,
-                        privateWorld ? XMaterial.PLAYER_HEAD : BuildSystemPlugin.get().getCustomizableIcons().getIcon(worldType)
-                ),
-                creator,
-                new ArrayList<>(),
-                creation,
-                customGenerator,
-                folder
+                privateWorld,
+                privateWorld ? XMaterial.PLAYER_HEAD : BuildSystemPlugin.get().getCustomizableIcons().getIcon(worldType)
+            ),
+            creator,
+            new ArrayList<>(),
+            creation,
+            customGenerator,
+            folder
         );
     }
 
     public BuildWorldImpl(
-            UUID uuid,
-            String name,
-            BuildWorldType worldType,
-            WorldDataImpl worldData,
-            @Nullable Builder creator,
-            List<Builder> builders,
-            long creation,
-            @Nullable CustomGenerator customGenerator,
-            @Nullable Folder folder
+        UUID uuid,
+        String name,
+        BuildWorldType worldType,
+        WorldDataImpl worldData,
+        @Nullable Builder creator,
+        List<Builder> builders,
+        long creation,
+        @Nullable CustomGenerator customGenerator,
+        @Nullable Folder folder
     ) {
         this.uuid = uuid;
         this.name = name;
@@ -160,7 +161,7 @@ public final class BuildWorldImpl implements BuildWorld {
     @Override
     public String getDisplayName(Player player) {
         return Messages.getString("world_item_title", player,
-                Map.entry("%world%", this.name)
+            Map.entry("%world%", this.name)
         );
     }
 
@@ -168,19 +169,19 @@ public final class BuildWorldImpl implements BuildWorld {
     public List<String> getLore(Player player) {
         @SuppressWarnings("unchecked")
         Map.Entry<String, Object>[] placeholders = List.of(
-                Map.entry("%status%", Messages.getString(Messages.getMessageKey(worldData.status().get()), player)),
-                Map.entry("%project%", worldData.project().get()),
-                Map.entry("%permission%", worldData.permission().get()),
-                Map.entry("%creator%", builders.hasCreator() ? builders.getCreator().getName() : "-"),
-                Map.entry("%creation%", Messages.formatDate(getCreation())),
-                Map.entry("%lastedited%", Messages.formatDate(worldData.lastEdited().get())),
-                Map.entry("%lastloaded%", Messages.formatDate(worldData.lastLoaded().get())),
-                Map.entry("%lastunloaded%", Messages.formatDate(worldData.lastUnloaded().get()))
+            Map.entry("%status%", Messages.getString(Messages.getMessageKey(worldData.status().get()), player)),
+            Map.entry("%project%", worldData.project().get()),
+            Map.entry("%permission%", worldData.permission().get()),
+            Map.entry("%creator%", builders.hasCreator() ? builders.getCreator().getName() : "-"),
+            Map.entry("%creation%", Messages.formatDate(getCreation())),
+            Map.entry("%lastedited%", Messages.formatDate(worldData.lastEdited().get())),
+            Map.entry("%lastloaded%", Messages.formatDate(worldData.lastLoaded().get())),
+            Map.entry("%lastunloaded%", Messages.formatDate(worldData.lastUnloaded().get()))
         ).toArray(Map.Entry[]::new);
 
         List<String> messageList = getPermissions().canPerformCommand(player, WorldsTabCompleter.WorldsArgument.EDIT.getPermission())
-                ? Messages.getStringList("world_item_lore_edit", player, placeholders)
-                : Messages.getStringList("world_item_lore_normal", player, placeholders);
+            ? Messages.getStringList("world_item_lore_edit", player, placeholders)
+            : Messages.getStringList("world_item_lore_normal", player, placeholders);
 
         List<String> lore = new ArrayList<>();
 
@@ -218,8 +219,8 @@ public final class BuildWorldImpl implements BuildWorld {
     @Override
     public Profileable asProfilable() {
         return builders.hasCreator()
-                ? Profileable.of(builders.getCreator().getUniqueId())
-                : Profileable.username(name);
+            ? Profileable.of(builders.getCreator().getUniqueId())
+            : Profileable.username(name);
     }
 
     @Override
@@ -275,8 +276,18 @@ public final class BuildWorldImpl implements BuildWorld {
     }
 
     @Override
+    public boolean isLoading() {
+        return loading;
+    }
+
+    @Override
     public void setLoaded(boolean loaded) {
         this.loaded = loaded;
+    }
+
+    @Override
+    public void setLoading(boolean loading) {
+        this.loading = loading;
     }
 
     @Override

@@ -46,22 +46,22 @@ public class FolderContentInventory extends DisplayablesInventory {
     private final DisplayablesInventory parentInventory;
 
     public FolderContentInventory(
-            BuildSystemPlugin plugin,
-            Player player,
-            NavigatorCategory category,
-            Folder folder,
-            DisplayablesInventory parentInventory,
-            Visibility requiredVisibility,
-            Set<BuildWorldStatus> validStatuses
+        BuildSystemPlugin plugin,
+        Player player,
+        NavigatorCategory category,
+        Folder folder,
+        DisplayablesInventory parentInventory,
+        Visibility requiredVisibility,
+        Set<BuildWorldStatus> validStatuses
     ) {
         super(
-                plugin,
-                player,
-                category,
-                Messages.getString("folder_title", player, new SimpleEntry<>("%folder%", folder.getName())),
-                null,
-                requiredVisibility,
-                validStatuses
+            plugin,
+            player,
+            category,
+            Messages.getString("folder_title", player, new SimpleEntry<>("%folder%", folder.getName())),
+            null,
+            requiredVisibility,
+            validStatuses
         );
         this.folder = folder;
         this.parentInventory = parentInventory;
@@ -90,17 +90,17 @@ public class FolderContentInventory extends DisplayablesInventory {
     @Unmodifiable
     protected Collection<Folder> collectFolders() {
         return this.folder.getSubFolders().stream()
-                .filter(folder -> folder.canView(this.player))
-                .toList();
+            .filter(folder -> folder.canView(this.player))
+            .toList();
     }
 
     @Override
     @Unmodifiable
     protected Collection<BuildWorld> collectWorlds() {
         return this.folder.getWorldUUIDs().stream()
-                .map(this.worldStorage::getBuildWorld)
-                .filter(Objects::nonNull)
-                .toList();
+            .map(this.worldStorage::getBuildWorld)
+            .filter(Objects::nonNull)
+            .toList();
     }
 
     @Override

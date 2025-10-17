@@ -76,8 +76,8 @@ public class ImportSubCommand implements SubCommand {
         String invalidChar = StringCleaner.firstInvalidChar(worldName);
         if (invalidChar != null) {
             Messages.sendMessage(player, "worlds_import_invalid_character",
-                    Map.entry("%world%", worldName),
-                    Map.entry("%char%", invalidChar)
+                Map.entry("%world%", worldName),
+                Map.entry("%char%", invalidChar)
             );
             return;
         }
@@ -133,7 +133,7 @@ public class ImportSubCommand implements SubCommand {
         }
 
         Messages.sendMessage(player, "worlds_import_started",
-                Map.entry("%world%", worldName)
+            Map.entry("%world%", worldName)
         );
         if (worldService.importWorld(player, worldName, creator, worldType, generator, generatorName, true)) {
             Messages.sendMessage(player, "worlds_import_finished");

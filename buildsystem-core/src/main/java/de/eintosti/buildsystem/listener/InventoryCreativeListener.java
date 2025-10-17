@@ -44,8 +44,8 @@ public class InventoryCreativeListener implements Listener {
     @EventHandler
     public void onClearInventory(InventoryCreativeEvent event) {
         if (event.getClick() != ClickType.CREATIVE
-                || event.getSlotType() != InventoryType.SlotType.QUICKBAR
-                || event.getAction() != InventoryAction.PLACE_ALL
+            || event.getSlotType() != InventoryType.SlotType.QUICKBAR
+            || event.getAction() != InventoryAction.PLACE_ALL
         ) {
             return;
         }

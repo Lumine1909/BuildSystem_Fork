@@ -113,9 +113,9 @@ public final class InventoryUtils {
      */
     public static ItemStack createSkull(String displayName, Profileable profileable, List<String> lore) {
         ItemStack skull = XSkull.createItem()
-                .profile(profileable)
-                .lenient()
-                .apply();
+            .profile(profileable)
+            .lenient()
+            .apply();
 
         ItemMeta itemMeta = skull.getItemMeta();
         if (itemMeta == null) {
@@ -188,21 +188,21 @@ public final class InventoryUtils {
 
         // Then try to set texture asynchronously
         XSkull.createItem()
-                .profile(buildWorld.getData().privateWorld().get()
-                        ? buildWorld.asProfilable()
-                        : Profileable.username(buildWorld.getName())
-                )
-                .fallback(buildWorld.asProfilable())
-                .lenient()
-                .applyAsync()
-                .thenAcceptAsync(itemStack -> {
-                    ItemMeta itemMeta = itemStack.getItemMeta();
-                    itemMeta.setDisplayName(displayName);
-                    itemMeta.setLore(lore);
-                    itemStack.setItemMeta(itemMeta);
-                    storeWorldInformation(itemStack, buildWorld);
-                    inventory.setItem(slot, itemStack);
-                });
+            .profile(buildWorld.getData().privateWorld().get()
+                ? buildWorld.asProfilable()
+                : Profileable.username(buildWorld.getName())
+            )
+            .fallback(buildWorld.asProfilable())
+            .lenient()
+            .applyAsync()
+            .thenAcceptAsync(itemStack -> {
+                ItemMeta itemMeta = itemStack.getItemMeta();
+                itemMeta.setDisplayName(displayName);
+                itemMeta.setLore(lore);
+                itemStack.setItemMeta(itemMeta);
+                storeWorldInformation(itemStack, buildWorld);
+                inventory.setItem(slot, itemStack);
+            });
     }
 
     /**
@@ -261,9 +261,9 @@ public final class InventoryUtils {
     public static List<Integer> getNavigatorSlots(Player player) {
         PlayerInventory playerInventory = player.getInventory();
         return IntStream.range(0, playerInventory.getSize())
-                .filter(i -> isNavigator(playerInventory.getItem(i)))
-                .boxed()
-                .toList();
+            .filter(i -> isNavigator(playerInventory.getItem(i)))
+            .boxed()
+            .toList();
     }
 
     /**
@@ -288,16 +288,16 @@ public final class InventoryUtils {
         PlayerInventory inventory = player.getInventory();
 
         OptionalInt slot = IntStream.range(0, inventory.getSize())
-                .filter(i -> {
-                    ItemStack currentItem = inventory.getItem(i);
-                    if (currentItem == null || currentItem.getType() != findItemType.get()) {
-                        return false;
-                    }
+            .filter(i -> {
+                ItemStack currentItem = inventory.getItem(i);
+                if (currentItem == null || currentItem.getType() != findItemType.get()) {
+                    return false;
+                }
 
-                    ItemMeta itemMeta = currentItem.getItemMeta();
-                    return itemMeta != null && itemMeta.getDisplayName().equals(findItemName);
-                })
-                .findFirst();
+                ItemMeta itemMeta = currentItem.getItemMeta();
+                return itemMeta != null && itemMeta.getDisplayName().equals(findItemName);
+            })
+            .findFirst();
 
         if (slot.isPresent()) {
             inventory.setItem(slot.getAsInt(), replaceItem);

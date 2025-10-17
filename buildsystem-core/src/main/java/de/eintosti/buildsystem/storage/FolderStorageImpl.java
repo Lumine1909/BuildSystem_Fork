@@ -58,7 +58,7 @@ public abstract class FolderStorageImpl implements FolderStorage {
     public void loadFolders() {
         try {
             this.foldersByName.putAll(
-                    load().get().stream().collect(Collectors.toMap(folder -> folder.getName().toLowerCase(), Function.identity()))
+                load().get().stream().collect(Collectors.toMap(folder -> folder.getName().toLowerCase(), Function.identity()))
             );
         } catch (InterruptedException | ExecutionException e) {
             logger.severe("Failed to load folders from storage: " + e.getMessage());
@@ -103,16 +103,16 @@ public abstract class FolderStorageImpl implements FolderStorage {
 
         // Remove all subfolders
         getFolders().stream()
-                .filter(folder -> Objects.equals(folder.getParent(), removed))
-                .forEach(this::removeFolder);
+            .filter(folder -> Objects.equals(folder.getParent(), removed))
+            .forEach(this::removeFolder);
 
         // Remove world <> folder assignments
         WorldStorage worldStorage = worldService.getWorldStorage();
         removed.getWorldUUIDs()
-                .stream()
-                .map(worldStorage::getBuildWorld)
-                .filter(Objects::nonNull)
-                .forEach(buildWorld -> buildWorld.setFolder(null));
+            .stream()
+            .map(worldStorage::getBuildWorld)
+            .filter(Objects::nonNull)
+            .forEach(buildWorld -> buildWorld.setFolder(null));
     }
 
     @Override

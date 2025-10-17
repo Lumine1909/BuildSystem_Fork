@@ -69,13 +69,13 @@ public class S3BackupStorage implements BackupStorage {
         this.tmpDownloadDirectory = FileUtils.resolve(plugin.getDataFolder(), ".tmp_backup_downloads");
 
         S3ClientBuilder builder = S3Client.builder()
-                .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(accessKey, secretKey)))
-                .region(Region.of(region));
+            .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.create(accessKey, secretKey)))
+            .region(Region.of(region));
 
         if (url != null && !url.isEmpty()) {
             builder = builder
-                    .region(Region.of(region))
-                    .endpointOverride(URI.create(url));
+                .region(Region.of(region))
+                .endpointOverride(URI.create(url));
         }
 
         this.s3Client = builder.build();
@@ -92,19 +92,19 @@ public class S3BackupStorage implements BackupStorage {
 
             try {
                 ListObjectsV2Response response = this.s3Client.listObjectsV2(ListObjectsV2Request.builder()
-                        .bucket(this.bucket)
-                        .prefix(getBackupDirectory(buildWorld))
-                        .build());
+                    .bucket(this.bucket)
+                    .prefix(getBackupDirectory(buildWorld))
+                    .build());
 
                 backups.addAll(
-                        response.contents().stream()
-                                .filter(object -> object.key().endsWith(".zip"))
-                                .map(object -> new BackupImpl(
-                                        plugin.getBackupService().getProfile(buildWorld),
-                                        object.lastModified().toEpochMilli(),
-                                        object.key()
-                                ))
-                                .toList()
+                    response.contents().stream()
+                        .filter(object -> object.key().endsWith(".zip"))
+                        .map(object -> new BackupImpl(
+                            plugin.getBackupService().getProfile(buildWorld),
+                            object.lastModified().toEpochMilli(),
+                            object.key()
+                        ))
+                        .toList()
                 );
             } catch (S3Exception | SdkClientException e) {
                 throw new RuntimeException("Error while listing backups", e);
@@ -130,11 +130,11 @@ public class S3BackupStorage implements BackupStorage {
 
             try {
                 this.s3Client.putObject(
-                        PutObjectRequest.builder()
-                                .bucket(this.bucket)
-                                .key(key)
-                                .build(),
-                        RequestBody.fromBytes(zipBytes)
+                    PutObjectRequest.builder()
+                        .bucket(this.bucket)
+                        .key(key)
+                        .build(),
+                    RequestBody.fromBytes(zipBytes)
                 );
                 plugin.getLogger().info("Backed up world '%s'. Took %sms".formatted(buildWorld.getName(), (System.currentTimeMillis() - timestamp)));
                 return new BackupImpl(plugin.getBackupService().getProfile(buildWorld), timestamp, key);
@@ -150,11 +150,11 @@ public class S3BackupStorage implements BackupStorage {
             try {
                 Path target = this.tmpDownloadDirectory.resolve(UUID.randomUUID() + ".zip");
                 this.s3Client.getObject(
-                        GetObjectRequest.builder()
-                                .bucket(this.bucket)
-                                .key(backup.key())
-                                .build(),
-                        target
+                    GetObjectRequest.builder()
+                        .bucket(this.bucket)
+                        .key(backup.key())
+                        .build(),
+                    target
                 );
                 return target.toFile();
             } catch (S3Exception | SdkClientException e) {
@@ -168,9 +168,9 @@ public class S3BackupStorage implements BackupStorage {
         return CompletableFuture.runAsync(() -> {
             try {
                 this.s3Client.deleteObject(DeleteObjectRequest.builder()
-                        .bucket(this.bucket)
-                        .key(backup.key())
-                        .build());
+                    .bucket(this.bucket)
+                    .key(backup.key())
+                    .build());
             } catch (S3Exception | SdkClientException e) {
                 throw new RuntimeException("Unable to delete backup " + backup.key(), e);
             }

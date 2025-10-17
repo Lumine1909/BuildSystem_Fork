@@ -65,11 +65,11 @@ import org.jspecify.annotations.NullMarked;
 public class SettingsInteractListener implements Listener {
 
     private static final EnumSet<XMaterial> OTHER_PLANTS = Sets.newEnumSet(Sets.newHashSet(
-            XMaterial.TORCHFLOWER, XMaterial.PITCHER_PLANT, XMaterial.LILY_PAD, XMaterial.PINK_PETALS,
-            XMaterial.BROWN_MUSHROOM, XMaterial.RED_MUSHROOM, XMaterial.CRIMSON_FUNGUS, XMaterial.WARPED_FUNGUS,
-            XMaterial.SHORT_GRASS, XMaterial.FERN, XMaterial.DEAD_BUSH, XMaterial.LARGE_FERN, XMaterial.TALL_GRASS,
-            XMaterial.NETHER_SPROUTS, XMaterial.WARPED_ROOTS, XMaterial.CRIMSON_ROOTS, XMaterial.SUGAR_CANE, XMaterial.BAMBOO,
-            XMaterial.BIG_DRIPLEAF, XMaterial.SMALL_DRIPLEAF, XMaterial.SEAGRASS, XMaterial.SWEET_BERRIES
+        XMaterial.TORCHFLOWER, XMaterial.PITCHER_PLANT, XMaterial.LILY_PAD, XMaterial.PINK_PETALS,
+        XMaterial.BROWN_MUSHROOM, XMaterial.RED_MUSHROOM, XMaterial.CRIMSON_FUNGUS, XMaterial.WARPED_FUNGUS,
+        XMaterial.SHORT_GRASS, XMaterial.FERN, XMaterial.DEAD_BUSH, XMaterial.LARGE_FERN, XMaterial.TALL_GRASS,
+        XMaterial.NETHER_SPROUTS, XMaterial.WARPED_ROOTS, XMaterial.CRIMSON_ROOTS, XMaterial.SUGAR_CANE, XMaterial.BAMBOO,
+        XMaterial.BIG_DRIPLEAF, XMaterial.SMALL_DRIPLEAF, XMaterial.SEAGRASS, XMaterial.SWEET_BERRIES
     ), XMaterial.class);
 
     private final CustomBlockManager customBlockManager;
@@ -194,11 +194,11 @@ public class SettingsInteractListener implements Listener {
 
         XMaterial xMaterial = XMaterial.matchXMaterial(itemStack.getType());
         if (!XTag.FLOWERS.isTagged(xMaterial)
-                && !XTag.REPLACEABLE_PLANTS.isTagged(xMaterial)
-                && !XTag.ALIVE_CORAL_PLANTS.isTagged(xMaterial)
-                && !XTag.DEAD_CORAL_PLANTS.isTagged(xMaterial)
-                && !XTag.SAPLINGS.isTagged(xMaterial)
-                && !OTHER_PLANTS.contains(xMaterial)
+            && !XTag.REPLACEABLE_PLANTS.isTagged(xMaterial)
+            && !XTag.ALIVE_CORAL_PLANTS.isTagged(xMaterial)
+            && !XTag.DEAD_CORAL_PLANTS.isTagged(xMaterial)
+            && !XTag.SAPLINGS.isTagged(xMaterial)
+            && !OTHER_PLANTS.contains(xMaterial)
         ) {
             return;
         }
@@ -282,8 +282,8 @@ public class SettingsInteractListener implements Listener {
             }
             case NORTH, EAST, SOUTH, WEST -> {
                 String woodType = xMaterial.name()
-                        .replace("_HANGING", "") // Replace hanging if present
-                        .replace("_SIGN", ""); // Get wood type
+                    .replace("_HANGING", "") // Replace hanging if present
+                    .replace("_SIGN", ""); // Get wood type
                 String block = isHangingSign ? "_WALL_HANGING_SIGN" : "_WALL_SIGN";
                 BlockFace facing = isHangingSign ? getHangingSignDirection(event) : blockFace;
                 XMaterial.matchXMaterial(woodType + block).ifPresent(value -> adjacent.setType(value.get()));
@@ -404,8 +404,8 @@ public class SettingsInteractListener implements Listener {
 
         Builders builders = buildWorld.getBuilders();
         if (buildWorld.getData().buildersEnabled().get()
-                && !builders.isBuilder(player)
-                && !player.hasPermission("buildsystem.bypass.builders")) {
+            && !builders.isBuilder(player)
+            && !player.hasPermission("buildsystem.bypass.builders")) {
             return builders.isCreator(player);
         }
 

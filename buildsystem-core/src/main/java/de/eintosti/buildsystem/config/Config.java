@@ -129,6 +129,10 @@ public class Config {
          * Whether the scoreboard should be enabled.
          */
         public static boolean scoreboard = true;
+        /**
+         * Should enable dynamic world load feature.
+         */
+        public static boolean dynamicWorldLoad = false;
 
         /**
          * Stores archive-related settings.
@@ -254,7 +258,6 @@ public class Config {
          * A blacklist of worlds that cannot be deleted. This is used to prevent deletion of important worlds.
          */
         public static Set<String> deletionBlacklist = Set.of("world", "world_nether", "worth_the_end");
-        ;
 
         /**
          * Stores default world settings.
@@ -273,9 +276,9 @@ public class Config {
              * Default game rules for new worlds.
              */
             public static List<GameRuleEntry<?>> gameRules = List.of(
-                    new GameRuleEntry<>(GameRule.DO_DAYLIGHT_CYCLE, false),
-                    new GameRuleEntry<>(GameRule.DO_MOB_SPAWNING, false),
-                    new GameRuleEntry<>(GameRule.DO_FIRE_TICK, false)
+                new GameRuleEntry<>(GameRule.DO_DAYLIGHT_CYCLE, false),
+                new GameRuleEntry<>(GameRule.DO_MOB_SPAWNING, false),
+                new GameRuleEntry<>(GameRule.DO_FIRE_TICK, false)
             );
 
             /**
@@ -454,6 +457,7 @@ public class Config {
         // Settings
         Settings.updateChecker = CONFIG.getBoolean("settings.update-checker", true);
         Settings.scoreboard = CONFIG.getBoolean("settings.scoreboard", true);
+        Settings.dynamicWorldLoad = CONFIG.getBoolean("settings.dynamic-world-load", false);
         // Settings - Archive
         Archive.vanish = CONFIG.getBoolean("settings.archive.vanish", true);
         Archive.changeGamemode = CONFIG.getBoolean("settings.archive.change-gamemode", true);
@@ -485,41 +489,41 @@ public class Config {
         Default.worldBoarderSize = CONFIG.getInt("world.default.worldborder.size", 6000000);
         Default.difficulty = Difficulty.valueOf(CONFIG.getString("world.default.difficulty", "PEACEFUL").toUpperCase(Locale.ROOT));
         Default.gameRules = CONFIG.getConfigurationSection("world.default.gamerules")
-                .getValues(true)
-                .entrySet()
-                .stream()
-                .map(entry -> {
-                    String key = entry.getKey();
-                    Object value = entry.getValue();
-                    GameRule<?> rule = GameRule.getByName(key);
-                    if (rule == null || value == null) {
-                        logger.warning("Could not parse game rule '%s' with value '%s'".formatted(key, value));
-                        return null;
-                    }
+            .getValues(true)
+            .entrySet()
+            .stream()
+            .map(entry -> {
+                String key = entry.getKey();
+                Object value = entry.getValue();
+                GameRule<?> rule = GameRule.getByName(key);
+                if (rule == null || value == null) {
+                    logger.warning("Could not parse game rule '%s' with value '%s'".formatted(key, value));
+                    return null;
+                }
 
-                    return switch (value) {
-                        case Boolean booleanValue -> {
-                            if (rule.getType() != Boolean.class) {
-                                PLUGIN.getLogger().warning("Game rule '%s' is not a boolean type, but a boolean value was provided".formatted(key));
-                                yield null;
-                            }
-                            yield (GameRuleEntry<?>) new GameRuleEntry<>((GameRule<Boolean>) rule, booleanValue);
-                        }
-                        case Integer integerValue -> {
-                            if (rule.getType() != Integer.class) {
-                                logger.warning("Game rule '%s' is not an integer type, but an integer value was provided".formatted(key));
-                                yield null;
-                            }
-                            yield (GameRuleEntry<?>) new GameRuleEntry<>((GameRule<Integer>) rule, integerValue);
-                        }
-                        default -> {
-                            logger.warning("Invalid game rule value type. Must be of type Boolean or Integer. Found %s".formatted(value.getClass().getName()));
+                return switch (value) {
+                    case Boolean booleanValue -> {
+                        if (rule.getType() != Boolean.class) {
+                            PLUGIN.getLogger().warning("Game rule '%s' is not a boolean type, but a boolean value was provided".formatted(key));
                             yield null;
                         }
-                    };
-                })
-                .filter(Objects::nonNull)
-                .toList();
+                        yield (GameRuleEntry<?>) new GameRuleEntry<>((GameRule<Boolean>) rule, booleanValue);
+                    }
+                    case Integer integerValue -> {
+                        if (rule.getType() != Integer.class) {
+                            logger.warning("Game rule '%s' is not an integer type, but an integer value was provided".formatted(key));
+                            yield null;
+                        }
+                        yield (GameRuleEntry<?>) new GameRuleEntry<>((GameRule<Integer>) rule, integerValue);
+                    }
+                    default -> {
+                        logger.warning("Invalid game rule value type. Must be of type Boolean or Integer. Found %s".formatted(value.getClass().getName()));
+                        yield null;
+                    }
+                };
+            })
+            .filter(Objects::nonNull)
+            .toList();
         // World - Default - Permission
         Permission.publicPermission = CONFIG.getString("world.default.permission.public", "-");
         Permission.privatePermission = CONFIG.getString("world.default.permission.private", "-");
@@ -569,9 +573,9 @@ public class Config {
         }
 
         return Arrays.stream(GameMode.values())
-                .filter(gameMode -> gameMode.name().equalsIgnoreCase(gameModeName))
-                .findAny()
-                .orElse(GameMode.ADVENTURE);
+            .filter(gameMode -> gameMode.name().equalsIgnoreCase(gameModeName))
+            .findAny()
+            .orElse(GameMode.ADVENTURE);
     }
 
     /**
@@ -620,24 +624,24 @@ public class Config {
             case "s3" -> {
                 ConfigurationSection s3 = CONFIG.getConfigurationSection("world.backup.storage.s3");
                 return new S3BackupStorage(
-                        PLUGIN,
-                        s3.getString("url"),
-                        s3.getString("access-key"),
-                        s3.getString("secret-key"),
-                        s3.getString("region"),
-                        s3.getString("bucket"),
-                        s3.getString("path")
+                    PLUGIN,
+                    s3.getString("url"),
+                    s3.getString("access-key"),
+                    s3.getString("secret-key"),
+                    s3.getString("region"),
+                    s3.getString("bucket"),
+                    s3.getString("path")
                 );
             }
             case "sftp" -> {
                 ConfigurationSection sftp = CONFIG.getConfigurationSection("world.backup.storage.sftp");
                 return new SftpBackupStorage(
-                        PLUGIN,
-                        sftp.getString("host"),
-                        sftp.getInt("port"),
-                        sftp.getString("username"),
-                        sftp.getString("password"),
-                        sftp.getString("path")
+                    PLUGIN,
+                    sftp.getString("host"),
+                    sftp.getInt("port"),
+                    sftp.getString("username"),
+                    sftp.getString("password"),
+                    sftp.getString("path")
                 );
             }
             default -> {

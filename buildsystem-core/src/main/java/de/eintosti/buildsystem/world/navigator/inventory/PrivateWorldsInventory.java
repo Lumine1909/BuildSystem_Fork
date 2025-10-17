@@ -39,12 +39,12 @@ public class PrivateWorldsInventory extends CreatableWorldsInventory {
      */
     public PrivateWorldsInventory(BuildSystemPlugin plugin, Player player) {
         super(
-                plugin,
-                player,
-                NavigatorCategory.PRIVATE,
-                Messages.getString("private_title", player),
-                Messages.getString("private_no_worlds", player),
-                Visibility.PRIVATE
+            plugin,
+            player,
+            NavigatorCategory.PRIVATE,
+            Messages.getString("private_title", player),
+            Messages.getString("private_no_worlds", player),
+            Visibility.PRIVATE
         );
     }
 

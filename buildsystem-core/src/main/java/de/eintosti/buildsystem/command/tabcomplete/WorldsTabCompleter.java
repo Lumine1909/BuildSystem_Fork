@@ -91,12 +91,12 @@ public class WorldsTabCompleter extends ArgumentSorter implements TabCompleter {
                     case "tp":
                     case "unimport": {
                         worldStorage.getBuildWorlds().stream()
-                                .filter(world -> {
-                                    String permission = world.getData().permission().get();
-                                    return player.hasPermission(permission) || permission.equalsIgnoreCase("-");
-                                })
-                                .filter(world -> world.getPermissions().canPerformCommand(player, "buildsystem." + args[0].toLowerCase(Locale.ROOT)))
-                                .forEach(world -> addArgument(args[1], world.getName(), arrayList));
+                            .filter(world -> {
+                                String permission = world.getData().permission().get();
+                                return player.hasPermission(permission) || permission.equalsIgnoreCase("-");
+                            })
+                            .filter(world -> world.getPermissions().canPerformCommand(player, "buildsystem." + args[0].toLowerCase(Locale.ROOT)))
+                            .forEach(world -> addArgument(args[1], world.getName(), arrayList));
                         break;
                     }
 
@@ -109,8 +109,8 @@ public class WorldsTabCompleter extends ArgumentSorter implements TabCompleter {
 
                     case "delete": {
                         worldStorage.getBuildWorlds().stream()
-                                .filter(world -> world.getPermissions().canPerformCommand(player, "buildsystem." + args[0].toLowerCase(Locale.ROOT)))
-                                .forEach(world -> addArgument(args[1], world.getName(), arrayList));
+                            .filter(world -> world.getPermissions().canPerformCommand(player, "buildsystem." + args[0].toLowerCase(Locale.ROOT)))
+                            .forEach(world -> addArgument(args[1], world.getName(), arrayList));
                         break;
                     }
 
@@ -121,8 +121,8 @@ public class WorldsTabCompleter extends ArgumentSorter implements TabCompleter {
                         }
                         Builders builders = buildWorld.getBuilders();
                         Bukkit.getOnlinePlayers().stream()
-                                .filter(pl -> !builders.isBuilder(pl) && !builders.isCreator(pl))
-                                .forEach(pl -> addArgument(args[1], pl.getName(), arrayList));
+                            .filter(pl -> !builders.isBuilder(pl) && !builders.isCreator(pl))
+                            .forEach(pl -> addArgument(args[1], pl.getName(), arrayList));
                         break;
                     }
 
@@ -168,8 +168,8 @@ public class WorldsTabCompleter extends ArgumentSorter implements TabCompleter {
 
                     case "folder": {
                         folderStorage.getFolders().stream()
-                                .map(Displayable::getName)
-                                .forEach(folderName -> addArgument(args[1], folderName, arrayList));
+                            .map(Displayable::getName)
+                            .forEach(folderName -> addArgument(args[1], folderName, arrayList));
                         break;
                     }
                 }
@@ -180,15 +180,15 @@ public class WorldsTabCompleter extends ArgumentSorter implements TabCompleter {
                 switch (args[0].toLowerCase(Locale.ROOT)) {
                     case "import": {
                         Map<String, List<String>> arguments = Map.of(
-                                "-g", Arrays.stream(Generator.values()).filter(generator -> generator != Generator.CUSTOM).map(Enum::name).toList(),
-                                "-c", List.of(),
-                                "-t", Arrays.stream(BuildWorldType.values()).map(Enum::name).toList()
+                            "-g", Arrays.stream(Generator.values()).filter(generator -> generator != Generator.CUSTOM).map(Enum::name).toList(),
+                            "-c", List.of(),
+                            "-t", Arrays.stream(BuildWorldType.values()).map(Enum::name).toList()
                         );
 
                         if (args.length % 2 == 1) {
                             arguments.keySet().stream()
-                                    .filter(key -> !Lists.newArrayList(args).contains(key))
-                                    .forEach(argument -> addArgument(args[args.length - 1], argument, arrayList));
+                                .filter(key -> !Lists.newArrayList(args).contains(key))
+                                .forEach(argument -> addArgument(args[args.length - 1], argument, arrayList));
                         } else {
                             List<String> values = arguments.get(args[args.length - 2]);
                             if (values != null) {
@@ -204,16 +204,16 @@ public class WorldsTabCompleter extends ArgumentSorter implements TabCompleter {
                         switch (args.length) {
                             case 3:
                                 Map<String, String> subCommands = Map.of(
-                                        "add", "buildsystem.folder.add",
-                                        "remove", "buildsystem.folder.remove",
-                                        "delete", "buildsystem.folder.delete",
-                                        "setPermission", "buildsystem.folder.setpermission",
-                                        "setProject", "buildsystem.folder.setproject",
-                                        "setItem", "buildsystem.folder.setitem"
+                                    "add", "buildsystem.folder.add",
+                                    "remove", "buildsystem.folder.remove",
+                                    "delete", "buildsystem.folder.delete",
+                                    "setPermission", "buildsystem.folder.setpermission",
+                                    "setProject", "buildsystem.folder.setproject",
+                                    "setItem", "buildsystem.folder.setitem"
                                 );
                                 subCommands.entrySet().stream()
-                                        .filter(entry -> player.hasPermission(entry.getKey()))
-                                        .forEach(entry -> addArgument(args[2], entry.getKey(), arrayList));
+                                    .filter(entry -> player.hasPermission(entry.getKey()))
+                                    .forEach(entry -> addArgument(args[2], entry.getKey(), arrayList));
                                 break;
                             case 4:
                                 if (!args[2].equalsIgnoreCase("add") && !args[2].equalsIgnoreCase("remove")) {
@@ -226,16 +226,16 @@ public class WorldsTabCompleter extends ArgumentSorter implements TabCompleter {
                                 }
 
                                 worldStorage.getBuildWorlds().stream()
-                                        .filter(buildWorld -> NavigatorCategory.of(buildWorld) == folder.getCategory())
-                                        .filter(buildWorld -> {
-                                            if (args[2].equalsIgnoreCase("add")) {
-                                                return !buildWorld.isAssignedToFolder();
-                                            } else if (args[2].equalsIgnoreCase("remove")) {
-                                                return folder.containsWorld(buildWorld);
-                                            }
-                                            return false;
-                                        })
-                                        .forEach(world -> addArgument(args[3], world.getName(), arrayList));
+                                    .filter(buildWorld -> NavigatorCategory.of(buildWorld) == folder.getCategory())
+                                    .filter(buildWorld -> {
+                                        if (args[2].equalsIgnoreCase("add")) {
+                                            return !buildWorld.isAssignedToFolder();
+                                        } else if (args[2].equalsIgnoreCase("remove")) {
+                                            return folder.containsWorld(buildWorld);
+                                        }
+                                        return false;
+                                    })
+                                    .forEach(world -> addArgument(args[3], world.getName(), arrayList));
                                 break;
                         }
                     }
@@ -283,9 +283,9 @@ public class WorldsTabCompleter extends ArgumentSorter implements TabCompleter {
         @Nullable
         public static WorldsArgument matchArgument(String input) {
             return Arrays.stream(values())
-                    .filter(argument -> argument.getName().equalsIgnoreCase(input))
-                    .findFirst()
-                    .orElse(null);
+                .filter(argument -> argument.getName().equalsIgnoreCase(input))
+                .findFirst()
+                .orElse(null);
         }
 
         @Override

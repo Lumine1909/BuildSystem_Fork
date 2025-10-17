@@ -47,14 +47,14 @@ public class CustomizableIcons {
 
     private Map<BuildWorldType, XMaterial> loadTypeIcons() {
         Map<BuildWorldType, XMaterial> typeIcons = new EnumMap<>(Map.ofEntries(
-                Map.entry(BuildWorldType.NORMAL, XMaterial.OAK_LOG),
-                Map.entry(BuildWorldType.FLAT, XMaterial.GRASS_BLOCK),
-                Map.entry(BuildWorldType.NETHER, XMaterial.NETHERRACK),
-                Map.entry(BuildWorldType.END, XMaterial.END_STONE),
-                Map.entry(BuildWorldType.VOID, XMaterial.GLASS),
-                Map.entry(BuildWorldType.CUSTOM, XMaterial.FILLED_MAP),
-                Map.entry(BuildWorldType.TEMPLATE, XMaterial.FILLED_MAP),
-                Map.entry(BuildWorldType.IMPORTED, XMaterial.FURNACE)
+            Map.entry(BuildWorldType.NORMAL, XMaterial.OAK_LOG),
+            Map.entry(BuildWorldType.FLAT, XMaterial.GRASS_BLOCK),
+            Map.entry(BuildWorldType.NETHER, XMaterial.NETHERRACK),
+            Map.entry(BuildWorldType.END, XMaterial.END_STONE),
+            Map.entry(BuildWorldType.VOID, XMaterial.GLASS),
+            Map.entry(BuildWorldType.CUSTOM, XMaterial.FILLED_MAP),
+            Map.entry(BuildWorldType.TEMPLATE, XMaterial.FILLED_MAP),
+            Map.entry(BuildWorldType.IMPORTED, XMaterial.FURNACE)
         ));
 
         Map<BuildWorldType, XMaterial> loadedIcons = this.setupStorage.loadIcons(IconType.TYPE, type -> BuildWorldType.valueOf(type.toUpperCase(Locale.ROOT)));
@@ -68,12 +68,12 @@ public class CustomizableIcons {
 
     private Map<BuildWorldStatus, XMaterial> loadStatusIcons() {
         Map<BuildWorldStatus, XMaterial> statusIcon = new EnumMap<>(Map.ofEntries(
-                Map.entry(BuildWorldStatus.NOT_STARTED, XMaterial.RED_DYE),
-                Map.entry(BuildWorldStatus.IN_PROGRESS, XMaterial.ORANGE_DYE),
-                Map.entry(BuildWorldStatus.ALMOST_FINISHED, XMaterial.LIME_DYE),
-                Map.entry(BuildWorldStatus.FINISHED, XMaterial.GREEN_DYE),
-                Map.entry(BuildWorldStatus.ARCHIVE, XMaterial.CYAN_DYE),
-                Map.entry(BuildWorldStatus.HIDDEN, XMaterial.BONE_MEAL)
+            Map.entry(BuildWorldStatus.NOT_STARTED, XMaterial.RED_DYE),
+            Map.entry(BuildWorldStatus.IN_PROGRESS, XMaterial.ORANGE_DYE),
+            Map.entry(BuildWorldStatus.ALMOST_FINISHED, XMaterial.LIME_DYE),
+            Map.entry(BuildWorldStatus.FINISHED, XMaterial.GREEN_DYE),
+            Map.entry(BuildWorldStatus.ARCHIVE, XMaterial.CYAN_DYE),
+            Map.entry(BuildWorldStatus.HIDDEN, XMaterial.BONE_MEAL)
         ));
 
         Map<BuildWorldStatus, XMaterial> loadedIcons = this.setupStorage.loadIcons(IconType.STATUS, type -> BuildWorldStatus.valueOf(type.toUpperCase(Locale.ROOT)));

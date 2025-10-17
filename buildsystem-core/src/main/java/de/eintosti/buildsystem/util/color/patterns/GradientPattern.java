@@ -37,9 +37,9 @@ public class GradientPattern implements ColorPattern {
             String end = matcher.group(3);
             String content = matcher.group(2);
             string = string.replace(
-                    matcher.group(), ColorAPI.color(content, new Color(Integer.parseInt(start, 16)),
-                            new Color(Integer.parseInt(end, 16))
-                    ));
+                matcher.group(), ColorAPI.color(content, new Color(Integer.parseInt(start, 16)),
+                    new Color(Integer.parseInt(end, 16))
+                ));
         }
         return string;
     }
