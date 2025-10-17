@@ -37,6 +37,7 @@ import de.eintosti.buildsystem.api.world.navigator.settings.WorldFilter;
 import de.eintosti.buildsystem.api.world.navigator.settings.WorldFilter.Mode;
 import de.eintosti.buildsystem.api.world.navigator.settings.WorldSort;
 import de.eintosti.buildsystem.command.tabcomplete.WorldsTabCompleter.WorldsArgument;
+import de.eintosti.buildsystem.config.Config;
 import de.eintosti.buildsystem.player.PlayerServiceImpl;
 import de.eintosti.buildsystem.player.settings.SettingsManager;
 import de.eintosti.buildsystem.storage.FolderStorageImpl;
@@ -386,7 +387,7 @@ public abstract class DisplayablesInventory extends PaginatedInventory {
                             Messages.sendMessage(player, "worlds_folder_creation_invalid_characters");
                         }
 
-                        String sanitizedName = StringCleaner.sanitize(input);
+                        String sanitizedName = Config.World.nameFormat.replace("${name}", StringCleaner.sanitize(input));
                         if (sanitizedName.isEmpty()) {
                             Messages.sendMessage(player, "worlds_folder_creation_name_bank");
                             return;
