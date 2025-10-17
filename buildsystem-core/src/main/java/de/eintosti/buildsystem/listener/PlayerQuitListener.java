@@ -83,6 +83,7 @@ public class PlayerQuitListener implements Listener {
         cachedValues.resetGameModeIfPresent(player);
         cachedValues.resetInventoryIfPresent(player);
         playerManager.getBuildModePlayers().remove(player.getUniqueId());
+        playerManager.onQuit(player);
 
         manageHidePlayer(player);
     }

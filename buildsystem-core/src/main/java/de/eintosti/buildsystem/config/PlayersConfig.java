@@ -33,4 +33,8 @@ public class PlayersConfig extends ConfigurationFile {
         });
         saveFile();
     }
+
+    public void savePlayer(BuildPlayer player) {
+        getFile().set("players." + player.getUniqueId().toString(), player.serialize());
+    }
 }

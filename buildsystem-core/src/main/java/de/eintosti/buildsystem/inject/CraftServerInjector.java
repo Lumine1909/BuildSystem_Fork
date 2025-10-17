@@ -16,6 +16,9 @@ public class CraftServerInjector {
         if (!plugin.getConfigValues().isDynamicWorldLoad()) {
             return null;
         }
+        if (!Bukkit.getServer().isPrimaryThread()) {
+            throw new RuntimeException("What the hack are you doing here, access world asynchronously?");
+        }
 
         boolean shouldAbort = StackWalker.getInstance().walk(frames -> frames.anyMatch(frame -> {
             String className = frame.getClassName();
@@ -47,18 +50,18 @@ public class CraftServerInjector {
     public static void inject() {
         try {
             Class<?> Class_CraftServer = Bukkit.getServer().getClass();
-            Field Field_worlds = Class_CraftServer.getDeclaredField("worlds");
-            Field_worlds.setAccessible(true);
-            Field_worlds.set(Bukkit.getServer(), ProxyMapHandler.createInjectedMap(
-                (Map) Field_worlds.get(Bukkit.getServer()),
+            Field field$worlds = Class_CraftServer.getDeclaredField("worlds");
+            field$worlds.setAccessible(true);
+            field$worlds.set(Bukkit.getServer(), ProxyMapHandler.createInjectedMap(
+                (Map) field$worlds.get(Bukkit.getServer()),
                 (Function) queryFunction
             ));
 
             // Winds-Studio/Leaf and downstream
-            Field Field_worldsByUUID = Class_CraftServer.getDeclaredField("worldsByUUID");
-            Field_worldsByUUID.setAccessible(true);
-            Field_worldsByUUID.set(Bukkit.getServer(), ProxyMapHandler.createInjectedMap(
-                (Map) Field_worlds.get(Bukkit.getServer()),
+            Field field$worldsByUUID = Class_CraftServer.getDeclaredField("worldsByUUID");
+            field$worldsByUUID.setAccessible(true);
+            field$worldsByUUID.set(Bukkit.getServer(), ProxyMapHandler.createInjectedMap(
+                (Map) field$worlds.get(Bukkit.getServer()),
                 (Function) queryFunction
             ));
         } catch (Exception ignored) {

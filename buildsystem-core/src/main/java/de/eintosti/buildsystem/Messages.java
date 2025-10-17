@@ -313,6 +313,8 @@ public class Messages {
         addSpacer(sb, "");
         setMessage(sb, "worlds_info_usage", "%prefix% &7Usage: &b/worlds info [world]");
         setMessage(sb, "worlds_info_unknown_world", "%prefix% &cUnknown world.");
+        setMessage(sb, "realm_back_not_available", "%prefix% &cYou don't own a world.");
+        setMessage(sb, "realm_back_unknown_world", "%prefix% &cUnknown world.");
         setMessage(sb, "world_info", Arrays.asList(
             "&7&m-------------------------------------",
             "%prefix% &7&nWorld info:&b %world%",

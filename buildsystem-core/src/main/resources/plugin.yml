@@ -67,6 +67,8 @@ commands:
     aliases: [ w ]
     description: Open the world menu.
     usage: /<command>
+  realm-back:
+    usage: /<command> [world]
 
 permissions:
   buildsystem.help:
@@ -129,3 +131,4 @@ permissions:
   buildsystem.interactplace:
     description: Place blocks as interaction.
     default: op
+

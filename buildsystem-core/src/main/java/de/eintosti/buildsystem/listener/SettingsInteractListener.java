@@ -60,6 +60,7 @@ import org.bukkit.inventory.ItemStack;
 public class SettingsInteractListener implements Listener {
 
     private static final EnumSet<XMaterial> OTHER_PLANTS = Sets.newEnumSet(Sets.newHashSet(
+        XMaterial.CACTUS_FLOWER, XMaterial.CLOSED_EYEBLOSSOM, XMaterial.OPEN_EYEBLOSSOM,
         XMaterial.TORCHFLOWER, XMaterial.PITCHER_PLANT, XMaterial.LILY_PAD, XMaterial.PINK_PETALS,
         XMaterial.BROWN_MUSHROOM, XMaterial.RED_MUSHROOM, XMaterial.CRIMSON_FUNGUS, XMaterial.WARPED_FUNGUS,
         XMaterial.SHORT_GRASS, XMaterial.FERN, XMaterial.DEAD_BUSH, XMaterial.LARGE_FERN, XMaterial.TALL_GRASS,
@@ -346,6 +347,16 @@ public class SettingsInteractListener implements Listener {
         }
 
         Player player = event.getPlayer();
+        Block block = event.getClickedBlock();
+
+        if (block == null) {
+            return false;
+        }
+
+        if (!player.hasPermission("buildsystem.interactplace") || !PlotUtil.hasPermissionAt(player, block.getLocation())) {
+            return false;
+        }
+
         if (worldManager.canBypassBuildRestriction(player)) {
             return true;
         }

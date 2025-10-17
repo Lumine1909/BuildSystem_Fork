@@ -91,6 +91,24 @@ public class PlayerManager {
         return buildPlayer;
     }
 
+    public void onJoin(Player player) {
+        FileConfiguration configuration = playersConfig.getFile();
+        UUID uuid = player.getUniqueId();
+
+        BuildPlayer buildPlayer = createBuildPlayer(
+            uuid,
+            loadSettings(configuration, "players." + uuid + ".settings.")
+        );
+        buildPlayer.setLogoutLocation(loadLogoutLocation(configuration, "players." + uuid + ".logout-location"));
+    }
+
+    public void onQuit(Player player) {
+        buildModePlayers.remove(player.getUniqueId());
+        openNavigator.remove(player);
+        playersConfig.savePlayer(buildPlayers.get(player.getUniqueId()));
+        buildPlayers.remove(player.getUniqueId());
+    }
+
     public BuildPlayer createBuildPlayer(Player player) {
         return createBuildPlayer(player.getUniqueId(), new Settings());
     }
@@ -100,6 +118,14 @@ public class PlayerManager {
     }
 
     public BuildPlayer getBuildPlayer(UUID uuid) {
+        var player = this.buildPlayers.get(uuid);
+        if (player != null) {
+            return player;
+        }
+        var bukkitPlayer = Bukkit.getPlayer(uuid);
+        if (bukkitPlayer != null) {
+            onJoin(bukkitPlayer);
+        }
         return this.buildPlayers.get(uuid);
     }
 
@@ -390,23 +416,6 @@ public class PlayerManager {
         playersConfig.savePlayers(getBuildPlayers());
     }
 
-    public void load() {
-        FileConfiguration configuration = playersConfig.getFile();
-        ConfigurationSection configurationSection = configuration.getConfigurationSection("players");
-        if (configurationSection == null) {
-            return;
-        }
-
-        Set<String> uuids = configurationSection.getKeys(false);
-        uuids.forEach(uuid -> {
-            BuildPlayer buildPlayer = createBuildPlayer(
-                UUID.fromString(uuid),
-                loadSettings(configuration, "players." + uuid + ".settings.")
-            );
-            buildPlayer.setLogoutLocation(loadLogoutLocation(configuration, "players." + uuid + ".logout-location"));
-        });
-    }
-
     @Nullable
     private LogoutLocation loadLogoutLocation(FileConfiguration configuration, String pathPrefix) {
         String location = configuration.getString(pathPrefix);
@@ -430,7 +439,13 @@ public class PlayerManager {
     }
 
     private Settings loadSettings(FileConfiguration configuration, String pathPrefix) {
-        NavigatorType navigatorType = NavigatorType.valueOf(configuration.getString(pathPrefix + "type"));
+
+        NavigatorType navigatorType;
+        try {
+             navigatorType = NavigatorType.valueOf(configuration.getString(pathPrefix + "type"));
+        } catch (Exception e) {
+            navigatorType = NavigatorType.OLD;
+        }
         DesignColor glassColor = DesignColor.matchColor(configuration.getString(pathPrefix + "glass"));
         WorldDisplay worldDisplay = loadWorldDisplay(configuration, pathPrefix + "world-display.");
         boolean clearInventory = configuration.getBoolean(pathPrefix + "clear-inventory", false);

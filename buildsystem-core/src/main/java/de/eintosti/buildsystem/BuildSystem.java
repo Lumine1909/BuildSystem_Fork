@@ -26,6 +26,7 @@ import de.eintosti.buildsystem.command.ExplosionsCommand;
 import de.eintosti.buildsystem.command.GamemodeCommand;
 import de.eintosti.buildsystem.command.NoAICommand;
 import de.eintosti.buildsystem.command.PhysicsCommand;
+import de.eintosti.buildsystem.command.RealmBackCommand;
 import de.eintosti.buildsystem.command.SettingsCommand;
 import de.eintosti.buildsystem.command.SetupCommand;
 import de.eintosti.buildsystem.command.SkullCommand;
@@ -189,8 +190,8 @@ public class BuildSystem extends JavaPlugin {
         performUpdateCheck();
 
         worldManager.load();
-        playerManager.load();
         spawnManager.load();
+        Bukkit.getOnlinePlayers().forEach(playerManager::onJoin);
 
         Bukkit.getOnlinePlayers().forEach(pl -> {
             BuildPlayer buildPlayer = playerManager.createBuildPlayer(pl);
@@ -201,7 +202,7 @@ public class BuildSystem extends JavaPlugin {
 
         registerStats();
 
-        Bukkit.getScheduler().runTaskTimer(this, this::saveBuildConfig, 6000L, 6000L);
+        Bukkit.getScheduler().runTaskTimerAsynchronously(this, this::saveBuildConfig, 6000L, 6000L);
 
         Bukkit.getConsoleSender().sendMessage(String.format(Locale.ROOT,
             "%sBuildSystem » Plugin %senabled%s!",
@@ -301,6 +302,7 @@ public class BuildSystem extends JavaPlugin {
         new TimeCommand(this);
         new TopCommand(this);
         new WorldsCommand(this);
+        new RealmBackCommand(this);
     }
 
     private void registerTabCompleter() {

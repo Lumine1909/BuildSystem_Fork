@@ -42,6 +42,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -77,6 +78,8 @@ public class WorldManager {
     private final WorldConfig worldConfig;
     private final Map<String, BuildWorld> buildWorlds;
     private final Map<UUID, BuildWorld> buildWorldsByUUID;
+    private final Map<BuildWorld, Builder> creatorByBuildWorld;
+    private final Map<Builder, Set<BuildWorld>> buildWorldsByCreator;
 
     public WorldManager(BuildSystem plugin) {
         this.plugin = plugin;
@@ -85,6 +88,8 @@ public class WorldManager {
 
         this.buildWorlds = new HashMap<>();
         this.buildWorldsByUUID = new HashMap<>();
+        this.creatorByBuildWorld = new HashMap<>();
+        this.buildWorldsByCreator = new HashMap<>();
     }
 
     /**
@@ -127,6 +132,10 @@ public class WorldManager {
         if (buildWorld.getUUID().isPresent()) {
             this.buildWorldsByUUID.put(buildWorld.getUUID().get(), buildWorld);
         }
+        if (buildWorld.getCreator() != null) {
+            this.creatorByBuildWorld.put(buildWorld, buildWorld.getCreator());
+            this.buildWorldsByCreator.computeIfAbsent(buildWorld.getCreator(), k -> new HashSet<>()).add(buildWorld);
+        }
     }
 
     /**
@@ -136,6 +145,13 @@ public class WorldManager {
      */
     public void removeBuildWorld(BuildWorld buildWorld) {
         this.buildWorlds.remove(buildWorld.getName().toLowerCase());
+        if (buildWorld.getUUID().isPresent()) {
+            this.buildWorldsByUUID.remove(buildWorld.getUUID().get());
+        }
+        if (buildWorld.getCreator() != null) {
+            Builder builder = this.creatorByBuildWorld.remove(buildWorld);
+            this.buildWorldsByCreator.get(builder).remove(buildWorld);
+        }
     }
 
     /**
@@ -442,9 +458,9 @@ public class WorldManager {
      * @param save       Should the world be saved before unimporting
      */
     public void unimportWorld(Player player, BuildWorld buildWorld, boolean save) {
-        buildWorld.forceUnload(save);
-        this.buildWorlds.remove(buildWorld.getName());
         removePlayersFromWorld(buildWorld.getName(), Messages.getString("worlds_unimport_players_world", player));
+        this.removeBuildWorld(buildWorld);
+        buildWorld.forceUnload(save);
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             this.worldConfig.getFile().set("worlds." + buildWorld.getName(), null);
             this.worldConfig.saveFile();

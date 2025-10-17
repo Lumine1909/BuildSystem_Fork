@@ -38,7 +38,7 @@ public enum DesignColor {
     public static DesignColor matchColor(String colorName) {
         try {
             return valueOf(colorName);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             return DesignColor.BLACK;
         }
     }
