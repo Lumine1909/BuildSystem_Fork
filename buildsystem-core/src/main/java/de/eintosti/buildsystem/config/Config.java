@@ -235,6 +235,10 @@ public class Config {
     public static class World {
 
         /**
+         * The name format of all new-created/renamed bulidsystem worlds.
+         */
+        public static String nameFormat = "${name}";
+        /**
          * Whether the weather should be locked in worlds.
          */
         public static boolean lockWeather = true;
@@ -472,6 +476,7 @@ public class Config {
         Navigator.giveItemOnJoin = CONFIG.getBoolean("settings.navigator.give-item-on-join", true);
 
         // World
+        World.nameFormat = CONFIG.getString("world.name-format", "${name}");
         World.lockWeather = CONFIG.getBoolean("world.lock-weather", true);
         World.invalidCharacters = CONFIG.getString("world.invalid-characters", "^\b$");
         World.importAllDelay = CONFIG.getInt("world.import-all.delay", 30);
