@@ -229,5 +229,13 @@ bukkit {
             description = "Receive update messages."
             default = BukkitPluginDescription.Permission.Default.OP
         }
+        register("buildsystem.customblock.use") {
+            description = "Use custom block provided by the plugin."
+            default = BukkitPluginDescription.Permission.Default.OP
+        }
+        register("buildsystem.interactplace") {
+            description = "Place blocks when interact block."
+            default = BukkitPluginDescription.Permission.Default.OP
+        }
     }
 }

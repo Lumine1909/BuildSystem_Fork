@@ -384,6 +384,10 @@ public class SettingsInteractListener implements Listener {
         }
 
         Player player = event.getPlayer();
+        if (!player.hasPermission("buildsystem.interactplace")) {
+            return false;
+        }
+
         BuildWorld buildWorld = worldStorage.getBuildWorld(player.getWorld().getName());
         if (buildWorld == null) {
             return true;
