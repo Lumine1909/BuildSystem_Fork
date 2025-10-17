@@ -123,6 +123,13 @@ public interface BuildWorld extends Displayable {
     String getWorldTime();
 
     /**
+     * Gets whether this world is currently loading (not loaded).
+     *
+     * @return {@code true} if this world is loading, not loading or is loaded will {@code false}
+     */
+    boolean isLoading();
+
+    /**
      * Gets whether this world is currently loaded into server memory, allowing players to enter it.
      *
      * @return {@code true} if this world is loaded, otherwise {@code false}
@@ -135,6 +142,13 @@ public interface BuildWorld extends Displayable {
      * @param loaded {@code true} if this world is to be loaded, {@code false} if it should be unloaded
      */
     void setLoaded(boolean loaded);
+
+    /**
+     * Sets whether this world is currently loading.
+     *
+     * @param loading {@code true} if this world is loading, {@code false} if it is loaded or should be unloaded
+     */
+    void setLoading(boolean loading);
 
     /**
      * Gets the {@link WorldLoader} utility used to manage loading operations for this world.

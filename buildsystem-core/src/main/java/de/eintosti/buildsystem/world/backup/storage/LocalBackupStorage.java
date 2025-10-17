@@ -64,11 +64,11 @@ public class LocalBackupStorage implements BackupStorage {
 
             try (Stream<Path> walk = Files.walk(getBackupDirectory(buildWorld))) {
                 walk.filter(LocalBackupStorage::isValidFile).forEach(path -> backups.add(
-                        new BackupImpl(
-                                plugin.getBackupService().getProfile(buildWorld),
-                                FileUtils.getDirectoryCreation(path.toFile()),
-                                path.toAbsolutePath().toString()
-                        )
+                    new BackupImpl(
+                        plugin.getBackupService().getProfile(buildWorld),
+                        FileUtils.getDirectoryCreation(path.toFile()),
+                        path.toAbsolutePath().toString()
+                    )
                 ));
             } catch (IOException e) {
                 plugin.getLogger().log(Level.SEVERE, "Error while listing backups", e);
@@ -92,9 +92,9 @@ public class LocalBackupStorage implements BackupStorage {
 
             plugin.getLogger().info("Backed up world '%s'. Took %sms".formatted(buildWorld.getName(), (System.currentTimeMillis() - timestamp)));
             return new BackupImpl(
-                    plugin.getBackupService().getProfile(buildWorld),
-                    timestamp,
-                    zip.getAbsolutePath()
+                plugin.getBackupService().getProfile(buildWorld),
+                timestamp,
+                zip.getAbsolutePath()
             );
         }, BackupService.BACKUP_EXECUTOR);
     }

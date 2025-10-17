@@ -42,10 +42,10 @@ import org.jspecify.annotations.Nullable;
 public abstract class CreatableWorldsInventory extends DisplayablesInventory {
 
     private static final Set<BuildWorldStatus> VALID_STATUSES = Sets.newHashSet(
-            BuildWorldStatus.NOT_STARTED,
-            BuildWorldStatus.IN_PROGRESS,
-            BuildWorldStatus.ALMOST_FINISHED,
-            BuildWorldStatus.FINISHED
+        BuildWorldStatus.NOT_STARTED,
+        BuildWorldStatus.IN_PROGRESS,
+        BuildWorldStatus.ALMOST_FINISHED,
+        BuildWorldStatus.FINISHED
     );
 
     static final String CREATE_WORLD_PROFILE = "3edd20be93520949e6ce789dc4f43efaeb28c717ee6bfcbbe02780142f716";
@@ -63,12 +63,12 @@ public abstract class CreatableWorldsInventory extends DisplayablesInventory {
      * @param requiredVisibility The required {@link Visibility} for worlds to be displayed in this inventory
      */
     protected CreatableWorldsInventory(
-            BuildSystemPlugin plugin,
-            Player player,
-            NavigatorCategory category,
-            String inventoryTitle,
-            @Nullable String noWorldsMessage,
-            Visibility requiredVisibility
+        BuildSystemPlugin plugin,
+        Player player,
+        NavigatorCategory category,
+        String inventoryTitle,
+        @Nullable String noWorldsMessage,
+        Visibility requiredVisibility
     ) {
         super(plugin, player, category, inventoryTitle, noWorldsMessage, requiredVisibility, VALID_STATUSES);
         this.playerService = plugin.getPlayerService();

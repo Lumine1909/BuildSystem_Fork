@@ -127,9 +127,9 @@ public class YamlWorldStorage extends WorldStorageImpl {
     @Override
     public CompletableFuture<Collection<BuildWorld>> load() {
         return CompletableFuture.supplyAsync(() ->
-                loadWorldKeys().stream()
-                        .map(this::loadWorld)
-                        .collect(Collectors.toCollection(ArrayList::new))
+            loadWorldKeys().stream()
+                .map(this::loadWorld)
+                .collect(Collectors.toCollection(ArrayList::new))
         );
     }
 
@@ -157,32 +157,32 @@ public class YamlWorldStorage extends WorldStorageImpl {
     @Contract("_ -> new")
     private BuildWorldImpl loadWorld(String worldName) {
         UUID uuid = config.isString("worlds." + worldName + ".uuid")
-                ? UUID.fromString(config.getString("worlds." + worldName + ".uuid"))
-                : UUID.randomUUID(); // Generate a new UUID if not present
+            ? UUID.fromString(config.getString("worlds." + worldName + ".uuid"))
+            : UUID.randomUUID(); // Generate a new UUID if not present
         Builder creator = parseCreator(worldName);
         BuildWorldType worldType = config.isString("worlds." + worldName + ".type")
-                ? BuildWorldType.valueOf(config.getString("worlds." + worldName + ".type"))
-                : BuildWorldType.UNKNOWN;
+            ? BuildWorldType.valueOf(config.getString("worlds." + worldName + ".type"))
+            : BuildWorldType.UNKNOWN;
         WorldDataImpl worldData = parseWorldData(worldName);
         long creationDate = config.isLong("worlds." + worldName + ".date")
-                ? config.getLong("worlds." + worldName + ".date")
-                : -1;
+            ? config.getLong("worlds." + worldName + ".date")
+            : -1;
         List<Builder> builders = parseBuilders(worldName);
         String generatorName = config.getString("worlds." + worldName + ".chunk-generator");
         CustomGeneratorImpl customGenerator = generatorName != null
-                ? CustomGeneratorImpl.of(generatorName, worldName)
-                : null;
+            ? CustomGeneratorImpl.of(generatorName, worldName)
+            : null;
 
         return new BuildWorldImpl(
-                uuid,
-                worldName,
-                worldType,
-                worldData,
-                creator,
-                builders,
-                creationDate,
-                customGenerator,
-                null // The folder will be set later
+            uuid,
+            worldName,
+            worldType,
+            worldData,
+            creator,
+            builders,
+            creationDate,
+            customGenerator,
+            null // The folder will be set later
         );
     }
 

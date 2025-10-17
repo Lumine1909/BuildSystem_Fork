@@ -128,12 +128,12 @@ public class GameRulesInventory extends PaginatedInventory {
         List<String> lore;
         if (isOfType(gameRule, Boolean.class)) {
             lore = isEnabled(world, gameRule)
-                    ? Messages.getStringList("worldeditor_gamerules_boolean_enabled", player)
-                    : Messages.getStringList("worldeditor_gamerules_boolean_disabled", player);
+                ? Messages.getStringList("worldeditor_gamerules_boolean_enabled", player)
+                : Messages.getStringList("worldeditor_gamerules_boolean_disabled", player);
         } else {
             lore = Messages.getStringList("worldeditor_gamerules_integer", player).stream()
-                    .map(line -> line.replace("%value%", world.getGameRuleValue(gameRule).toString()))
-                    .toList();
+                .map(line -> line.replace("%value%", world.getGameRuleValue(gameRule).toString()))
+                .toList();
         }
         return lore;
     }
@@ -239,8 +239,8 @@ public class GameRulesInventory extends PaginatedInventory {
             GameRule<Integer> integerRule = castRule(gameRule, Integer.class);
             int value = world.getGameRuleValue(integerRule);
             int delta = event.isShiftClick()
-                    ? (event.isRightClick() ? 10 : event.isLeftClick() ? -10 : 0)
-                    : (event.isRightClick() ? 1 : event.isLeftClick() ? -1 : 0);
+                ? (event.isRightClick() ? 10 : event.isLeftClick() ? -10 : 0)
+                : (event.isRightClick() ? 1 : event.isLeftClick() ? -1 : 0);
             world.setGameRule(integerRule, value + delta);
         } else {
             plugin.getLogger().warning("GameRule '%s' is not a boolean or integer type and cannot be modified.".formatted(gameRule.getName()));

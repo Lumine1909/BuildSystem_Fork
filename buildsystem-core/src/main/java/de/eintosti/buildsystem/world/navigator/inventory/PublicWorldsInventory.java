@@ -39,12 +39,12 @@ public class PublicWorldsInventory extends CreatableWorldsInventory {
      */
     public PublicWorldsInventory(BuildSystemPlugin plugin, Player player) {
         super(
-                plugin,
-                player,
-                NavigatorCategory.PUBLIC,
-                Messages.getString("world_navigator_title", player),
-                Messages.getString("world_navigator_no_worlds", player),
-                Visibility.PUBLIC
+            plugin,
+            player,
+            NavigatorCategory.PUBLIC,
+            Messages.getString("world_navigator_title", player),
+            Messages.getString("world_navigator_no_worlds", player),
+            Visibility.PUBLIC
         );
     }
 

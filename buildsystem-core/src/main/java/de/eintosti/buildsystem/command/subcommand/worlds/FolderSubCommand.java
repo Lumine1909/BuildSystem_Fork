@@ -135,8 +135,8 @@ public class FolderSubCommand implements SubCommand {
 
                 if (folder.getCategory() != NavigatorCategory.of(buildWorld)) {
                     Messages.sendMessage(player, "worlds_folder_world_category_mismatch",
-                            Map.entry("%folder_category%", folder.getCategory().name()),
-                            Map.entry("%world_category%", NavigatorCategory.of(buildWorld).name())
+                        Map.entry("%folder_category%", folder.getCategory().name()),
+                        Map.entry("%world_category%", NavigatorCategory.of(buildWorld).name())
                     );
                     return;
                 }
@@ -173,7 +173,7 @@ public class FolderSubCommand implements SubCommand {
 
             XSound.ENTITY_PLAYER_LEVELUP.play(player);
             Messages.sendMessage(player, "worlds_folder_permission_set",
-                    Map.entry("%folder%", folder.getName())
+                Map.entry("%folder%", folder.getName())
             );
         });
     }
@@ -189,7 +189,7 @@ public class FolderSubCommand implements SubCommand {
 
             XSound.ENTITY_PLAYER_LEVELUP.play(player);
             Messages.sendMessage(player, "worlds_folder_project_set",
-                    Map.entry("%folder%", folder.getName())
+                Map.entry("%folder%", folder.getName())
             );
         });
     }
@@ -208,7 +208,7 @@ public class FolderSubCommand implements SubCommand {
 
         folder.setIcon(XMaterial.matchXMaterial(itemStack));
         Messages.sendMessage(player, "worlds_folder_item_set",
-                Map.entry("%folder%", folder.getName())
+            Map.entry("%folder%", folder.getName())
         );
     }
 
@@ -222,14 +222,14 @@ public class FolderSubCommand implements SubCommand {
         boolean hasSubFolders = this.folderStorage.getFolders().stream().anyMatch(f -> Objects.equals(f.getParent(), folder));
         if (hasWorlds || hasSubFolders) {
             Messages.sendMessage(player, "worlds_folder_not_empty",
-                    Map.entry("%folder%", folder.getName())
+                Map.entry("%folder%", folder.getName())
             );
             return;
         }
 
         this.folderStorage.removeFolder(folder);
         Messages.sendMessage(player, "worlds_folder_deleted",
-                Map.entry("%folder%", folder.getName())
+            Map.entry("%folder%", folder.getName())
         );
         XSound.ENTITY_PLAYER_LEVELUP.play(player);
     }

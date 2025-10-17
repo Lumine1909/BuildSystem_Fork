@@ -67,33 +67,33 @@ public class BackupProfileImpl implements BackupProfile {
 
         CompletableFuture<Backup> resultFuture = new CompletableFuture<>();
         this.listBackups()
-                .thenComposeAsync(backups -> {
-                    synchronized (this.backupLock) {
-                        int maxBackups = Config.World.Backup.maxBackupsPerWorld;
-                        int excess = backups.size() - maxBackups + 1;
+            .thenComposeAsync(backups -> {
+                synchronized (this.backupLock) {
+                    int maxBackups = Config.World.Backup.maxBackupsPerWorld;
+                    int excess = backups.size() - maxBackups + 1;
 
-                        List<CompletableFuture<Void>> deleteFutures = Collections.emptyList();
+                    List<CompletableFuture<Void>> deleteFutures = Collections.emptyList();
 
-                        if (excess > 0) {
-                            deleteFutures = backups.stream()
-                                    .sorted(Comparator.comparingLong(Backup::creationTime))
-                                    .limit(excess)
-                                    .map(storage::deleteBackup)
-                                    .toList();
-                        }
-
-                        return CompletableFuture
-                                .allOf(deleteFutures.toArray(new CompletableFuture[0]))
-                                .thenCompose(v -> storage.storeBackup(this.buildWorld));
+                    if (excess > 0) {
+                        deleteFutures = backups.stream()
+                            .sorted(Comparator.comparingLong(Backup::creationTime))
+                            .limit(excess)
+                            .map(storage::deleteBackup)
+                            .toList();
                     }
-                })
-                .whenComplete((backup, throwable) -> {
-                    if (throwable != null) {
-                        resultFuture.completeExceptionally(throwable);
-                    } else {
-                        resultFuture.complete(backup);
-                    }
-                });
+
+                    return CompletableFuture
+                        .allOf(deleteFutures.toArray(new CompletableFuture[0]))
+                        .thenCompose(v -> storage.storeBackup(this.buildWorld));
+                }
+            })
+            .whenComplete((backup, throwable) -> {
+                if (throwable != null) {
+                    resultFuture.completeExceptionally(throwable);
+                } else {
+                    resultFuture.complete(backup);
+                }
+            });
 
         return resultFuture;
     }
@@ -145,7 +145,7 @@ public class BackupProfileImpl implements BackupProfile {
         }
 
         Messages.sendMessage(player, "worlds_backup_restoration_successful",
-                Map.entry("%timestamp%", StringUtils.formatTime(backup.creationTime()))
+            Map.entry("%timestamp%", StringUtils.formatTime(backup.creationTime()))
         );
     }
 }

@@ -175,8 +175,8 @@ public final class UpdateChecker {
                     return new UpdateResult(UpdateReason.UNSUPPORTED_VERSION_SCHEME);
                 } else if (latest.equals(pluginVersion)) {
                     return new UpdateResult(pluginVersion.equals(currentVersion)
-                            ? UpdateReason.UP_TO_DATE
-                            : UpdateReason.UNRELEASED_VERSION);
+                        ? UpdateReason.UP_TO_DATE
+                        : UpdateReason.UNRELEASED_VERSION);
                 } else if (latest.equals(currentVersion)) {
                     return new UpdateResult(UpdateReason.NEW_UPDATE, latest);
                 }

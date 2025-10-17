@@ -60,8 +60,8 @@ public class UnimportSubCommand implements SubCommand {
         }
 
         plugin.getWorldService()
-                .unimportWorld(buildWorld, true)
-                .thenRun(() -> Messages.sendMessage(player, "worlds_unimport_finished", Map.entry("%world%", buildWorld.getName())));
+            .unimportWorld(buildWorld, true)
+            .thenRun(() -> Messages.sendMessage(player, "worlds_unimport_finished", Map.entry("%world%", buildWorld.getName())));
     }
 
     @Override

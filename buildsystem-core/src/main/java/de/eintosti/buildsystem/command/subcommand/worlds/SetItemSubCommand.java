@@ -67,7 +67,7 @@ public class SetItemSubCommand implements SubCommand {
 
         buildWorld.getData().material().set(XMaterial.matchXMaterial(itemStack));
         Messages.sendMessage(player, "worlds_setitem_set",
-                Map.entry("%world%", buildWorld.getName())
+            Map.entry("%world%", buildWorld.getName())
         );
     }
 

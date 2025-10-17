@@ -117,8 +117,8 @@ public class GamemodeCommand implements CommandExecutor {
         target.setGameMode(gameMode);
         Messages.sendMessage(target, "gamemode_set_self", Map.entry("%gamemode%", gameModeName));
         Messages.sendMessage(player, "gamemode_set_other",
-                Map.entry("%target%", target.getName()),
-                Map.entry("%gamemode%", gameModeName)
+            Map.entry("%target%", target.getName()),
+            Map.entry("%gamemode%", gameModeName)
         );
     }
 }

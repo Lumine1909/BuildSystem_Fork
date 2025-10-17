@@ -55,14 +55,14 @@ public class DeleteInventory implements InventoryHandler {
         fillGuiWithGlass(inventory);
 
         inventory.setItem(11, InventoryUtils.createItem(XMaterial.LIME_DYE,
-                Messages.getString("delete_world_confirm", player))
+            Messages.getString("delete_world_confirm", player))
         );
         inventory.setItem(13, InventoryUtils.createItem(XMaterial.FILLED_MAP,
-                Messages.getString("delete_world_name", player, Map.entry("%world%", buildWorld.getName())),
-                Messages.getStringList("delete_world_name_lore", player)
+            Messages.getString("delete_world_name", player, Map.entry("%world%", buildWorld.getName())),
+            Messages.getStringList("delete_world_name_lore", player)
         ));
         inventory.setItem(15, InventoryUtils.createItem(XMaterial.RED_DYE,
-                Messages.getString("delete_world_cancel", player))
+            Messages.getString("delete_world_cancel", player))
         );
 
         return inventory;

@@ -81,9 +81,9 @@ public class ArmorStandManager {
         armorStand.setGravity(false);
         armorStand.setCanPickupItems(false);
         armorStand.getEquipment().setHelmet(
-                XSkull.createItem()
-                        .profile(Profileable.detect(customSkull ? skullUrl : player.getName()))
-                        .apply()
+            XSkull.createItem()
+                .profile(Profileable.detect(customSkull ? skullUrl : player.getName()))
+                .apply()
         );
 
         PersistentDataContainer pdc = armorStand.getPersistentDataContainer();

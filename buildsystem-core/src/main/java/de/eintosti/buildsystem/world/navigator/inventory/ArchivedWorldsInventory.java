@@ -36,13 +36,13 @@ public class ArchivedWorldsInventory extends DisplayablesInventory {
 
     public ArchivedWorldsInventory(BuildSystemPlugin plugin, Player player) {
         super(
-                plugin,
-                player,
-                NavigatorCategory.ARCHIVE,
-                Messages.getString("archive_title", player),
-                Messages.getString("archive_no_worlds", player),
-                Visibility.IGNORE,
-                Sets.newHashSet(BuildWorldStatus.ARCHIVE)
+            plugin,
+            player,
+            NavigatorCategory.ARCHIVE,
+            Messages.getString("archive_title", player),
+            Messages.getString("archive_no_worlds", player),
+            Visibility.IGNORE,
+            Sets.newHashSet(BuildWorldStatus.ARCHIVE)
         );
     }
 

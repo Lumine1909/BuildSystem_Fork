@@ -55,6 +55,7 @@ import de.eintosti.buildsystem.config.Config.Settings.Builder;
 import de.eintosti.buildsystem.config.Config.World;
 import de.eintosti.buildsystem.config.Config.World.Unload;
 import de.eintosti.buildsystem.config.migration.ConfigMigrationManager;
+import de.eintosti.buildsystem.dynamic.CraftServerInjector;
 import de.eintosti.buildsystem.expansion.luckperms.LuckPermsExpansion;
 import de.eintosti.buildsystem.expansion.placeholderapi.PlaceholderApiExpansion;
 import de.eintosti.buildsystem.listener.AsyncPlayerChatListener;
@@ -175,8 +176,10 @@ public class BuildSystemPlugin extends JavaPlugin {
 
         this.configSaveTask = Bukkit.getScheduler().runTaskTimerAsynchronously(this, this::saveBuildConfig, 6000L, 6000L); // Every 5 minutes
 
+        CraftServerInjector.inject();
+
         Bukkit.getConsoleSender().sendMessage(
-                "%sBuildSystem » Plugin %senabled%s!".formatted(ChatColor.RESET, ChatColor.GREEN, ChatColor.RESET)
+            "%sBuildSystem » Plugin %senabled%s!".formatted(ChatColor.RESET, ChatColor.GREEN, ChatColor.RESET)
         );
     }
 
@@ -209,8 +212,10 @@ public class BuildSystemPlugin extends JavaPlugin {
         unregisterExpansions();
         this.api.unregister();
 
+        CraftServerInjector.uninject();
+
         Bukkit.getConsoleSender().sendMessage(
-                "%sBuildSystem » Plugin %sdisabled%s!".formatted(ChatColor.RESET, ChatColor.RED, ChatColor.RESET)
+            "%sBuildSystem » Plugin %sdisabled%s!".formatted(ChatColor.RESET, ChatColor.RED, ChatColor.RESET)
         );
 
         instance = null;
@@ -337,7 +342,7 @@ public class BuildSystemPlugin extends JavaPlugin {
         }
 
         boolean isWorldEdit = pluginManager.getPlugin("WorldEdit") != null
-                || pluginManager.getPlugin("FastAsyncWorldEdit") != null;
+            || pluginManager.getPlugin("FastAsyncWorldEdit") != null;
         if (isWorldEdit && Builder.blockWorldEditNonBuilder) {
             new EditSessionListener(this);
         }
@@ -359,25 +364,25 @@ public class BuildSystemPlugin extends JavaPlugin {
         }
 
         UpdateChecker.init(this, SPIGOT_ID).requestUpdateCheck().whenComplete((result, e) -> {
-                    if (result.requiresUpdate()) {
-                        Bukkit.getConsoleSender().sendMessage(
-                                ChatColor.YELLOW + "[BuildSystem] Great! a new update is available: "
-                                        + ChatColor.GREEN + "v" + result.getNewestVersion()
-                        );
-                        Bukkit.getConsoleSender().sendMessage(
-                                ChatColor.YELLOW + " ➥ Your current version: " +
-                                        ChatColor.RED + this.getDescription().getVersion()
-                        );
-                        return;
-                    }
-
-                    UpdateChecker.UpdateReason reason = result.getReason();
-                    switch (reason) {
-                        case COULD_NOT_CONNECT, INVALID_JSON, UNAUTHORIZED_QUERY, UNKNOWN_ERROR, UNSUPPORTED_VERSION_SCHEME -> Bukkit.getConsoleSender().sendMessage(
-                                ChatColor.RED + "[BuildSystem] Could not check for a new version of BuildSystem. Reason: " + reason
-                        );
-                    }
+                if (result.requiresUpdate()) {
+                    Bukkit.getConsoleSender().sendMessage(
+                        ChatColor.YELLOW + "[BuildSystem] Great! a new update is available: "
+                            + ChatColor.GREEN + "v" + result.getNewestVersion()
+                    );
+                    Bukkit.getConsoleSender().sendMessage(
+                        ChatColor.YELLOW + " ➥ Your current version: " +
+                            ChatColor.RED + this.getDescription().getVersion()
+                    );
+                    return;
                 }
+
+                UpdateChecker.UpdateReason reason = result.getReason();
+                switch (reason) {
+                    case COULD_NOT_CONNECT, INVALID_JSON, UNAUTHORIZED_QUERY, UNKNOWN_ERROR, UNSUPPORTED_VERSION_SCHEME -> Bukkit.getConsoleSender().sendMessage(
+                        ChatColor.RED + "[BuildSystem] Could not check for a new version of BuildSystem. Reason: " + reason
+                    );
+                }
+            }
         );
     }
 

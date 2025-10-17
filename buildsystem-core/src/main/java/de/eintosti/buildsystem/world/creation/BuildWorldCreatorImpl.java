@@ -184,8 +184,8 @@ public class BuildWorldCreatorImpl implements BuildWorldCreator {
         }
 
         boolean success = (this.worldType == BuildWorldType.TEMPLATE)
-                ? createWorldFromTemplate(player)
-                : createWorldFromGenerator(player);
+            ? createWorldFromTemplate(player)
+            : createWorldFromGenerator(player);
 
         if (success) {
             teleportAfterCreation(player);
@@ -210,8 +210,8 @@ public class BuildWorldCreatorImpl implements BuildWorldCreator {
      */
     private boolean createWorldFromGenerator(Player player) {
         Messages.sendMessage(player, "worlds_world_creation_started",
-                Map.entry("%world%", this.worldName),
-                Map.entry("%type%", Messages.getString(Messages.getMessageKey(this.worldType), player))
+            Map.entry("%world%", this.worldName),
+            Map.entry("%type%", Messages.getString(Messages.getMessageKey(this.worldType), player))
         );
 
         this.buildWorld = createAndRegisterBuildWorld(player);
@@ -237,8 +237,8 @@ public class BuildWorldCreatorImpl implements BuildWorldCreator {
         }
 
         Messages.sendMessage(player, "worlds_template_creation_started",
-                Map.entry("%world%", this.worldName),
-                Map.entry("%template%", this.template)
+            Map.entry("%world%", this.worldName),
+            Map.entry("%template%", this.template)
         );
 
         File worldFile = new File(Bukkit.getWorldContainer(), this.worldName);
@@ -257,13 +257,13 @@ public class BuildWorldCreatorImpl implements BuildWorldCreator {
      */
     private BuildWorld createAndRegisterBuildWorld(Player player) {
         BuildWorldImpl buildWorld = new BuildWorldImpl(
-                this.worldName,
-                this.creator == null ? Builder.of(player) : this.creator,
-                this.worldType,
-                this.creationDate,
-                this.isPrivate,
-                this.customGenerator,
-                this.folder
+            this.worldName,
+            this.creator == null ? Builder.of(player) : this.creator,
+            this.worldType,
+            this.creationDate,
+            this.isPrivate,
+            this.customGenerator,
+            this.folder
         );
 
         // Also store the world in the folder
@@ -296,10 +296,12 @@ public class BuildWorldCreatorImpl implements BuildWorldCreator {
 
         if (checkVersion && isDataVersionTooHigh()) {
             plugin.getLogger().warning(
-                    "\"%s\" was created in a newer version of Minecraft (%s > %s). Skipping...".formatted(worldName, parseDataVersion(), getServerDataVersion())
+                "\"%s\" was created in a newer version of Minecraft (%s > %s). Skipping...".formatted(worldName, parseDataVersion(), getServerDataVersion())
             );
             return null;
         }
+
+        buildWorld.setLoading(true);
 
         WorldCreator worldCreator = createBukkitWorldCreator();
         World bukkitWorld = Bukkit.createWorld(worldCreator);
@@ -310,6 +312,8 @@ public class BuildWorldCreatorImpl implements BuildWorldCreator {
             updateWorldDataVersion();
             saveGenerationData(bukkitWorld, this.buildWorld.getType(), this.customGenerator);
         }
+
+        buildWorld.setLoading(false);
 
         return bukkitWorld;
     }
@@ -336,7 +340,7 @@ public class BuildWorldCreatorImpl implements BuildWorldCreator {
                     this.customGenerator = customGeneratorData.getCustomGenerator(this.worldName);
                     if (this.customGenerator == null) {
                         plugin.getLogger().warning(
-                                "Custom generator '%s:%s' not found. Defaulting to NORMAL type.".formatted(customGeneratorData.pluginName(), customGeneratorData.chunkGeneratorName())
+                            "Custom generator '%s:%s' not found. Defaulting to NORMAL type.".formatted(customGeneratorData.pluginName(), customGeneratorData.chunkGeneratorName())
                         );
                         worldType = BuildWorldType.NORMAL;
                     }
@@ -516,9 +520,9 @@ public class BuildWorldCreatorImpl implements BuildWorldCreator {
             Files.writeString(path, contentToSave, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE);
         } catch (IOException e) {
             plugin.getLogger().log(
-                    Level.WARNING,
-                    "Failed to save world generation setting for world %s (type: %s, generator: %s)".formatted(world.getName(), worldType.name(), customGenerator),
-                    e
+                Level.WARNING,
+                "Failed to save world generation setting for world %s (type: %s, generator: %s)".formatted(world.getName(), worldType.name(), customGenerator),
+                e
             );
         }
     }

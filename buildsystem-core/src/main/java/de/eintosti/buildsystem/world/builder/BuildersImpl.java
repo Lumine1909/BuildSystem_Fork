@@ -81,8 +81,8 @@ public class BuildersImpl implements Builders {
     @Unmodifiable
     public List<String> getBuilderNames() {
         return getAllBuilders().stream()
-                .map(Builder::getName)
-                .toList();
+            .map(Builder::getName)
+            .toList();
     }
 
     @Override

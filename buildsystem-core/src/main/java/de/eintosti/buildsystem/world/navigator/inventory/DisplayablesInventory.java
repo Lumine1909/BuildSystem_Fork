@@ -117,13 +117,13 @@ public abstract class DisplayablesInventory extends PaginatedInventory {
      * @param validStatuses      The set of valid statuses for worlds to be displayed
      */
     protected DisplayablesInventory(
-            BuildSystemPlugin plugin,
-            Player player,
-            NavigatorCategory category,
-            String inventoryTitle,
-            @Nullable String noWorldsMessage,
-            Visibility requiredVisibility,
-            Set<BuildWorldStatus> validStatuses
+        BuildSystemPlugin plugin,
+        Player player,
+        NavigatorCategory category,
+        String inventoryTitle,
+        @Nullable String noWorldsMessage,
+        Visibility requiredVisibility,
+        Set<BuildWorldStatus> validStatuses
     ) {
         this.plugin = plugin;
         this.inventoryManager = plugin.getInventoryManager();
@@ -229,8 +229,8 @@ public abstract class DisplayablesInventory extends PaginatedInventory {
 
         Collection<Folder> folders = collectFolders();
         List<BuildWorld> standaloneWorlds = filterWorlds(collectWorlds(), worldDisplay).stream()
-                .filter(buildWorld -> !buildWorld.isAssignedToFolder())
-                .toList();
+            .filter(buildWorld -> !buildWorld.isAssignedToFolder())
+            .toList();
 
         List<Displayable> displayables = new ArrayList<>();
         displayables.addAll(folders);
@@ -247,10 +247,10 @@ public abstract class DisplayablesInventory extends PaginatedInventory {
     @Unmodifiable
     protected Collection<Folder> collectFolders() {
         return folderStorage.getFolders().stream()
-                .filter(folder -> folder.getCategory() == this.category)
-                .filter(folder -> !folder.hasParent())
-                .filter(folder -> folder.canView(this.player))
-                .toList();
+            .filter(folder -> folder.getCategory() == this.category)
+            .filter(folder -> !folder.hasParent())
+            .filter(folder -> folder.canView(this.player))
+            .toList();
     }
 
     /**
@@ -270,9 +270,9 @@ public abstract class DisplayablesInventory extends PaginatedInventory {
     @Unmodifiable
     protected Collection<BuildWorld> filterWorlds(Collection<BuildWorld> buildWorlds, WorldDisplay worldDisplay) {
         return buildWorlds.stream()
-                .filter(this::isWorldValidForDisplay)
-                .filter(worldDisplay.getWorldFilter().apply())
-                .toList();
+            .filter(this::isWorldValidForDisplay)
+            .filter(worldDisplay.getWorldFilter().apply())
+            .toList();
     }
 
     /**
@@ -295,7 +295,7 @@ public abstract class DisplayablesInventory extends PaginatedInventory {
             return false;
         }
 
-        return Bukkit.getWorld(buildWorld.getName()) != null || !buildWorld.isLoaded();
+        return Config.Settings.dynamicWorldLoad || !buildWorld.isLoaded() || Bukkit.getWorld(buildWorld.getName()) != null;
     }
 
     /**

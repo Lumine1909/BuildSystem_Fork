@@ -96,8 +96,8 @@ public class Messages {
         setMessage(config, sb, "cancel_subtitle", "&7Type &ccancel &7to cancel");
         setMessage(config, sb, "input_cancelled", "%prefix% &cInput cancelled!");
         setMessage(config, sb, "update_available", Arrays.asList(
-                "%prefix% &7Great! A new update is available &8[&bv%new_version%&8]",
-                " &8➥ &7Your current version: &bv%current_version%"
+            "%prefix% &7Great! A new update is available &8[&bv%new_version%&8]",
+            " &8➥ &7Your current version: &bv%current_version%"
         ));
         setMessage(config, sb, "command_archive_world", "%prefix% &cYou can't use that command here!");
         setMessage(config, sb, "command_not_builder", "%prefix% &cOnly builders can use that command!");
@@ -108,13 +108,13 @@ public class Messages {
         addSpacer(sb, "# ---------");
         setMessage(config, sb, "title", "&b&lBuildSystem");
         setMessage(config, sb, "body", Arrays.asList(
-                "&7&m                     &8",
-                "&7World:",
-                " &b%world%",
-                " ",
-                "&7Status:",
-                " %status%",
-                "&7&m                     &7"
+            "&7&m                     &8",
+            "&7World:",
+            " &b%world%",
+            " ",
+            "&7Status:",
+            " %status%",
+            "&7&m                     &7"
         ));
         addSpacer(sb, "");
         addSpacer(sb, "");
@@ -331,7 +331,7 @@ public class Messages {
         setMessage(config, sb, "worlds_import_newer_version", "%prefix% &b%world% &7was created in a &cnewer version &7of Minecraft. Unable to import.");
         setMessage(config, sb, "worlds_import_started", "%prefix% &7The import of &b%world% &7has started...");
         setMessage(config, sb, "worlds_import_invalid_character", "%prefix% &7Unable to import &c%world%&7.\n" +
-                "%prefix% &7&oName contains invalid character: &c%char%");
+            "%prefix% &7&oName contains invalid character: &c%char%");
         setMessage(config, sb, "worlds_import_finished", "%prefix% &7The world was &asuccessfully &7imported.");
         addSpacer(sb, "");
         setMessage(config, sb, "worlds_importall_usage", "%prefix% &7Usage: &b/worlds importall [-g <generator> | -c <creator>]");
@@ -349,28 +349,28 @@ public class Messages {
         setMessage(config, sb, "worlds_info_usage", "%prefix% &7Usage: &b/worlds info [world]");
         setMessage(config, sb, "worlds_info_unknown_world", "%prefix% &cUnknown world.");
         setMessage(config, sb, "world_info", Arrays.asList(
-                "&7&m-------------------------------------",
-                "%prefix% &7&nWorld info:&b %world%",
-                " ",
-                " &8- &7UUID: &b%uuid%",
-                " &8- &7Creator: &b%creator%",
-                " &8- &7Type: &b%type%",
-                " &8- &7Private: &b%private%",
-                " &8- &7Builders enabled: &b%builders_enabled%",
-                " &8- &7Builders: &b%builders%",
-                " &8- &7Item: &b%item%",
-                " &8- &7Status: &b%status%",
-                " &8- &7Project: &b%project%",
-                " &8- &7Permission: &b%permission%",
-                " &8- &7Time: &b%time%",
-                " &8- &7Creation date: &b%creation%",
-                " &8- &7Physics: &b%physics%",
-                " &8- &7Explosions: &b%explosions%",
-                " &8- &7Block breaking: &b%block_breaking%",
-                " &8- &7Block placement: &b%block_placement%",
-                " &8- &7MobAI: &b%mobai%",
-                " &8- &7Custom spawn: &b%custom_spawn%",
-                "&7&m-------------------------------------"));
+            "&7&m-------------------------------------",
+            "%prefix% &7&nWorld info:&b %world%",
+            " ",
+            " &8- &7UUID: &b%uuid%",
+            " &8- &7Creator: &b%creator%",
+            " &8- &7Type: &b%type%",
+            " &8- &7Private: &b%private%",
+            " &8- &7Builders enabled: &b%builders_enabled%",
+            " &8- &7Builders: &b%builders%",
+            " &8- &7Item: &b%item%",
+            " &8- &7Status: &b%status%",
+            " &8- &7Project: &b%project%",
+            " &8- &7Permission: &b%permission%",
+            " &8- &7Time: &b%time%",
+            " &8- &7Creation date: &b%creation%",
+            " &8- &7Physics: &b%physics%",
+            " &8- &7Explosions: &b%explosions%",
+            " &8- &7Block breaking: &b%block_breaking%",
+            " &8- &7Block placement: &b%block_placement%",
+            " &8- &7MobAI: &b%mobai%",
+            " &8- &7Custom spawn: &b%custom_spawn%",
+            "&7&m-------------------------------------"));
         addSpacer(sb, "");
         setMessage(config, sb, "worlds_item_receive", "%prefix% &7You received the &bNavigator&7.");
         addSpacer(sb, "");
@@ -464,35 +464,35 @@ public class Messages {
         setMessage(config, sb, "world_navigator_create_folder", "&bCreate a Folder");
         setMessage(config, sb, "world_item_title", "&3&l%world%");
         setMessage(config, sb, "world_item_lore_normal", Arrays.asList(
-                "&7Status&8: %status%",
-                "",
-                "&7Creator&8: &b%creator%",
-                "&7Project&8: &b%project%",
-                "&7Permission&8: &b%permission%",
-                "",
-                "&7Builders&8:",
-                "%builders%"
+            "&7Status&8: %status%",
+            "",
+            "&7Creator&8: &b%creator%",
+            "&7Project&8: &b%project%",
+            "&7Permission&8: &b%permission%",
+            "",
+            "&7Builders&8:",
+            "%builders%"
         ));
         setMessage(config, sb, "world_item_lore_edit", Arrays.asList(
-                "&7Status&8: %status%",
-                "",
-                "&7Creator&8: &b%creator%",
-                "&7Project&8: &b%project%",
-                "&7Permission&8: &b%permission%",
-                "",
-                "&7Builders&8:",
-                "%builders%",
-                "",
-                "&8- &7&oLeft click&8: &7Teleport",
-                "&8- &7&oRight click&8: &7Edit"
+            "&7Status&8: %status%",
+            "",
+            "&7Creator&8: &b%creator%",
+            "&7Project&8: &b%project%",
+            "&7Permission&8: &b%permission%",
+            "",
+            "&7Builders&8:",
+            "%builders%",
+            "",
+            "&8- &7&oLeft click&8: &7Teleport",
+            "&8- &7&oRight click&8: &7Edit"
         ));
         setMessage(config, sb, "folder_title", "&3» &8%folder%");
         setMessage(config, sb, "folder_item_title", "&3&l%folder%");
         setMessage(config, sb, "folder_item_lore", Arrays.asList(
-                "&7Project&8: &b%project%",
-                "&7Permission&8: &b%permission%",
-                "",
-                "&7Worlds&8: &b%worlds%"
+            "&7Project&8: &b%project%",
+            "&7Permission&8: &b%permission%",
+            "",
+            "&7Worlds&8: &b%worlds%"
         ));
         setMessage(config, sb, "world_item_builders_builder_template", "&b%builder%&7, ");
         setMessage(config, sb, "world_sort_title", "&bSort");
@@ -510,10 +510,10 @@ public class Messages {
         setMessage(config, sb, "world_filter_mode_contains", "&8» &7&oContains: &b&o%text%");
         setMessage(config, sb, "world_filter_mode_matches", "&8» &7&oMatches: &b&o%text%");
         setMessage(config, sb, "world_filter_lore", Arrays.asList(
-                "",
-                "&8- &7&oLeft click&8: &7Change text",
-                "&8- &7&oRight click&8: &7Change mode",
-                "&8- &7&oShift click&8: &7Reset to default"
+            "",
+            "&8- &7&oLeft click&8: &7Change text",
+            "&8- &7&oRight click&8: &7Change mode",
+            "&8- &7&oShift click&8: &7Reset to default"
         ));
         addSpacer(sb, "");
         addSpacer(sb, "# World Archive");
@@ -529,22 +529,22 @@ public class Messages {
         setMessage(config, sb, "backups_title", "&3» &8World Backups");
         setMessage(config, sb, "backups_information_name", "&aInformation");
         setMessage(config, sb, "backups_information_lore", Arrays.asList(
-                "",
-                "&7A backup is automatically created",
-                "&7every &a%interval% minutes &7in which a",
-                "&7builder is present in the world.",
-                "",
-                "&7Next backup in: &a%remaining%"
+            "",
+            "&7A backup is automatically created",
+            "&7every &a%interval% minutes &7in which a",
+            "&7builder is present in the world.",
+            "",
+            "&7Next backup in: &a%remaining%"
         ));
         setMessage(config, sb, "backups_backup_name", "&a%timestamp%");
         setMessage(config, sb, "restore_backup_title", "&3» &8Restore Backup");
         setMessage(config, sb, "restore_backup_confirm_name", "&aConfirm");
         setMessage(config, sb, "restore_backup_confirm_lore", Arrays.asList(
-                "",
-                "&7Are you sure you to &arestore &7to the",
-                "&7backup from &f%timestamp%&7?",
-                "",
-                "&c&nWarning&c: &7This action &cCANNOT &7be undone."
+            "",
+            "&7Are you sure you to &arestore &7to the",
+            "&7backup from &f%timestamp%&7?",
+            "",
+            "&c&nWarning&c: &7This action &cCANNOT &7be undone."
         ));
         setMessage(config, sb, "restore_backup_cancel_name", "&cCancel");
         addSpacer(sb, "");
@@ -552,19 +552,19 @@ public class Messages {
         setMessage(config, sb, "setup_title", "&3» &8Setup");
         setMessage(config, sb, "setup_default_item_name", "&bDefault Item");
         setMessage(config, sb, "setup_default_item_lore", Arrays.asList(
-                "&7The item which a world",
-                "&7has by default when created.",
-                "",
-                "&7&nTo change&7:",
-                "&8» &7&oDrag new item onto old one"
+            "&7The item which a world",
+            "&7has by default when created.",
+            "",
+            "&7&nTo change&7:",
+            "&8» &7&oDrag new item onto old one"
         ));
         setMessage(config, sb, "setup_status_item_name", "&bStatus Item");
         setMessage(config, sb, "setup_status_item_name_lore", Arrays.asList(
-                "&7The item which is shown when",
-                "&7you change a world's status.",
-                "",
-                "&7&nTo change&7:",
-                "&8» &7&oDrag new item onto old one"
+            "&7The item which is shown when",
+            "&7you change a world's status.",
+            "",
+            "&7&nTo change&7:",
+            "&8» &7&oDrag new item onto old one"
         ));
         setMessage(config, sb, "setup_normal_world", "&bNormal World");
         setMessage(config, sb, "setup_flat_world", "&aFlat World");
@@ -617,10 +617,10 @@ public class Messages {
         setMessage(config, sb, "delete_title", "&3» &8Delete World");
         setMessage(config, sb, "delete_world_name", "&e%world%");
         setMessage(config, sb, "delete_world_name_lore", Arrays.asList(
-                "",
-                "&c&nWarning&c: &7&oOnce a world is",
-                "&7&odeleted it is lost forever",
-                "&7&oand cannot be recovered!"
+            "",
+            "&c&nWarning&c: &7&oOnce a world is",
+            "&7&odeleted it is lost forever",
+            "&7&oand cannot be recovered!"
         ));
         setMessage(config, sb, "delete_world_cancel", "&cCancel");
         setMessage(config, sb, "delete_world_confirm", "&aConfirm");
@@ -631,28 +631,28 @@ public class Messages {
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_blockbreaking_item", "&bBlock Breaking");
         setMessage(config, sb, "worldeditor_blockbreaking_lore", Arrays.asList(
-                "&7&oToggle whether or not blocks",
-                "&7&oare able to be broken."
+            "&7&oToggle whether or not blocks",
+            "&7&oare able to be broken."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_blockplacement_item", "&bBlock Placement");
         setMessage(config, sb, "worldeditor_blockplacement_lore", Arrays.asList(
-                "&7&oToggle whether or not blocks",
-                "&7&oare able to be placed."
+            "&7&oToggle whether or not blocks",
+            "&7&oare able to be placed."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_physics_item", "&bBlock Physics");
         setMessage(config, sb, "worldeditor_physics_lore", Arrays.asList(
-                "&7&oToggle whether or not block",
-                "&7&ophysics are activated."
+            "&7&oToggle whether or not block",
+            "&7&ophysics are activated."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_time_item", "&bTime");
         setMessage(config, sb, "worldeditor_time_lore", Arrays.asList(
-                "&7&oAlter the time of day",
-                "&7&oin the world.",
-                "",
-                "&7&nCurrently&7: %time%"
+            "&7&oAlter the time of day",
+            "&7&oin the world.",
+            "",
+            "&7&nCurrently&7: %time%"
         ));
         setMessage(config, sb, "worldeditor_time_lore_sunrise", "&6Sunrise");
         setMessage(config, sb, "worldeditor_time_lore_noon", "&eNoon");
@@ -661,8 +661,8 @@ public class Messages {
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_explosions_item", "&bExplosions");
         setMessage(config, sb, "worldeditor_explosions_lore", Arrays.asList(
-                "&7&oToggle whether or not",
-                "&7&oexplosions are activated."
+            "&7&oToggle whether or not",
+            "&7&oexplosions are activated."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_butcher_item", "&bButcher");
@@ -671,15 +671,15 @@ public class Messages {
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_builders_item", "&bBuilders");
         setMessage(config, sb, "worldeditor_builders_lore", Arrays.asList(
-                "&7&oManage which players can",
-                "&7&obuild in the world.",
-                "",
-                "&8- &7&oLeft click&8: &7Toggle feature",
-                "&8- &7&oRight click&8: &7Manage builders"));
+            "&7&oManage which players can",
+            "&7&obuild in the world.",
+            "",
+            "&8- &7&oLeft click&8: &7Toggle feature",
+            "&8- &7&oRight click&8: &7Manage builders"));
         setMessage(config, sb, "worldeditor_builders_not_creator_item", "&c&mBuilders");
         setMessage(config, sb, "worldeditor_builders_not_creator_lore", Arrays.asList(
-                "&7&oYou are not the creator",
-                "&7&oof this world."
+            "&7&oYou are not the creator",
+            "&7&oof this world."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_builders_title", "&3» &8Builders");
@@ -697,28 +697,28 @@ public class Messages {
         setMessage(config, sb, "worldeditor_gamerules_boolean_enabled", Collections.singletonList("&7&nCurrently&7: &atrue"));
         setMessage(config, sb, "worldeditor_gamerules_boolean_disabled", Collections.singletonList("&7&nCurrently&7: &cfalse"));
         setMessage(config, sb, "worldeditor_gamerules_integer", Arrays.asList(
-                "&7&nCurrently&7: &e%value%",
-                "",
-                "&8- &7&oLeft Click&8: &7decrease by 1",
-                "&8- &7&oShift &7+ &7&oLeft Click&8: &7decrease by 10",
-                "&8- &7&oRight Click&8: &7increase by 1",
-                "&8- &7&oShift &7+ &7&oRight Click&8: &7increase by 10"));
+            "&7&nCurrently&7: &e%value%",
+            "",
+            "&8- &7&oLeft Click&8: &7decrease by 1",
+            "&8- &7&oShift &7+ &7&oLeft Click&8: &7decrease by 10",
+            "&8- &7&oRight Click&8: &7increase by 1",
+            "&8- &7&oShift &7+ &7&oRight Click&8: &7increase by 10"));
         setMessage(config, sb, "worldsettings_gamerule_", Arrays.asList(
-                "",
-                "&c&nWarning&c: &7&oOnce a world is",
-                "&7&odeleted it is lost forever",
-                "&7&oand cannot be recovered!"
+            "",
+            "&c&nWarning&c: &7&oOnce a world is",
+            "&7&odeleted it is lost forever",
+            "&7&oand cannot be recovered!"
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_visibility_item", "&bVisibility");
         setMessage(config, sb, "worldeditor_visibility_lore_public", Arrays.asList(
-                "&7&oChange the world's visibility",
-                "",
-                "&7&nCurrently&7: &bPublic"));
+            "&7&oChange the world's visibility",
+            "",
+            "&7&nCurrently&7: &bPublic"));
         setMessage(config, sb, "worldeditor_visibility_lore_private", Arrays.asList(
-                "&7&oChange the world's visibility",
-                "",
-                "&7&nCurrently&7: &bPrivate"
+            "&7&oChange the world's visibility",
+            "",
+            "&7&nCurrently&7: &bPrivate"
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_mobai_item", "&bMob AI");
@@ -726,36 +726,36 @@ public class Messages {
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_blockinteractions_item", "&bBlock Interactions");
         setMessage(config, sb, "worldeditor_blockinteractions_lore", Arrays.asList(
-                "&7&oToggle whether interactions",
-                "&7&owith blocks are cancelled."
+            "&7&oToggle whether interactions",
+            "&7&owith blocks are cancelled."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_difficulty_item", "&bDifficulty");
         setMessage(config, sb, "worldeditor_difficulty_lore", Arrays.asList(
-                "&7&oChange the world's difficulty.",
-                "",
-                "&7&nCurrently&7: %difficulty%"
+            "&7&oChange the world's difficulty.",
+            "",
+            "&7&nCurrently&7: %difficulty%"
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_status_item", "&bStatus");
         setMessage(config, sb, "worldeditor_status_lore", Arrays.asList(
-                "&7&oChange the world's status.",
-                "",
-                "&7&nCurrently&7: %status%"
+            "&7&oChange the world's status.",
+            "",
+            "&7&nCurrently&7: %status%"
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_project_item", "&bProject");
         setMessage(config, sb, "worldeditor_project_lore", Arrays.asList(
-                "&7&oChange the world's project.",
-                "",
-                "&7&nCurrently&7: &b%project%"
+            "&7&oChange the world's project.",
+            "",
+            "&7&nCurrently&7: &b%project%"
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "worldeditor_permission_item", "&bPermission");
         setMessage(config, sb, "worldeditor_permission_lore", Arrays.asList(
-                "&7&oChange the world's permission.",
-                "",
-                "&7&nCurrently&7: &b%permission%"
+            "&7&oChange the world's permission.",
+            "",
+            "&7&nCurrently&7: &b%permission%"
         ));
         addSpacer(sb, "");
         addSpacer(sb, "# Settings");
@@ -763,93 +763,93 @@ public class Messages {
         addSpacer(sb, "");
         setMessage(config, sb, "settings_change_design_item", "&bChange Design");
         setMessage(config, sb, "settings_change_design_lore", Arrays.asList(
-                "&7&oSelect which colour the",
-                "&7&oglass panes should have."
+            "&7&oSelect which colour the",
+            "&7&oglass panes should have."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_clear_inventory_item", "&bClear Inventory");
         setMessage(config, sb, "settings_clear_inventory_lore", Arrays.asList(
-                "&7&oWhen enabled, a player's",
-                "&7&oinventory is cleared on join."
+            "&7&oWhen enabled, a player's",
+            "&7&oinventory is cleared on join."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_disableinteract_item", "&bDisable Block Interactions");
         setMessage(config, sb, "settings_disableinteract_lore", Arrays.asList(
-                "&7&oWhen enabled, interactions with",
-                "&7&ocertain blocks are disabled."
+            "&7&oWhen enabled, interactions with",
+            "&7&ocertain blocks are disabled."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_hideplayers_item", "&bHide Players");
         setMessage(config, sb, "settings_hideplayers_lore", Arrays.asList(
-                "&7&oWhen enabled, all online",
-                "&7&oplayers will be hidden."
+            "&7&oWhen enabled, all online",
+            "&7&oplayers will be hidden."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_instantplacesigns_item", "&bInstant Place Signs");
         setMessage(config, sb, "settings_instantplacesigns_lore", Arrays.asList(
-                "&7&oWhen enabled, signs are placed",
-                "&7&owithout opening the text input."
+            "&7&oWhen enabled, signs are placed",
+            "&7&owithout opening the text input."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_keep_navigator_item", "&bKeep Navigator");
         setMessage(config, sb, "settings_keep_navigator_lore", Arrays.asList(
-                "&7&oWhen enabled, the navigator",
-                "&7&owill remain in your inventory",
-                "&7&oeven when you clear it."
+            "&7&oWhen enabled, the navigator",
+            "&7&owill remain in your inventory",
+            "&7&oeven when you clear it."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_new_navigator_item", "&bNew Navigator");
         setMessage(config, sb, "settings_new_navigator_lore", Arrays.asList(
-                "&7&oA new and improved navigator",
-                "&7&owhich is no longer a GUI."
+            "&7&oA new and improved navigator",
+            "&7&owhich is no longer a GUI."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_nightvision_item", "&bNightvision");
         setMessage(config, sb, "settings_nightvision_lore", Arrays.asList(
-                "&7&oWhen enabled, you will",
-                "&7&oreceive permanent night vision."
+            "&7&oWhen enabled, you will",
+            "&7&oreceive permanent night vision."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_no_clip_item", "&bNoClip");
         setMessage(config, sb, "settings_no_clip_lore", Arrays.asList(
-                "&7&oWhen flying against a wall, you",
-                "&7&owill be put into spectator mode."
+            "&7&oWhen flying against a wall, you",
+            "&7&owill be put into spectator mode."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_open_trapdoors_item", "&bOpen Trapdoors");
         setMessage(config, sb, "settings_open_trapdoors_lore", Arrays.asList(
-                "&7&oWhen right clicking iron (trap-)doors,",
-                "&7&othey will be opened/closed."
+            "&7&oWhen right clicking iron (trap-)doors,",
+            "&7&othey will be opened/closed."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_placeplants_item", "&bPlace Plants");
         setMessage(config, sb, "settings_placeplants_lore", Arrays.asList(
-                "&7&oWhen enabled, you can place",
-                "&7&oplants on every kind of block."
+            "&7&oWhen enabled, you can place",
+            "&7&oplants on every kind of block."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_scoreboard_item", "&bScoreboard");
         setMessage(config, sb, "settings_scoreboard_lore", Arrays.asList(
-                "&7&oA scoreboard which provides",
-                "&7&oyou with useful information."
+            "&7&oA scoreboard which provides",
+            "&7&oyou with useful information."
         ));
         setMessage(config, sb, "settings_scoreboard_disabled_item", "&c&mScoreboard");
         setMessage(config, sb, "settings_scoreboard_disabled_lore", Arrays.asList(
-                "&7&oThe scoreboard has been",
-                "&7&odisabled in the config."
+            "&7&oThe scoreboard has been",
+            "&7&odisabled in the config."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_slab_breaking_item", "&bSlab breaking");
         setMessage(config, sb, "settings_slab_breaking_lore", Arrays.asList(
-                "&7&oWhen breaking double slabs,",
-                "&7&oonly one half will be broken."
+            "&7&oWhen breaking double slabs,",
+            "&7&oonly one half will be broken."
         ));
         addSpacer(sb, "");
         setMessage(config, sb, "settings_spawnteleport_item", "&bSpawn Teleport");
         setMessage(config, sb, "settings_spawnteleport_lore", Arrays.asList(
-                "&7&oWhen enabled, you will be",
-                "&7&oteleported to the spawn",
-                "&7&oif it has been set."
+            "&7&oWhen enabled, you will be",
+            "&7&oteleported to the spawn",
+            "&7&oif it has been set."
         ));
         addSpacer(sb, "");
         addSpacer(sb, "# Change Design");
@@ -909,8 +909,8 @@ public class Messages {
         setMessage(config, sb, "blocks_debug_stick", "&bDebug Stick");
 
         try (
-                FileOutputStream fileStream = new FileOutputStream(file);
-                OutputStreamWriter writer = new OutputStreamWriter(fileStream, StandardCharsets.UTF_8)
+            FileOutputStream fileStream = new FileOutputStream(file);
+            OutputStreamWriter writer = new OutputStreamWriter(fileStream, StandardCharsets.UTF_8)
         ) {
             writer.write(sb.toString());
         } catch (IOException e) {
@@ -968,7 +968,7 @@ public class Messages {
     private static void checkIfKeyPresent(String key) {
         if (!MESSAGES.containsKey(key)) {
             Bukkit.getConsoleSender().sendMessage(
-                    ChatColor.RED + "[BuildSystem] Could not find message with key: " + key
+                ChatColor.RED + "[BuildSystem] Could not find message with key: " + key
             );
             createMessageFile();
         }
@@ -1037,13 +1037,13 @@ public class Messages {
     public static List<String> getStringList(String key, @Nullable Player player, Function<String, Entry<String, Object>[]> placeholders) {
         String message = MESSAGES.get(key).replace("%prefix%", getPrefix());
         return Arrays.stream(message.split("\n"))
-                .map(line -> replacePlaceholders(line, placeholders.apply(line)))
-                .map(line -> PLACEHOLDER_API_ENABLED && player != null
-                        ? PlaceholderAPI.setPlaceholders(player, line)
-                        : line
-                )
-                .map(ColorAPI::process)
-                .toList();
+            .map(line -> replacePlaceholders(line, placeholders.apply(line)))
+            .map(line -> PLACEHOLDER_API_ENABLED && player != null
+                ? PlaceholderAPI.setPlaceholders(player, line)
+                : line
+            )
+            .map(ColorAPI::process)
+            .toList();
     }
 
     /**
@@ -1090,14 +1090,14 @@ public class Messages {
         }
 
         return Arrays.stream(placeholders)
-                .map(entry -> (Function<String, String>) data -> data.replaceAll(entry.getKey(), String.valueOf(entry.getValue())))
-                .reduce(Function.identity(), Function::andThen)
-                .apply(query);
+            .map(entry -> (Function<String, String>) data -> data.replaceAll(entry.getKey(), String.valueOf(entry.getValue())))
+            .reduce(Function.identity(), Function::andThen)
+            .apply(query);
     }
 
     public static String formatDate(long millis) {
         return millis > 0
-                ? new SimpleDateFormat(Config.Messages.dateFormat).format(millis)
-                : "-";
+            ? new SimpleDateFormat(Config.Messages.dateFormat).format(millis)
+            : "-";
     }
 }
