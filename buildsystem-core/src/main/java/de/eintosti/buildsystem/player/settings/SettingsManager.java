@@ -137,15 +137,15 @@ public class SettingsManager {
         }
 
         return new Map.Entry[]{
-                Map.entry("%world%", worldName),
-                Map.entry("%status%", status),
-                Map.entry("%permission%", permission),
-                Map.entry("%project%", project),
-                Map.entry("%creator%", creator),
-                Map.entry("%creation%", creation),
-                Map.entry("%lastedited%", lastEdited),
-                Map.entry("%lastloaded%", lastLoaded),
-                Map.entry("%lastunloaded%", lastUnloaded)
+            Map.entry("%world%", worldName),
+            Map.entry("%status%", status),
+            Map.entry("%permission%", permission),
+            Map.entry("%project%", project),
+            Map.entry("%creator%", creator),
+            Map.entry("%creation%", creation),
+            Map.entry("%lastedited%", lastEdited),
+            Map.entry("%lastloaded%", lastLoaded),
+            Map.entry("%lastunloaded%", lastUnloaded)
         };
     }
 

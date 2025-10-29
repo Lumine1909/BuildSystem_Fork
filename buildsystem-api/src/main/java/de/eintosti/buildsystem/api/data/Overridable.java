@@ -32,8 +32,8 @@ import org.jspecify.annotations.Nullable;
  */
 @NullMarked
 public record Overridable<T>(
-        BooleanSupplier isEnabled,
-        Supplier<@Nullable T> provider
+    BooleanSupplier isEnabled,
+    Supplier<@Nullable T> provider
 ) implements Capability {
 
 }

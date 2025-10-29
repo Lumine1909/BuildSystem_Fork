@@ -111,8 +111,8 @@ public class WorldPermissionsImpl implements WorldPermissions {
         }
 
         return configurableType.getCapability(Bypassable.class)
-                .map(bypassable -> player.hasPermission(bypassable.permission()))
-                .orElse(false);
+            .map(bypassable -> player.hasPermission(bypassable.permission()))
+            .orElse(false);
     }
 
     @Override

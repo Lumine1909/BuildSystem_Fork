@@ -98,10 +98,10 @@ public class ConfigurableType<T> implements Type<T> {
     @SuppressWarnings({"unchecked"})
     public T get() {
         return getCapability(Overridable.class)
-                .map(raw -> (Overridable<T>) raw)
-                .filter(overridable -> overridable.isEnabled().getAsBoolean())
-                .map(overridable -> overridable.provider().get())
-                .orElse(this.value);
+            .map(raw -> (Overridable<T>) raw)
+            .filter(overridable -> overridable.isEnabled().getAsBoolean())
+            .map(overridable -> overridable.provider().get())
+            .orElse(this.value);
     }
 
     /**
