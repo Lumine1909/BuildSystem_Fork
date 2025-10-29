@@ -312,10 +312,10 @@ public class BuildSystemPlugin extends JavaPlugin {
         metrics.addCustomChart(new SimplePie("unload_worlds", () -> String.valueOf(Unload.enabled)));
         metrics.addCustomChart(new AdvancedPie("navigator_type", () -> {
             Map<NavigatorType, Long> countsByType = playerService.getPlayerStorage().getBuildPlayers().stream()
-                    .collect(Collectors.groupingBy(
-                            buildPlayer -> buildPlayer.getSettings().getNavigatorType(),
-                            Collectors.counting()
-                    ));
+                .collect(Collectors.groupingBy(
+                    buildPlayer -> buildPlayer.getSettings().getNavigatorType(),
+                    Collectors.counting()
+                ));
             int oldCount = countsByType.getOrDefault(NavigatorType.OLD, 0L).intValue();
             int newCount = countsByType.getOrDefault(NavigatorType.NEW, 0L).intValue();
             return Map.of("Old", oldCount, "New", newCount);

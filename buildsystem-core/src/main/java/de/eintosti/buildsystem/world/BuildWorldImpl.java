@@ -84,20 +84,20 @@ public final class BuildWorldImpl implements BuildWorld {
         @Nullable Folder folder
     ) {
         this(
-                UUID.randomUUID(),
-                name,
-                worldType,
-                new WorldDataBuilder(name)
-                        .withPrivateWorld(privateWorld)
-                        .withMaterial(privateWorld ? XMaterial.PLAYER_HEAD : BuildSystemPlugin.get().getCustomizableIcons().getIcon(worldType))
-                        .withPermission((privateWorld ? Permission.privatePermission : Permission.publicPermission).replace("%world%", name))
-                        .withBuildersEnabled(privateWorld ? BuildersEnabled.privateBuilders : BuildersEnabled.publicBuilders)
-                        .build(),
-                creator,
-                new ArrayList<>(),
-                creation,
-                customGenerator,
-                folder
+            UUID.randomUUID(),
+            name,
+            worldType,
+            new WorldDataBuilder(name)
+                .withPrivateWorld(privateWorld)
+                .withMaterial(privateWorld ? XMaterial.PLAYER_HEAD : BuildSystemPlugin.get().getCustomizableIcons().getIcon(worldType))
+                .withPermission((privateWorld ? Permission.privatePermission : Permission.publicPermission).replace("%world%", name))
+                .withBuildersEnabled(privateWorld ? BuildersEnabled.privateBuilders : BuildersEnabled.publicBuilders)
+                .build(),
+            creator,
+            new ArrayList<>(),
+            creation,
+            customGenerator,
+            folder
         );
     }
 

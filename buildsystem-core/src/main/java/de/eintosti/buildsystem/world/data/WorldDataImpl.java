@@ -74,44 +74,44 @@ public class WorldDataImpl implements WorldData {
 
         this.customSpawn = register("spawn", new ConfigurableType<>(builder.customSpawn));
         this.permission = register("permission", new ConfigurableType<>(builder.permission)
-                .withCapability(Bypassable.class, new Bypassable("buildsystem.bypass.permission"))
-                .withCapability(Overridable.class, new Overridable<>(
-                        () -> Config.Folder.overridePermissions,
-                        () -> {
-                            Folder folder = getAssignedFolder();
-                            return (folder != null) ? folder.getPermission() : null;
-                        }
-                ))
+            .withCapability(Bypassable.class, new Bypassable("buildsystem.bypass.permission"))
+            .withCapability(Overridable.class, new Overridable<>(
+                () -> Config.Folder.overridePermissions,
+                () -> {
+                    Folder folder = getAssignedFolder();
+                    return (folder != null) ? folder.getPermission() : null;
+                }
+            ))
         );
         this.project = register("project", new ConfigurableType<>(builder.project)
-                .withCapability(Overridable.class, new Overridable<>(
-                        () -> Config.Folder.overrideProjects,
-                        () -> {
-                            Folder folder = getAssignedFolder();
-                            return (folder != null) ? folder.getProject() : null;
-                        }
-                ))
+            .withCapability(Overridable.class, new Overridable<>(
+                () -> Config.Folder.overrideProjects,
+                () -> {
+                    Folder folder = getAssignedFolder();
+                    return (folder != null) ? folder.getProject() : null;
+                }
+            ))
         );
 
         this.difficulty = register("difficulty", new ConfigurableType<>(builder.difficulty)
-                .withConfigFormatter(Difficulty::name)
+            .withConfigFormatter(Difficulty::name)
         );
         this.material = register("material", new ConfigurableType<>(builder.material)
-                .withConfigFormatter(XMaterial::name)
+            .withConfigFormatter(XMaterial::name)
         );
         this.status = register("status", new ConfigurableType<>(builder.status)
-                .withConfigFormatter(BuildWorldStatus::name)
-                .withCapability(Bypassable.class, new Bypassable("buildsystem.bypass.archive"))
+            .withConfigFormatter(BuildWorldStatus::name)
+            .withCapability(Bypassable.class, new Bypassable("buildsystem.bypass.archive"))
         );
 
         this.blockBreaking = register("block-breaking", new ConfigurableType<>(builder.blockBreaking)
-                .withCapability(Bypassable.class, new Bypassable("buildsystem.bypass.settings"))
+            .withCapability(Bypassable.class, new Bypassable("buildsystem.bypass.settings"))
         );
         this.blockInteractions = register("block-interactions", new ConfigurableType<>(builder.blockInteractions)
-                .withCapability(Bypassable.class, new Bypassable("buildsystem.bypass.settings"))
+            .withCapability(Bypassable.class, new Bypassable("buildsystem.bypass.settings"))
         );
         this.blockPlacement = register("block-placement", new ConfigurableType<>(builder.blockPlacement)
-                .withCapability(Bypassable.class, new Bypassable("buildsystem.bypass.settings"))
+            .withCapability(Bypassable.class, new Bypassable("buildsystem.bypass.settings"))
         );
         this.buildersEnabled = register("builders-enabled", new ConfigurableType<>(builder.buildersEnabled));
         this.explosions = register("explosions", new ConfigurableType<>(builder.explosions));

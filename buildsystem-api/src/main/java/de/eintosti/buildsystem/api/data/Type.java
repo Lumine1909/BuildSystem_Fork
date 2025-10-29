@@ -89,8 +89,7 @@ public interface Type<T> {
     void set(T value);
 
     /**
-     * Gets the value of this data point formatted for storage in a configuration file.
-     * This might involve converting complex objects into simpler types (e.g., enums to strings).
+     * Gets the value of this data point formatted for storage in a configuration file. This might involve converting complex objects into simpler types (e.g., enums to strings).
      *
      * @return The value formatted for a config file
      */
