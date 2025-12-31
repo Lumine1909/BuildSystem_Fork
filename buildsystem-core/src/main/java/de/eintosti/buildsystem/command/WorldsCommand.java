@@ -33,6 +33,7 @@ import de.eintosti.buildsystem.command.subcommand.worlds.ImportAllSubCommand;
 import de.eintosti.buildsystem.command.subcommand.worlds.ImportSubCommand;
 import de.eintosti.buildsystem.command.subcommand.worlds.InfoSubCommand;
 import de.eintosti.buildsystem.command.subcommand.worlds.ItemSubCommand;
+import de.eintosti.buildsystem.command.subcommand.worlds.MigrateSubCommand;
 import de.eintosti.buildsystem.command.subcommand.worlds.PrivateSubCommand;
 import de.eintosti.buildsystem.command.subcommand.worlds.PublicSubCommand;
 import de.eintosti.buildsystem.command.subcommand.worlds.RemoveBuilderSubCommand;
@@ -47,6 +48,7 @@ import de.eintosti.buildsystem.command.subcommand.worlds.SetStatusSubCommand;
 import de.eintosti.buildsystem.command.subcommand.worlds.TeleportSubCommand;
 import de.eintosti.buildsystem.command.subcommand.worlds.UnimportSubCommand;
 import de.eintosti.buildsystem.command.tabcomplete.WorldsTabCompleter;
+import de.eintosti.buildsystem.command.tabcomplete.WorldsTabCompleter.WorldsArgument;
 import de.eintosti.buildsystem.world.navigator.inventory.NavigatorInventory;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -82,7 +84,7 @@ public class WorldsCommand implements CommandExecutor {
             return true;
         }
 
-        WorldsTabCompleter.WorldsArgument argument = WorldsTabCompleter.WorldsArgument.matchArgument(args[0]);
+        WorldsArgument argument = WorldsArgument.matchArgument(args[0]);
         if (argument == null) {
             Messages.sendMessage(player, "worlds_unknown_command");
             return true;
@@ -118,6 +120,7 @@ public class WorldsCommand implements CommandExecutor {
             case SET_STATUS -> new SetStatusSubCommand(plugin, worldName);
             case TP -> new TeleportSubCommand(plugin);
             case UNIMPORT -> new UnimportSubCommand(plugin, worldName);
+            case MIGRATE -> new MigrateSubCommand(plugin, worldName);
         };
         subCommand.execute(player, args);
         return true;

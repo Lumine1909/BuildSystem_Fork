@@ -31,6 +31,7 @@ import de.eintosti.buildsystem.command.ExplosionsCommand;
 import de.eintosti.buildsystem.command.GamemodeCommand;
 import de.eintosti.buildsystem.command.NoAICommand;
 import de.eintosti.buildsystem.command.PhysicsCommand;
+import de.eintosti.buildsystem.command.RealmBackCommand;
 import de.eintosti.buildsystem.command.SettingsCommand;
 import de.eintosti.buildsystem.command.SetupCommand;
 import de.eintosti.buildsystem.command.SkullCommand;
@@ -260,6 +261,7 @@ public class BuildSystemPlugin extends JavaPlugin {
         new TimeCommand(this);
         new TopCommand(this);
         new WorldsCommand(this);
+        new RealmBackCommand(this);
     }
 
     private void registerTabCompleters() {
