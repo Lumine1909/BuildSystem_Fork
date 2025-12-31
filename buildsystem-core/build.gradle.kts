@@ -22,7 +22,7 @@ repositories {
     }
     maven {
         name = "PlaceholderAPI"
-        url = uri("https://repo.extendedclip.com/content/repositories/placeholderapi/")
+        url = uri("https://repo.extendedclip.com/releases")
     }
     maven {
         name = "Modrinth"
@@ -171,6 +171,10 @@ bukkit {
             aliases = listOf("w")
             usage = "/<command>"
         }
+        register("realm-back") {
+            description = "Back to your realm"
+            usage = "/<command>"
+        }
     }
     permissions {
         register("buildsystem.help") {
@@ -228,6 +232,10 @@ bukkit {
         register("buildsystem.updates") {
             description = "Receive update messages."
             default = BukkitPluginDescription.Permission.Default.OP
+        }
+        register("buildsystem.realm-back") {
+            description = "Back to the personal realm."
+            default = BukkitPluginDescription.Permission.Default.TRUE
         }
         register("buildsystem.customblock.use") {
             description = "Use custom block provided by the plugin."

@@ -270,7 +270,8 @@ public class WorldsTabCompleter extends ArgumentSorter implements TabCompleter {
         SET_SPAWN("setSpawn", "buildsystem.setspawn"),
         REMOVE_SPAWN("removeSpawn", "buildsystem.removespawn"),
         TP("tp", "buildsystem.worldtp"),
-        UNIMPORT("unimport", "buildsystem.unimport");
+        UNIMPORT("unimport", "buildsystem.unimport"),
+        MIGRATE("migrate", "buildsystem.migrate");
 
         private final String command;
         private final String permission;
