@@ -98,7 +98,7 @@ public class RemoveBuilderSubCommand implements SubCommand {
             return;
         }
 
-        builders.removeBuilder(builderId);
+        builders.removeBuilder(builderId, builderName);
         XSound.ENTITY_PLAYER_LEVELUP.play(player);
         Messages.sendMessage(player, "worlds_removebuilder_removed", Map.entry("%builder%", builderName));
 

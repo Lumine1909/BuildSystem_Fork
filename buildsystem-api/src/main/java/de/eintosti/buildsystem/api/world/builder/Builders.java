@@ -125,6 +125,8 @@ public interface Builders {
      */
     void removeBuilder(UUID uuid);
 
+    void removeBuilder(UUID uuid, String name);
+
     /**
      * Formats the list of builders for the {@code %builder%} placeholder.
      *

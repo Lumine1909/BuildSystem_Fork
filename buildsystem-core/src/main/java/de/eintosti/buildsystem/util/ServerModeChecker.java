@@ -43,27 +43,7 @@ public final class ServerModeChecker {
      * @return The detected server mode
      */
     private static ServerMode determineServerMode() {
-        try {
-            Class<?> CLASS_GlobalConfiguration = Class.forName("io.papermc.paper.configuration.GlobalConfiguration");
-            Class<?> CLASS_Proxies = Class.forName("io.papermc.paper.configuration.GlobalConfiguration$Proxies");
-
-            Field FIELD_instance = CLASS_GlobalConfiguration.getDeclaredField("instance");
-            FIELD_instance.setAccessible(true);
-
-            Field FIELD_proxies = CLASS_GlobalConfiguration.getDeclaredField("proxies");
-            FIELD_proxies.setAccessible(true);
-
-            Method METHOD_isProxyOnlineMode = CLASS_Proxies.getDeclaredMethod("isProxyOnlineMode");
-            METHOD_isProxyOnlineMode.setAccessible(true);
-
-            Object OBJECT_instance = FIELD_instance.get(null);
-            Object OBJECT_proxies = FIELD_proxies.get(OBJECT_instance);
-
-            boolean isOnline = (boolean) METHOD_isProxyOnlineMode.invoke(OBJECT_proxies);
-            return isOnline ? ServerMode.ONLINE : ServerMode.OFFLINE;
-        } catch (Exception e) {
-            return Bukkit.getOnlineMode() ? ServerMode.ONLINE : ServerMode.OFFLINE;
-        }
+        return ServerMode.OFFLINE;
     }
 
     /**

@@ -111,6 +111,16 @@ public class BuildersImpl implements Builders {
     }
 
     @Override
+    public void removeBuilder(UUID uuid, String name) {
+        if (buildersByUuid.remove(uuid) != null) {
+            return;
+        }
+        getAllBuilders().stream().filter(builder -> builder.getName().equals(name)).findFirst().ifPresent(
+            builder -> removeBuilder(builder.getUniqueId())
+        );
+    }
+
+    @Override
     public String asPlaceholder(Player player) {
         String template = Messages.getString("world_item_builders_builder_template", player);
         List<String> builderNames = getBuilderNames();

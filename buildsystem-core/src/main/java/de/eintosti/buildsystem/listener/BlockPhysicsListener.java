@@ -24,9 +24,13 @@ import de.eintosti.buildsystem.config.Config.Settings.DisabledPhysics;
 import de.eintosti.buildsystem.storage.WorldStorageImpl;
 import de.eintosti.buildsystem.util.DirectionUtil;
 import java.util.List;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.type.Bed;
+import org.bukkit.block.data.type.Chest;
+import org.bukkit.block.data.type.Door;
 import org.bukkit.block.data.type.Fence;
 import org.bukkit.block.data.type.Gate;
 import org.bukkit.block.data.type.GlassPane;
@@ -70,13 +74,16 @@ public class BlockPhysicsListener implements Listener {
 
         if (!DisabledPhysics.preventConnections) {
             boolean canConnect = switch (block.getBlockData()) {
+                case Chest chest -> true;
+                case Door door -> true;
+                case Bed bed -> true;
                 case Fence fence -> true;
                 case Gate gate -> true;
                 case GlassPane glassPane -> true;
                 case Stairs stairs -> true;
                 case Wall wall -> true;
                 default -> false;
-            };
+            } || block.getBlockData().getMaterial() == Material.AIR;
             if (canConnect) {
                 event.setCancelled(false);
                 return;

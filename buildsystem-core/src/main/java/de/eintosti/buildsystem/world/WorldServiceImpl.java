@@ -100,12 +100,12 @@ public class WorldServiceImpl implements WorldService {
     public void startWorldNameInput(Player player, BuildWorldType worldType, @Nullable String template, boolean privateWorld, @Nullable Folder folder) {
         player.closeInventory();
         new PlayerChatInput(plugin, player, "enter_world_name", input -> {
-            if (StringCleaner.hasInvalidNameCharacters(input)) {
+            if (input.isEmpty() || input.contains("/") || input.isBlank() || StringCleaner.hasInvalidNameCharacters(input)) {
                 Messages.sendMessage(player, "worlds_world_creation_invalid_characters");
             }
 
             String worldName = Config.World.nameFormat.replace("${name}", StringCleaner.sanitize(input));
-            if (worldName.isEmpty()) {
+            if (worldName.isEmpty() || worldName.equals(Config.World.nameFormat.replace("${name}", ""))) {
                 Messages.sendMessage(player, "worlds_world_creation_name_bank");
                 return;
             }

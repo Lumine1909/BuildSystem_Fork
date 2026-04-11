@@ -36,6 +36,8 @@ import de.eintosti.buildsystem.world.modification.EditInventory;
 import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
@@ -86,13 +88,13 @@ public class BuilderInventory extends PaginatedInventory {
 
         int columnSkull = 9, maxColumnSkull = 17;
         for (Builder builder : builders) {
-            inventory.setItem(columnSkull++, createBuilderItem(builder, player));
-
             if (columnSkull > maxColumnSkull) {
                 columnSkull = 9;
                 inventory = createInventory(buildWorld, player);
                 inventories[++index] = inventory;
             }
+
+            inventory.setItem(columnSkull++, createBuilderItem(builder, player));
         }
     }
 
@@ -142,7 +144,7 @@ public class BuilderInventory extends PaginatedInventory {
             Messages.getString("worldeditor_builders_builder_item", player,
                 Map.entry("%builder%", builder.getName())
             ),
-            Profileable.username(builder.getName()),
+            Profileable.of(Bukkit.getOfflinePlayer(builder.getName())),
             Messages.getStringList("worldeditor_builders_builder_lore", player)
         );
         ItemMeta itemMeta = itemStack.getItemMeta();
@@ -213,13 +215,13 @@ public class BuilderInventory extends PaginatedInventory {
                     return;
                 }
 
-                buildWorld.getBuilders().removeBuilder(builderId);
+                buildWorld.getBuilders().removeBuilder(builderId, builderName);
                 XSound.ENTITY_ENDERMAN_TELEPORT.play(player);
                 Messages.sendMessage(player, "worlds_removebuilder_removed", Map.entry("%builder%", builderName));
         }
 
         XSound.ENTITY_CHICKEN_EGG.play(player);
-        player.openInventory(getInventory(buildWorld, player));
+        openInventory(buildWorld, player);
     }
 
     private static class BuilderInventoryHolder extends BuildWorldHolder {
